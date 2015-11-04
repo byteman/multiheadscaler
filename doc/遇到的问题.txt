@@ -1,0 +1,20 @@
+1. VS2008开发WinCE程序编译速度慢的解决办法
+
+VS2008环境下采用C#、.NET Compact Framework开发WinCE、Windows Mobile程序时，编译项目非常慢，有时候需要几分钟甚至十几分钟，如果出现这种情况，除了排除机器配置问题外，你可以修改VS的配置文件，以屏蔽掉编译中不需要的任务，这个修改可以让你的编译速度大大提高，有可能你的编译时间只需要几秒钟就搞定了啊。
+
+1、找到以下文件
+
+C:\Windows\Microsoft.NET\Framework\v3.5\Microsoft.CompactFramework.Common.targets
+
+2、用记事本打开该文件，找到以下节点，按照加粗亮底的部分，修改后保存。
+
+<Target Name="PlatformVerificationTask" Condition="'$(SkipPlatformVerification)' == 'true'" >
+  <PlatformVerificationTask
+    PlatformFamilyName="$(PlatformFamilyName)"
+    PlatformID="$(PlatformID)"
+    SourceAssembly="@(IntermediateAssembly)"
+    ReferencePath="@(ReferencePath)"
+    TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
+    PlatformVersion="$(TargetFrameworkVersion)"/>
+</Target>
+3、重启VS，再次编译

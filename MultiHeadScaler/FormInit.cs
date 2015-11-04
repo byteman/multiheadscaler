@@ -39,8 +39,8 @@ namespace Monitor
                     //EventLoad.WaitOne();
                     Application.Run(f);
                 }).Start();
-            }
-            else if (timerCount >= 30)
+            }  
+            else if (timerCount >= 1)
             {
                 EventLoad.WaitOne();
                 //EventLoad.Set();
@@ -69,5 +69,10 @@ namespace Monitor
 
         const int EXSTYLE = -20; 
         const int WS_EX_NOANIMATION = 0x04000000;
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

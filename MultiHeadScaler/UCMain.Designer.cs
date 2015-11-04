@@ -28,85 +28,122 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pbHold = new System.Windows.Forms.PictureBox();
-            this.pbSetzero = new System.Windows.Forms.PictureBox();
-            this.pbQuery = new System.Windows.Forms.PictureBox();
-            this.pbSet = new System.Windows.Forms.PictureBox();
-            this.pbExit = new System.Windows.Forms.PictureBox();
+            this.pbRun = new System.Windows.Forms.PictureBox();
+            this.pbCalib = new System.Windows.Forms.PictureBox();
+            this.pbHandDebug = new System.Windows.Forms.PictureBox();
+            this.pbTongji = new System.Windows.Forms.PictureBox();
+            this.pbParam = new System.Windows.Forms.PictureBox();
+            this.banOcxCtl1 = new BanOcx.BanOcxCtl();
+            this.pbZero = new System.Windows.Forms.PictureBox();
             this.SuspendLayout();
             // 
-            // pbHold
+            // pbRun
             // 
-            this.pbHold.Location = new System.Drawing.Point(622, 28);
-            this.pbHold.Name = "pbHold";
-            this.pbHold.Size = new System.Drawing.Size(164, 70);
-            this.pbHold.Click += new System.EventHandler(this.pbHold_Click);
-            this.pbHold.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
-            this.pbHold.Paint += new System.Windows.Forms.PaintEventHandler(this.pbHold_Paint);
-            this.pbHold.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
+            this.pbRun.Location = new System.Drawing.Point(622, 10);
+            this.pbRun.Name = "pbRun";
+            this.pbRun.Size = new System.Drawing.Size(164, 60);
+            this.pbRun.Click += new System.EventHandler(this.pbRun_Click);
+            this.pbRun.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
+            this.pbRun.Paint += new System.Windows.Forms.PaintEventHandler(this.pbRun_Paint);
+            this.pbRun.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
             // 
-            // pbSetzero
+            // pbCalib
             // 
-            this.pbSetzero.Location = new System.Drawing.Point(622, 104);
-            this.pbSetzero.Name = "pbSetzero";
-            this.pbSetzero.Size = new System.Drawing.Size(164, 70);
-            this.pbSetzero.Click += new System.EventHandler(this.pbSetzero_Click);
-            this.pbSetzero.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
-            this.pbSetzero.Paint += new System.Windows.Forms.PaintEventHandler(this.pbSetzero_Paint);
-            this.pbSetzero.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
+            this.pbCalib.Location = new System.Drawing.Point(622, 81);
+            this.pbCalib.Name = "pbCalib";
+            this.pbCalib.Size = new System.Drawing.Size(164, 60);
+            this.pbCalib.Click += new System.EventHandler(this.pbCalib_Click);
+            this.pbCalib.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
+            this.pbCalib.Paint += new System.Windows.Forms.PaintEventHandler(this.pbCalib_Paint);
+            this.pbCalib.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
             // 
-            // pbQuery
+            // pbHandDebug
             // 
-            this.pbQuery.Location = new System.Drawing.Point(622, 180);
-            this.pbQuery.Name = "pbQuery";
-            this.pbQuery.Size = new System.Drawing.Size(164, 70);
-            this.pbQuery.Click += new System.EventHandler(this.pbQuery_Click);
-            this.pbQuery.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
-            this.pbQuery.Paint += new System.Windows.Forms.PaintEventHandler(this.pbQuery_Paint);
-            this.pbQuery.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
+            this.pbHandDebug.Location = new System.Drawing.Point(622, 152);
+            this.pbHandDebug.Name = "pbHandDebug";
+            this.pbHandDebug.Size = new System.Drawing.Size(164, 60);
+            this.pbHandDebug.Click += new System.EventHandler(this.pbHandDebug_Click);
+            this.pbHandDebug.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
+            this.pbHandDebug.Paint += new System.Windows.Forms.PaintEventHandler(this.pbHandDebug_Paint);
+            this.pbHandDebug.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
             // 
-            // pbSet
+            // pbTongji
             // 
-            this.pbSet.Location = new System.Drawing.Point(622, 256);
-            this.pbSet.Name = "pbSet";
-            this.pbSet.Size = new System.Drawing.Size(164, 70);
-            this.pbSet.Click += new System.EventHandler(this.pbSet_Click);
-            this.pbSet.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
-            this.pbSet.Paint += new System.Windows.Forms.PaintEventHandler(this.pbSet_Paint);
-            this.pbSet.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
+            this.pbTongji.Location = new System.Drawing.Point(622, 223);
+            this.pbTongji.Name = "pbTongji";
+            this.pbTongji.Size = new System.Drawing.Size(164, 60);
+            this.pbTongji.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
+            this.pbTongji.Paint += new System.Windows.Forms.PaintEventHandler(this.pbTongji_Paint);
+            this.pbTongji.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
             // 
-            // pbExit
+            // pbParam
             // 
-            this.pbExit.Location = new System.Drawing.Point(622, 332);
-            this.pbExit.Name = "pbExit";
-            this.pbExit.Size = new System.Drawing.Size(164, 70);
-            this.pbExit.Click += new System.EventHandler(this.pbExit_Click);
-            this.pbExit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
-            this.pbExit.Paint += new System.Windows.Forms.PaintEventHandler(this.pbExit_Paint);
-            this.pbExit.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
+            this.pbParam.Location = new System.Drawing.Point(622, 294);
+            this.pbParam.Name = "pbParam";
+            this.pbParam.Size = new System.Drawing.Size(164, 60);
+            this.pbParam.Click += new System.EventHandler(this.pbParam_Click);
+            this.pbParam.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
+            this.pbParam.Paint += new System.Windows.Forms.PaintEventHandler(this.pbParam_Paint);
+            this.pbParam.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
+            // 
+            // banOcxCtl1
+            // 
+            this.banOcxCtl1.BackColor = System.Drawing.Color.Black;
+            this.banOcxCtl1.Location = new System.Drawing.Point(120, 12);
+            this.banOcxCtl1.Name = "banOcxCtl1";
+            this.banOcxCtl1.Size = new System.Drawing.Size(486, 417);
+            this.banOcxCtl1.TabIndex = 7;
+            this.banOcxCtl1.中心点击区半径 = 40;
+            this.banOcxCtl1.字母S的大小 = 40F;
+            this.banOcxCtl1.字母S的颜色 = System.Drawing.Color.Green;
+            this.banOcxCtl1.斗区的颜色 = System.Drawing.Color.YellowGreen;
+            this.banOcxCtl1.斗区线条的粗线 = 1F;
+            this.banOcxCtl1.斗区线条的颜色 = System.Drawing.Color.White;
+            this.banOcxCtl1.磅称中心点坐标 = new System.Drawing.Point(220, 200);
+            this.banOcxCtl1.磅称的半径 = 200;
+            this.banOcxCtl1.磅称的数量 = 10;
+            this.banOcxCtl1.磅称的间隔弧度 = 10;
+            this.banOcxCtl1.编号字体大小 = 15F;
+            this.banOcxCtl1.编号字体颜色 = System.Drawing.Color.Black;
+            this.banOcxCtl1.背景颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
+            // 
+            // pbZero
+            // 
+            this.pbZero.Location = new System.Drawing.Point(622, 363);
+            this.pbZero.Name = "pbZero";
+            this.pbZero.Size = new System.Drawing.Size(164, 60);
+            this.pbZero.Click += new System.EventHandler(this.pbSetzero_Click);
+            this.pbZero.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
+            this.pbZero.Paint += new System.Windows.Forms.PaintEventHandler(this.pbSetzero_Paint);
+            this.pbZero.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
             // 
             // UCMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
-            this.Controls.Add(this.pbExit);
-            this.Controls.Add(this.pbSet);
-            this.Controls.Add(this.pbQuery);
-            this.Controls.Add(this.pbSetzero);
-            this.Controls.Add(this.pbHold);
+            this.Controls.Add(this.pbZero);
+            this.Controls.Add(this.banOcxCtl1);
+            this.Controls.Add(this.pbParam);
+            this.Controls.Add(this.pbTongji);
+            this.Controls.Add(this.pbHandDebug);
+            this.Controls.Add(this.pbCalib);
+            this.Controls.Add(this.pbRun);
             this.Name = "UCMain";
             this.Size = new System.Drawing.Size(800, 432);
+            this.Click += new System.EventHandler(this.UCMain_Click);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pbHold;
-        private System.Windows.Forms.PictureBox pbSetzero;
-        private System.Windows.Forms.PictureBox pbQuery;
-        private System.Windows.Forms.PictureBox pbSet;
-        private System.Windows.Forms.PictureBox pbExit;
+        private System.Windows.Forms.PictureBox pbRun;
+        private System.Windows.Forms.PictureBox pbCalib;
+        private System.Windows.Forms.PictureBox pbHandDebug;
+        private System.Windows.Forms.PictureBox pbTongji;
+        private System.Windows.Forms.PictureBox pbParam;
+        private BanOcx.BanOcxCtl banOcxCtl1;
+        private System.Windows.Forms.PictureBox pbZero;
     }
 }

@@ -90,5 +90,10 @@ namespace Monitor
             formFrame.protocol.bToUserControl = true;
             return formFrame.protocol.bSuccess;
         }
+
+        private void UCCommon_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

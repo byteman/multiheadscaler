@@ -1,6 +1,6 @@
-﻿namespace Monitor
+﻿namespace MultiHeadScaler
 {
-    partial class UCCommon
+    partial class UCRun
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -30,19 +30,17 @@
         {
             this.SuspendLayout();
             // 
-            // UCCommon
+            // UCRun
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
-            this.Name = "UCCommon";
-            this.Size = new System.Drawing.Size(800, 432);
-            this.Click += new System.EventHandler(this.UCCommon_Click);
+            this.Name = "UCRun";
+            this.Size = new System.Drawing.Size(800, 480);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
     }
 }
