@@ -1,0 +1,324 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{62E3ED53-E42E-4218-8928-8654E63A4749}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MultiHeadScaler</RootNamespace>
+    <AssemblyName>MultiHeadScaler</AssemblyName>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformFamilyName>WindowsCE</PlatformFamilyName>
+    <PlatformID>E2BECB1F-8C8C-41ba-B736-9BE7D946A398</PlatformID>
+    <OSVersion>5.0</OSVersion>
+    <DeployDirSuffix>MultiHeadScaler</DeployDirSuffix>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <NativePlatformName>Windows CE</NativePlatformName>
+    <FormFactorID>
+    </FormFactorID>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BanOcx, Version=1.0.5784.40466, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CalibInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ConfigManage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FormCalib.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCalib.designer.cs">
+      <DependentUpon>FormCalib.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDateTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDateTime.designer.cs">
+      <DependentUpon>FormDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFrame.Designer.cs">
+      <DependentUpon>FormFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormInit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInit.designer.cs">
+      <DependentUpon>FormInit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInput.designer.cs">
+      <DependentUpon>FormInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLog.Designer.cs">
+      <DependentUpon>FormLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMsgBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMsgBox.Designer.cs">
+      <DependentUpon>FormMsgBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPlate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPlate.Designer.cs">
+      <DependentUpon>FormPlate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPwd.Designer.cs">
+      <DependentUpon>FormPwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPwdChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPwdChange.Designer.cs">
+      <DependentUpon>FormPwdChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRadio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRadio.Designer.cs">
+      <DependentUpon>FormRadio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStyle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FormWireless.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWireless.Designer.cs">
+      <DependentUpon>FormWireless.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputInterface.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PanelBody.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ParamItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PInvoke.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Program.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormCalib.resx">
+      <DependentUpon>FormCalib.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDateTime.resx">
+      <DependentUpon>FormDateTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFrame.resx">
+      <DependentUpon>FormFrame.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInit.resx">
+      <DependentUpon>FormInit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInput.resx">
+      <DependentUpon>FormInput.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMsgBox.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormMsgBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPlate.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormPlate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPwd.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormPwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPwdChange.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormPwdChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRadio.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormRadio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWireless.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormWireless.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCButtons.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UCButtons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCCommon.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UCCommon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCList.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UCList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCMain.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UCMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCMenu.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UCMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCRadioOnline.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UCRadioOnline.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCStatus.resx">
+      <DependentUpon>UCStatus.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Protocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProtocolPackage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SerialOperate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UCButtons.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCButtons.Designer.cs">
+      <DependentUpon>UCButtons.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCCommon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCCommon.Designer.cs">
+      <DependentUpon>UCCommon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCList.Designer.cs">
+      <DependentUpon>UCList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCMain.Designer.cs">
+      <DependentUpon>UCMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCMenu.Designer.cs">
+      <DependentUpon>UCMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCQueryMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCRadioOnline.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCRadioOnline.Designer.cs">
+      <DependentUpon>UCRadioOnline.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCSetMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCStatus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCStatus.Designer.cs">
+      <DependentUpon>UCStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserManage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Util.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
+        <HostingProcess disable="1" />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

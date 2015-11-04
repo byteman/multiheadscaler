@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<appSettings>
+  <add key="driver" value="0" />
+  <add key="admin" value="0" />
+</appSettings>
