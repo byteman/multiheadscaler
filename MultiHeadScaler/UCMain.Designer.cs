@@ -39,7 +39,7 @@
             // 
             // pbRun
             // 
-            this.pbRun.Location = new System.Drawing.Point(622, 10);
+            this.pbRun.Location = new System.Drawing.Point(624, 37);
             this.pbRun.Name = "pbRun";
             this.pbRun.Size = new System.Drawing.Size(164, 60);
             this.pbRun.Click += new System.EventHandler(this.pbRun_Click);
@@ -49,7 +49,7 @@
             // 
             // pbCalib
             // 
-            this.pbCalib.Location = new System.Drawing.Point(622, 81);
+            this.pbCalib.Location = new System.Drawing.Point(624, 108);
             this.pbCalib.Name = "pbCalib";
             this.pbCalib.Size = new System.Drawing.Size(164, 60);
             this.pbCalib.Click += new System.EventHandler(this.pbCalib_Click);
@@ -59,7 +59,7 @@
             // 
             // pbHandDebug
             // 
-            this.pbHandDebug.Location = new System.Drawing.Point(622, 152);
+            this.pbHandDebug.Location = new System.Drawing.Point(624, 179);
             this.pbHandDebug.Name = "pbHandDebug";
             this.pbHandDebug.Size = new System.Drawing.Size(164, 60);
             this.pbHandDebug.Click += new System.EventHandler(this.pbHandDebug_Click);
@@ -69,7 +69,7 @@
             // 
             // pbTongji
             // 
-            this.pbTongji.Location = new System.Drawing.Point(622, 223);
+            this.pbTongji.Location = new System.Drawing.Point(624, 250);
             this.pbTongji.Name = "pbTongji";
             this.pbTongji.Size = new System.Drawing.Size(164, 60);
             this.pbTongji.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
@@ -78,7 +78,7 @@
             // 
             // pbParam
             // 
-            this.pbParam.Location = new System.Drawing.Point(622, 294);
+            this.pbParam.Location = new System.Drawing.Point(624, 321);
             this.pbParam.Name = "pbParam";
             this.pbParam.Size = new System.Drawing.Size(164, 60);
             this.pbParam.Click += new System.EventHandler(this.pbParam_Click);
@@ -89,7 +89,7 @@
             // banOcxCtl1
             // 
             this.banOcxCtl1.BackColor = System.Drawing.Color.Black;
-            this.banOcxCtl1.Location = new System.Drawing.Point(120, 12);
+            this.banOcxCtl1.Location = new System.Drawing.Point(120, 37);
             this.banOcxCtl1.Name = "banOcxCtl1";
             this.banOcxCtl1.Size = new System.Drawing.Size(486, 417);
             this.banOcxCtl1.TabIndex = 7;
@@ -109,7 +109,7 @@
             // 
             // pbZero
             // 
-            this.pbZero.Location = new System.Drawing.Point(622, 363);
+            this.pbZero.Location = new System.Drawing.Point(624, 390);
             this.pbZero.Name = "pbZero";
             this.pbZero.Size = new System.Drawing.Size(164, 60);
             this.pbZero.Click += new System.EventHandler(this.pbSetzero_Click);
@@ -130,7 +130,7 @@
             this.Controls.Add(this.pbCalib);
             this.Controls.Add(this.pbRun);
             this.Name = "UCMain";
-            this.Size = new System.Drawing.Size(800, 432);
+            this.Size = new System.Drawing.Size(800, 480);
             this.Click += new System.EventHandler(this.UCMain_Click);
             this.ResumeLayout(false);
 

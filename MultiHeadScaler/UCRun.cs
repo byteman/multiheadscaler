@@ -36,6 +36,7 @@ namespace Monitor
             pbExit.Image = bmBtnUp;
             pbSimu.Image = bmBtnUp;
 
+
         }
         private void pbBtn_MouseDown(object sender, MouseEventArgs e)
         {

@@ -32,7 +32,7 @@
             this.pbStart = new System.Windows.Forms.PictureBox();
             this.pbStop = new System.Windows.Forms.PictureBox();
             this.pbExit = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbName = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -50,9 +50,9 @@
             // banOcxCtl1
             // 
             this.banOcxCtl1.BackColor = System.Drawing.Color.Black;
-            this.banOcxCtl1.Location = new System.Drawing.Point(174, 3);
+            this.banOcxCtl1.Location = new System.Drawing.Point(196, 49);
             this.banOcxCtl1.Name = "banOcxCtl1";
-            this.banOcxCtl1.Size = new System.Drawing.Size(441, 409);
+            this.banOcxCtl1.Size = new System.Drawing.Size(442, 409);
             this.banOcxCtl1.TabIndex = 8;
             this.banOcxCtl1.中心点击区半径 = 40;
             this.banOcxCtl1.字母S的大小 = 40F;
@@ -70,18 +70,20 @@
             // 
             // pbStart
             // 
-            this.pbStart.Location = new System.Drawing.Point(621, 13);
+            this.pbStart.Location = new System.Drawing.Point(644, 13);
             this.pbStart.Name = "pbStart";
-            this.pbStart.Size = new System.Drawing.Size(164, 60);
+            this.pbStart.Size = new System.Drawing.Size(141, 60);
+            this.pbStart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbStart.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbStart.Paint += new System.Windows.Forms.PaintEventHandler(this.pbStart_Paint);
             this.pbStart.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
             // 
             // pbStop
             // 
-            this.pbStop.Location = new System.Drawing.Point(621, 79);
+            this.pbStop.Location = new System.Drawing.Point(644, 79);
             this.pbStop.Name = "pbStop";
-            this.pbStop.Size = new System.Drawing.Size(164, 60);
+            this.pbStop.Size = new System.Drawing.Size(141, 60);
+            this.pbStop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbStop.Click += new System.EventHandler(this.pbStop_Click);
             this.pbStop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbStop.Paint += new System.Windows.Forms.PaintEventHandler(this.pbStop_Paint);
@@ -89,47 +91,54 @@
             // 
             // pbExit
             // 
-            this.pbExit.Location = new System.Drawing.Point(621, 411);
+            this.pbExit.Location = new System.Drawing.Point(644, 411);
             this.pbExit.Name = "pbExit";
-            this.pbExit.Size = new System.Drawing.Size(164, 60);
+            this.pbExit.Size = new System.Drawing.Size(141, 60);
+            this.pbExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbExit.Click += new System.EventHandler(this.pbExit_Click);
             this.pbExit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbExit.Paint += new System.Windows.Forms.PaintEventHandler(this.pbExit_Paint);
             this.pbExit.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
             // 
-            // pictureBox1
+            // pbName
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(3, 13);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(108, 60);
-            this.pictureBox1.Click += new System.EventHandler(this.pbExit_Click);
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pbExit_Paint);
-            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
+            this.pbName.Location = new System.Drawing.Point(3, 13);
+            this.pbName.Name = "pbName";
+            this.pbName.Size = new System.Drawing.Size(108, 60);
             // 
             // textBox1
             // 
+            this.textBox1.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Bold);
+            this.textBox1.ForeColor = System.Drawing.Color.Blue;
             this.textBox1.Location = new System.Drawing.Point(83, 95);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(72, 23);
+            this.textBox1.Size = new System.Drawing.Size(83, 31);
             this.textBox1.TabIndex = 11;
+            this.textBox1.Text = "123";
             // 
             // textBox2
             // 
+            this.textBox2.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Bold);
+            this.textBox2.ForeColor = System.Drawing.Color.Blue;
             this.textBox2.Location = new System.Drawing.Point(83, 140);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(72, 23);
+            this.textBox2.Size = new System.Drawing.Size(83, 31);
             this.textBox2.TabIndex = 11;
+            this.textBox2.Text = "0.1";
             // 
             // textBox3
             // 
+            this.textBox3.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Bold);
+            this.textBox3.ForeColor = System.Drawing.Color.Blue;
             this.textBox3.Location = new System.Drawing.Point(83, 182);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(72, 23);
+            this.textBox3.Size = new System.Drawing.Size(83, 31);
             this.textBox3.TabIndex = 11;
+            this.textBox3.Text = "0";
             // 
             // label1
             // 
+            this.label1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(0, 98);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 20);
@@ -137,6 +146,7 @@
             // 
             // label2
             // 
+            this.label2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(0, 140);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 20);
@@ -144,6 +154,7 @@
             // 
             // label3
             // 
+            this.label3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(0, 185);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 20);
@@ -151,7 +162,8 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(7, 225);
+            this.label4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
+            this.label4.Location = new System.Drawing.Point(3, 225);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 20);
             this.label4.Text = "状态";
@@ -159,7 +171,8 @@
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(7, 259);
+            this.label5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
+            this.label5.Location = new System.Drawing.Point(0, 260);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(77, 20);
             this.label5.Text = "合格";
@@ -167,7 +180,8 @@
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(3, 293);
+            this.label6.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
+            this.label6.Location = new System.Drawing.Point(0, 293);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(77, 20);
             this.label6.Text = "不合格";
@@ -175,25 +189,27 @@
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(6, 332);
+            this.label7.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
+            this.label7.Location = new System.Drawing.Point(0, 331);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 20);
-            this.label7.Text = "下偏差";
+            this.label7.Text = "平均组合";
             this.label7.ParentChanged += new System.EventHandler(this.label4_ParentChanged);
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(3, 373);
+            this.label8.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
+            this.label8.Location = new System.Drawing.Point(0, 371);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(77, 20);
-            this.label8.Text = "下偏差";
+            this.label8.Text = "运行速度";
             this.label8.ParentChanged += new System.EventHandler(this.label4_ParentChanged);
             // 
             // pbSimu
             // 
             this.pbSimu.Location = new System.Drawing.Point(7, 411);
             this.pbSimu.Name = "pbSimu";
-            this.pbSimu.Size = new System.Drawing.Size(164, 56);
+            this.pbSimu.Size = new System.Drawing.Size(148, 56);
             this.pbSimu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbSimu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbSimu.Paint += new System.Windows.Forms.PaintEventHandler(this.pbSimu_Paint);
@@ -215,7 +231,7 @@
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pbName);
             this.Controls.Add(this.pbSimu);
             this.Controls.Add(this.pbExit);
             this.Controls.Add(this.pbStop);
@@ -233,7 +249,7 @@
         private System.Windows.Forms.PictureBox pbStart;
         private System.Windows.Forms.PictureBox pbStop;
         private System.Windows.Forms.PictureBox pbExit;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbName;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
