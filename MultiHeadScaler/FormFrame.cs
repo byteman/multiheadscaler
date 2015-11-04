@@ -16,6 +16,7 @@ namespace Monitor
         private UserControl ucCur = null;
         public UCStatus ucStatus = null;
         public UCMain ucMain = null;
+        public UCRun ucRun = null;
         public UCQueryMenu ucQueryMenu = null;
         public UCSetMenu ucSetMenu = null;
         public UCList ucListControl = null;
@@ -70,6 +71,9 @@ namespace Monitor
 
             ucMain = new UCMain(this);
             this.AddUC(ucMain);
+            ucRun = new UCRun(this);
+            this.AddUC(ucRun);
+
             ucQueryMenu = new UCQueryMenu(this);
             this.AddUC(ucQueryMenu);
             ucSetMenu = new UCSetMenu(this);
@@ -148,9 +152,9 @@ namespace Monitor
             ucListControl.Dispose();
         }
 
-        public void ClickQueryBtn()
+        public void ClickRunBtn()
         {
-            ShowUC(ucQueryMenu);
+            ShowUC(ucRun);
         }
 
         public void ClickSetBtn()

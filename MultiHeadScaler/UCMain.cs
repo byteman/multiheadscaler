@@ -113,8 +113,7 @@ namespace Monitor
 
         private void pbRun_Click(object sender, EventArgs e)
         {
-            bLock = !bLock;
-            formFrame.ucStatus.SetLock(bLock);
+            formFrame.ClickRunBtn();
         }
 
         private void pbSetzero_Click(object sender, EventArgs e)
