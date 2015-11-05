@@ -53,6 +53,7 @@
             this.pbExit.Name = "pbExit";
             this.pbExit.Size = new System.Drawing.Size(164, 60);
             this.pbExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbExit.Click += new System.EventHandler(this.pbExit_Click);
             this.pbExit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbExit.Paint += new System.Windows.Forms.PaintEventHandler(this.pbExit_Paint);
             this.pbExit.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
