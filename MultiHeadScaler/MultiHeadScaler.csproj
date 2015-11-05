@@ -76,6 +76,12 @@
     <Compile Include="FormCalib.designer.cs">
       <DependentUpon>FormCalib.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormDataList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDataList.Designer.cs">
+      <DependentUpon>FormDataList.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDateTime.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,10 @@
       <DependentUpon>FormCalib.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormDataList.resx">
+      <DependentUpon>FormDataList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDateTime.resx">
       <DependentUpon>FormDateTime.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -222,6 +232,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>UCCommon.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCDataList.resx">
+      <DependentUpon>UCDataList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCList.resx">
       <SubType>Designer</SubType>
       <DependentUpon>UCList.cs</DependentUpon>
@@ -260,6 +274,10 @@
     <Compile Include="SerialOperate.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SQLite3Helper\SQLiteColumn.cs" />
+    <Compile Include="SQLite3Helper\SQLiteColumnList.cs" />
+    <Compile Include="SQLite3Helper\SQLiteHelper.cs" />
+    <Compile Include="SQLite3Helper\SQLiteTable.cs" />
     <Compile Include="UCButtons.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -271,6 +289,12 @@
     </Compile>
     <Compile Include="UCCommon.Designer.cs">
       <DependentUpon>UCCommon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCDataList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCDataList.Designer.cs">
+      <DependentUpon>UCDataList.cs</DependentUpon>
     </Compile>
     <Compile Include="UCList.cs">
       <SubType>UserControl</SubType>
@@ -320,6 +344,8 @@
     <Compile Include="Util.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="WeightData.cs" />
+    <Compile Include="WeightDB.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -18,3 +18,15 @@ C:\Windows\Microsoft.NET\Framework\v3.5\Microsoft.CompactFramework.Common.target
     PlatformVersion="$(TargetFrameworkVersion)"/>
 </Target>
 3、重启VS，再次编译
+
+
+2.去掉任务栏 
+
+点击开始菜单->设置->任务栏和开始菜单 ，勾选 自动隐藏
+
+3.安装wince sdk 6.0模拟器不成功
+选择自定义安装，然后去掉document的安装
+
+4.listview 显示列头信息
+
+修改view属性为details

@@ -177,6 +177,13 @@ namespace Monitor
 
         }
 
+        private void pbTongji_Click(object sender, EventArgs e)
+        {
+            FormDataList dlg = new FormDataList(this.formFrame);        //日期时间输入框
+            dlg.ShowDialog();
+            dlg.Dispose();
+        }
+
        
 
      

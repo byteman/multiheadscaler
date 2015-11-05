@@ -72,6 +72,7 @@
             this.pbTongji.Location = new System.Drawing.Point(624, 250);
             this.pbTongji.Name = "pbTongji";
             this.pbTongji.Size = new System.Drawing.Size(164, 60);
+            this.pbTongji.Click += new System.EventHandler(this.pbTongji_Click);
             this.pbTongji.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbTongji.Paint += new System.Windows.Forms.PaintEventHandler(this.pbTongji_Paint);
             this.pbTongji.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
