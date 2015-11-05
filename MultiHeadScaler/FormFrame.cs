@@ -67,7 +67,7 @@ namespace Monitor
             }
 
             ucStatus = new UCStatus(this);
-            this.Controls.Add(ucStatus);
+            //this.Controls.Add(ucStatus);
 
             ucMain = new UCMain(this);
             this.AddUC(ucMain);
@@ -139,7 +139,9 @@ namespace Monitor
 
         private void FormFrame_Load(object sender, EventArgs e)
         {
-
+            Rectangle rect = new Rectangle();
+            PInvoke.SetFullScreen(true, ref rect);//œ‘ æ
+ 
         }
 
         private void FormFrame_Closing(object sender, CancelEventArgs e)
@@ -190,7 +192,7 @@ namespace Monitor
         private void AddUC(UserControl _uc)
         {
             _uc.Left = 0;
-            _uc.Top = 48;
+            _uc.Top = 0;
             _uc.Hide();
             ucList.Add(_uc);
             this.Controls.Add(_uc);

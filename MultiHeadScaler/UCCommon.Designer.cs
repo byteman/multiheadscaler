@@ -37,7 +37,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
             this.Name = "UCCommon";
             this.Size = new System.Drawing.Size(800, 432);
-            this.Click += new System.EventHandler(this.UCCommon_Click);
             this.ResumeLayout(false);
 
         }

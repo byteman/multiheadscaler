@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Globalization;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Monitor
 {
@@ -61,6 +63,63 @@ namespace Monitor
         [DllImport("coredll.dll")]
         public static extern void GlobalMemoryStatus(ref MEMORYSTATUS lpBuffer);
 
+
+        public const int SPI_SETWORKAREA = 47;
+        public const int SPI_GETWORKAREA = 48;
+        public const int SW_HIDE = 0x00;
+        public const int SW_SHOW = 0x0001;
+        public const int SPIF_UPDATEINIFILE = 0x01;
+        [DllImport("coredll.dll", EntryPoint = "FindWindow")]
+        private static extern IntPtr FindWindow(string lpWindowName, string lpClassName);
+        [DllImport("coredll.dll", EntryPoint = "ShowWindow")]
+        private static extern bool ShowWindow(IntPtr hwnd, int nCmdShow);
+        [DllImport("coredll.dll", EntryPoint = "SystemParametersInfo")]
+        private static extern int SystemParametersInfo(int uAction, int uParam, ref Rectangle lpvParam, int fuWinIni);
+          
+        //#endregion
+
+        public static bool SetFullScreen(bool fullscreen, ref Rectangle rectOld)
+        {
+            IntPtr Hwnd = FindWindow("HHTaskBar", null);
+            if (Hwnd == IntPtr.Zero) return false;
+            if (fullscreen)
+            {
+                ShowWindow(Hwnd, SW_HIDE);
+                Rectangle rectFull = Screen.PrimaryScreen.Bounds;
+                SystemParametersInfo(SPI_GETWORKAREA, 0, ref rectOld, SPIF_UPDATEINIFILE);//get
+                SystemParametersInfo(SPI_SETWORKAREA, 0, ref rectFull, SPIF_UPDATEINIFILE);//set
+            }
+            else
+            {
+                ShowWindow(Hwnd, SW_SHOW);
+                SystemParametersInfo(SPI_SETWORKAREA, 0, ref rectOld, SPIF_UPDATEINIFILE);
+            }
+            return true;
+   
+        }
+        /*
+        public static bool PShowTaskBar(bool show)
+        {
+            IntPtr trayHwnd = FindWindowEx(IntPtr.Zero, IntPtr.Zero, "Shell_TrayWnd", null);
+            IntPtr hStar = FindWindowEx(IntPtr.Zero, IntPtr.Zero, "Button", null);
+            if (trayHwnd != IntPtr.Zero && hStar != IntPtr.Zero)
+            {
+                //ShowWindow(FindWindow("progman", null), 0);
+                if (!show)
+                {
+                    ShowWindow(trayHwnd, SW_HIDE);
+                    ShowWindow(hStar, SW_HIDE);
+                }
+                else
+                {
+                    ShowWindow(trayHwnd, SW_SHOW);
+                    ShowWindow(hStar, SW_SHOW);
+                
+                }
+                
+            }
+            return show;
+        }*/
         public static int PGetLastError()
         {
             return GetLastError();
