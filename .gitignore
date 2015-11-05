@@ -1,0 +1,5 @@
+*.resources
+*.exe
+*.pdb
+MultiHeadScaler.exe.config
+Debug
