@@ -15,6 +15,7 @@ namespace Monitor
         private FormFrame formFrame = null;
         private Bitmap bmBtnDown = null;
         private Bitmap bmBtnUp = null;
+        private int index = 0;
         public UCRun(FormFrame f)
         {
             InitializeComponent();
@@ -77,7 +78,7 @@ namespace Monitor
 
         private void pbStop_Click(object sender, EventArgs e)
         {
-
+            timer1.Enabled = false;
         }
 
         private void pbExit_Paint(object sender, PaintEventArgs e)
@@ -98,6 +99,16 @@ namespace Monitor
         private void pbSimu_Paint(object sender, PaintEventArgs e)
         {
             DrawLabel(sender, e, "模拟运行");
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            banOcxCtl1.SetBanColor(index++ % banOcxCtl1.磅称的数量, Color.Red);
+        }
+
+        private void pbStart_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = true;
         }
     }
 }

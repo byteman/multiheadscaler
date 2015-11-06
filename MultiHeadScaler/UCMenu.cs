@@ -15,7 +15,10 @@ namespace Monitor
         protected UCButtons ucButtons = null;
         Bitmap bmUp = null;
         Bitmap bmDown = null;
-
+        public UCMenu()
+        { 
+        
+        }
         public UCMenu(FormFrame f)
         {
             InitializeComponent();

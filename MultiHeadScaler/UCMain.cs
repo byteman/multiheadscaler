@@ -174,7 +174,10 @@ namespace Monitor
 
         private void pbParam_Click(object sender, EventArgs e)
         {
-
+            //formFrame.ClickSetBtn();
+            FormParam dlg = new FormParam();
+            dlg.ShowDialog();
+            dlg.Dispose();
         }
 
         private void pbTongji_Click(object sender, EventArgs e)

@@ -64,11 +64,8 @@ namespace Monitor
             }
             
         }
-        //方法创建一个表
-        public static void CreateDB(string dbPath)
+        private static void CreateWeightDataTable()
         {
-
-            config.DatabaseFile = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase) + "\\" + dbPath;
             using (SQLiteConnection conn = new SQLiteConnection(config.DataSource))
             {
                 using (SQLiteCommand cmd = new SQLiteCommand())
@@ -90,13 +87,73 @@ namespace Monitor
 
                     SQLiteHelper sh = new SQLiteHelper(cmd);
 
-                    sh.CreateTable(tb);
 
-                    conn.Close();
+                    sh.CreateTable(tb);
                 }
             }
+        }
+        private static void CreateFormulaTable()
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(config.DataSource))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
 
+                    SQLiteTable tb = new SQLiteTable("formula");
+                    //编号
+                    tb.Columns.Add(new SQLiteColumn("id", ColType.Integer, true, true, true, null));
+                    //目标重量
+                    tb.Columns.Add(new SQLiteColumn("target_weight", ColType.Decimal));
+                    //速度
+                    tb.Columns.Add(new SQLiteColumn("packet_per_minitue", ColType.Decimal));
+                    //目标重量
+                    tb.Columns.Add(new SQLiteColumn("up_diff", ColType.Decimal));
+                    //目标重量
+                    tb.Columns.Add(new SQLiteColumn("down_diff", ColType.Decimal));
+                    //稳定时间
+                    tb.Columns.Add(new SQLiteColumn("stable_time", ColType.Integer));
+                    //去皮次数
+                    tb.Columns.Add(new SQLiteColumn("tare_count", ColType.Integer));
+                    //强制组合次数
+                    tb.Columns.Add(new SQLiteColumn("force_comb", ColType.Integer));
+                    //无组合
+                    tb.Columns.Add(new SQLiteColumn("no_comb", ColType.Integer));
+                    //振幅自动跟踪模式选择
+                    tb.Columns.Add(new SQLiteColumn("AFC", ColType.Integer));
+                    //放料模式
+                    tb.Columns.Add(new SQLiteColumn("feed_mode", ColType.Integer));
+                    //依次放料
+                    tb.Columns.Add(new SQLiteColumn("feed_in_turn", ColType.Integer));
+                    //电机模式
+                    tb.Columns.Add(new SQLiteColumn("motor_mode", ColType.Integer));
+                    //多次放料
+                    tb.Columns.Add(new SQLiteColumn("multi_feed", ColType.Integer));
+                    //配方名称
+                    tb.Columns.Add(new SQLiteColumn("formula_name", ColType.Text));
+                    //配方编号
+                    tb.Columns.Add(new SQLiteColumn("formula_id", ColType.Integer));
 
+                    for (int i = 0; i < 10; i++)
+                    {
+                        tb.Columns.Add(new SQLiteColumn("xzp_strength"+i.ToString(), ColType.Integer));
+                        tb.Columns.Add(new SQLiteColumn("xzp_time" + i.ToString(), ColType.Integer));
+                    }
+
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
+
+                    sh.CreateTable(tb);
+                }
+            }
+        }
+        //方法创建一个表
+        public static void CreateDB(string dbPath)
+        {
+
+            config.DatabaseFile = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase) + "\\" + dbPath;
+            CreateWeightDataTable();
+            CreateFormulaTable();
         }
         public static int addData(WeightData data)
         {
@@ -162,6 +219,12 @@ namespace Monitor
                 }
             }
             return count;
+        }
+
+        public static bool addFormula(FormulaData data)
+        {
+
+            return true;
         }
     }
 }

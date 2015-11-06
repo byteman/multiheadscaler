@@ -45,11 +45,13 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pbSimu = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer();
             this.SuspendLayout();
             // 
             // banOcxCtl1
             // 
             this.banOcxCtl1.BackColor = System.Drawing.Color.Black;
+            this.banOcxCtl1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular);
             this.banOcxCtl1.Location = new System.Drawing.Point(196, 49);
             this.banOcxCtl1.Name = "banOcxCtl1";
             this.banOcxCtl1.Size = new System.Drawing.Size(442, 409);
@@ -74,6 +76,7 @@
             this.pbStart.Name = "pbStart";
             this.pbStart.Size = new System.Drawing.Size(141, 60);
             this.pbStart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbStart.Click += new System.EventHandler(this.pbStart_Click);
             this.pbStart.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbStart.Paint += new System.Windows.Forms.PaintEventHandler(this.pbStart_Paint);
             this.pbStart.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
@@ -215,6 +218,11 @@
             this.pbSimu.Paint += new System.Windows.Forms.PaintEventHandler(this.pbSimu_Paint);
             this.pbSimu.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // UCRun
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -262,5 +270,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pbSimu;
+        private System.Windows.Forms.Timer timer1;
     }
 }
