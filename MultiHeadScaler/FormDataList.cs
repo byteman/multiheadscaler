@@ -17,17 +17,18 @@ namespace Monitor
         private FormFrame formFrame = null;
         private Bitmap bmBtnDown = null;
         private Bitmap bmBtnUp = null;
+        private int w = 0;
         public FormDataList(FormFrame f)
         {
             InitializeComponent();
             formFrame = f;
 
-            string path = formFrame.configManage.FileDir + @"\btn_down.png";
+            string path = formFrame.configManage.FileDir + @"\main_btn_down.png";
             if (File.Exists(path))
             {
                 bmBtnDown = new Bitmap(path);
             }
-            path = formFrame.configManage.FileDir + @"\btn_up.png";
+            path = formFrame.configManage.FileDir + @"\main_btn_up.png";
             if (File.Exists(path))
             {
                 bmBtnUp = new Bitmap(path);
@@ -37,27 +38,12 @@ namespace Monitor
             pbNextPage.Image = bmBtnUp;
             pbClear.Image = bmBtnUp;
             pbExit.Image = bmBtnUp;
+            pbAdd.Image = bmBtnUp;
         }
 
-        private void pbBtn_MouseDown(object sender, MouseEventArgs e)
+         private void DrawLabel(object sender, PaintEventArgs e, string str)
         {
-            if (bmBtnDown != null)
-            {
-                ((PictureBox)sender).Image = bmBtnDown;
-            }
-        }
-
-        private void pbBtn_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (bmBtnUp != null)
-            {
-                ((PictureBox)sender).Image = bmBtnUp;
-            }
-        }
-
-        private void DrawLabel(object sender, PaintEventArgs e, string str)
-        {
-            e.Graphics.DrawString(str, new Font("宋体", 16, FontStyle.Bold), new SolidBrush(Color.Black), 20, 10);
+            e.Graphics.DrawString(str, new Font("宋体", 16, FontStyle.Bold), new SolidBrush(Color.Black), 20, 15);
         }
         public new void Dispose()
         {
@@ -88,10 +74,18 @@ namespace Monitor
                 listView1.Items.Add(item);
             }
 
-            tbCurPage.Text = (page_index + 1).ToString();
+            
             tbDataTotal.Text = data_total.ToString();
             tbTotalPage.Text = page_count.ToString();
-
+            if (page_count == 0)
+            {
+                page_index = 0;
+                tbCurPage.Text = (page_index).ToString();
+            }
+            else
+            {
+                tbCurPage.Text = (page_index+1).ToString();
+            }
 
         }
         private void pbPrevPage_Click(object sender, EventArgs e)
@@ -139,7 +133,11 @@ namespace Monitor
 
         private void pbClear_Click(object sender, EventArgs e)
         {
-
+            SQLiteDBHelper.ClearDB();
+            update_index(SQLiteDBHelper.DataCount());
+            page_index = 0;
+            Refresh_Data();
+            tbCurPage.Text = "0";
         }
 
         private void FormDataList_Load(object sender, EventArgs e)
@@ -148,9 +146,44 @@ namespace Monitor
 
             update_index(SQLiteDBHelper.DataCount());
             page_index = 0;
-            if (page_count > 0)
+            //if (page_count > 0)
                 Refresh_Data();
         }
+        private void pbBtn_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (bmBtnDown != null)
+            {
+                ((PictureBox)sender).Image = bmBtnDown;
+            }
+        }
+
+        private void pbBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (bmBtnUp != null)
+            {
+                ((PictureBox)sender).Image = bmBtnUp;
+            }
+        }
+
+      
+        private void pbAdd_Paint(object sender, PaintEventArgs e)
+        {
+            DrawLabel(sender, e, "添加");
+        }
+
+        private void pbAdd_Click(object sender, EventArgs e)
+        {
+            WeightData data = new WeightData();
+            data.weight = w++;
+            data.diff = w++;
+            data.addZuhe(1);
+            data.addZuhe(4);
+            data.addZuhe(5);
+            SQLiteDBHelper.addData(data);
+            update_index(SQLiteDBHelper.DataCount());
+            Refresh_Data();
+        }
+
 
       
        

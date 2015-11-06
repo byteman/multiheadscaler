@@ -29,6 +29,41 @@ namespace Monitor
         {
            
         }
+        public static void ClearDB()
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(config.DataSource))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
+
+                    sh.DropTable("weight");
+
+                    SQLiteTable tb = new SQLiteTable("weight");
+                    //编号
+                    tb.Columns.Add(new SQLiteColumn("id", ColType.Integer, true, true, true, null));
+                    //重量
+                    tb.Columns.Add(new SQLiteColumn("weight", ColType.Decimal));
+                    //时间日期
+                    tb.Columns.Add(new SQLiteColumn("s_date", ColType.DateTime));
+                    //重量偏差
+                    tb.Columns.Add(new SQLiteColumn("diff", ColType.Decimal));
+                    //组合斗数
+                    tb.Columns.Add(new SQLiteColumn("heads"));
+
+                    
+                    SQLiteHelper sh2 = new SQLiteHelper(cmd);
+
+                    sh2.CreateTable(tb);
+
+                    conn.Close();
+                }
+            }
+            
+        }
         //方法创建一个表
         public static void CreateDB(string dbPath)
         {

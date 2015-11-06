@@ -45,13 +45,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.pbAdd = new System.Windows.Forms.PictureBox();
             this.SuspendLayout();
             // 
             // pbExit
             // 
-            this.pbExit.Location = new System.Drawing.Point(584, 377);
+            this.pbExit.Location = new System.Drawing.Point(531, 377);
             this.pbExit.Name = "pbExit";
-            this.pbExit.Size = new System.Drawing.Size(164, 60);
+            this.pbExit.Size = new System.Drawing.Size(100, 50);
             this.pbExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbExit.Click += new System.EventHandler(this.pbExit_Click);
             this.pbExit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
@@ -70,9 +71,9 @@
             // 
             // pbClear
             // 
-            this.pbClear.Location = new System.Drawing.Point(399, 377);
+            this.pbClear.Location = new System.Drawing.Point(368, 377);
             this.pbClear.Name = "pbClear";
-            this.pbClear.Size = new System.Drawing.Size(164, 60);
+            this.pbClear.Size = new System.Drawing.Size(100, 50);
             this.pbClear.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbClear.Click += new System.EventHandler(this.pbClear_Click);
             this.pbClear.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
@@ -82,7 +83,7 @@
             // ch_datetime
             // 
             this.ch_datetime.Text = "日期";
-            this.ch_datetime.Width = 150;
+            this.ch_datetime.Width = 200;
             // 
             // ch_weight
             // 
@@ -91,9 +92,9 @@
             // 
             // pbNextPage
             // 
-            this.pbNextPage.Location = new System.Drawing.Point(212, 377);
+            this.pbNextPage.Location = new System.Drawing.Point(195, 377);
             this.pbNextPage.Name = "pbNextPage";
-            this.pbNextPage.Size = new System.Drawing.Size(164, 60);
+            this.pbNextPage.Size = new System.Drawing.Size(100, 50);
             this.pbNextPage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbNextPage.Click += new System.EventHandler(this.pbNextPage_Click);
             this.pbNextPage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
@@ -114,7 +115,7 @@
             // 
             this.pbPrevPage.Location = new System.Drawing.Point(29, 377);
             this.pbPrevPage.Name = "pbPrevPage";
-            this.pbPrevPage.Size = new System.Drawing.Size(164, 60);
+            this.pbPrevPage.Size = new System.Drawing.Size(100, 50);
             this.pbPrevPage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbPrevPage.Click += new System.EventHandler(this.pbPrevPage_Click);
             this.pbPrevPage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
@@ -186,6 +187,17 @@
             this.listView1.TabIndex = 8;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
+            // pbAdd
+            // 
+            this.pbAdd.Location = new System.Drawing.Point(669, 377);
+            this.pbAdd.Name = "pbAdd";
+            this.pbAdd.Size = new System.Drawing.Size(100, 50);
+            this.pbAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbAdd.Click += new System.EventHandler(this.pbAdd_Click);
+            this.pbAdd.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
+            this.pbAdd.Paint += new System.Windows.Forms.PaintEventHandler(this.pbAdd_Paint);
+            this.pbAdd.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
+            // 
             // FormDataList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -193,6 +205,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(798, 455);
+            this.Controls.Add(this.pbAdd);
             this.Controls.Add(this.pbExit);
             this.Controls.Add(this.pbClear);
             this.Controls.Add(this.pbNextPage);
@@ -233,5 +246,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.PictureBox pbAdd;
     }
 }

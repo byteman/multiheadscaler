@@ -17,6 +17,10 @@ namespace Monitor
             diff = d;
             headers = h;
         }
+        public void addZuhe(int index)
+        {
+            headers.Add(index);
+        }
         public string getZuheString()
         {
             StringBuilder str = new StringBuilder();
