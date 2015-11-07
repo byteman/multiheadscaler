@@ -90,6 +90,7 @@
             // banOcxCtl1
             // 
             this.banOcxCtl1.BackColor = System.Drawing.Color.Black;
+            this.banOcxCtl1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular);
             this.banOcxCtl1.Location = new System.Drawing.Point(120, 37);
             this.banOcxCtl1.Name = "banOcxCtl1";
             this.banOcxCtl1.Size = new System.Drawing.Size(486, 417);

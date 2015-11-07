@@ -3,10 +3,10 @@
   <Version>Version 1.0.10</Version>
   <Desc>参数表2014-5-7</Desc>
   <paramSerial>
-    <PortName>COM5</PortName>
+    <PortName>COM1</PortName>
     <BaudRate>57600</BaudRate>
     <ReadWaitMs>80</ReadWaitMs>
-    <ResendCount>3</ResendCount>
+    <ResendCount>1</ResendCount>
   </paramSerial>
   <paramProtocol>
     <M2S>105</M2S>
