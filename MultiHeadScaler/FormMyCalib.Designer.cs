@@ -114,6 +114,8 @@
             this.tb_number.Size = new System.Drawing.Size(100, 31);
             this.tb_number.TabIndex = 17;
             this.tb_number.Text = "1";
+            this.tb_number.TextChanged += new System.EventHandler(this.tb_number_TextChanged);
+            this.tb_number.GotFocus += new System.EventHandler(this.tb_number_GotFocus);
             // 
             // tb_fama
             // 
@@ -126,6 +128,7 @@
             this.tb_fama.Size = new System.Drawing.Size(100, 31);
             this.tb_fama.TabIndex = 17;
             this.tb_fama.Text = "600";
+            this.tb_fama.GotFocus += new System.EventHandler(this.tb_fama_GotFocus);
             // 
             // label1
             // 

@@ -510,7 +510,7 @@ namespace Monitor
             int wUnit = rectBoard.Width / xCount;
             int hUnit = rectBoard.Height / yCount;
             int x = Control.MousePosition.X - pnLeft.Left;
-            int y = Control.MousePosition.Y - pnLeft.Top - 48; //状态栏高度为48pix
+            int y = Control.MousePosition.Y - pnLeft.Top ; //状态栏高度为48pix
             if( (x < rectBoard.X) || (y < rectBoard.Y) )    return;
             SelectIndex = ((x - rectBoard.X) / wUnit) + ((y - rectBoard.Y) / hUnit) * xCount;
 
@@ -539,6 +539,11 @@ namespace Monitor
         private string GetInputText()
         {
             return lbInput.Text.Trim();
+        }
+
+        private void pnRight_GotFocus(object sender, EventArgs e)
+        {
+
         }
     }
 }

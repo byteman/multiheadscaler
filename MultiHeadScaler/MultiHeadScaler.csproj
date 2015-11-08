@@ -45,7 +45,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BanOcx, Version=1.0.5784.40466, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="BanOcx, Version=1.0.5786.42412, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -249,12 +249,20 @@
       <SubType>Designer</SubType>
       <DependentUpon>UCButtons.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCCalib.resx">
+      <DependentUpon>UCCalib.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCCommon.resx">
       <SubType>Designer</SubType>
       <DependentUpon>UCCommon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCDataList.resx">
       <DependentUpon>UCDataList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCDebug.resx">
+      <DependentUpon>UCDebug.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UCList.resx">
@@ -305,6 +313,12 @@
     <Compile Include="UCButtons.Designer.cs">
       <DependentUpon>UCButtons.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCCalib.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCCalib.Designer.cs">
+      <DependentUpon>UCCalib.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCCommon.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -316,6 +330,12 @@
     </Compile>
     <Compile Include="UCDataList.Designer.cs">
       <DependentUpon>UCDataList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCDebug.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCDebug.Designer.cs">
+      <DependentUpon>UCDebug.cs</DependentUpon>
     </Compile>
     <Compile Include="UCList.cs">
       <SubType>UserControl</SubType>

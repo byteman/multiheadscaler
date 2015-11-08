@@ -164,14 +164,13 @@ namespace Monitor
 
         private void pbCalib_Click(object sender, EventArgs e)
         {
-            FormMyCalib dlg = new FormMyCalib(this.formFrame);
-            dlg.ShowDialog();
-            dlg.Dispose();
+            formFrame.ShowUC(formFrame.ucCalib);
         }
 
         private void pbHandDebug_Click(object sender, EventArgs e)
         {
-
+            formFrame.ShowUC(formFrame.ucDebug);
+            
         }
 
         private void pbParam_Click(object sender, EventArgs e)

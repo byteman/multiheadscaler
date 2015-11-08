@@ -41,8 +41,8 @@
             this.pnLeft.Location = new System.Drawing.Point(28, 24);
             this.pnLeft.Name = "pnLeft";
             this.pnLeft.Size = new System.Drawing.Size(616, 380);
-            this.pnLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnLeft_MouseDown);
             this.pnLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.pnLeft_Paint);
+            this.pnLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnLeft_MouseDown);
             this.pnLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnLeft_MouseUp);
             // 
             // lbInput
@@ -59,17 +59,17 @@
             this.pnRight.Location = new System.Drawing.Point(650, 0);
             this.pnRight.Name = "pnRight";
             this.pnRight.Size = new System.Drawing.Size(150, 432);
+            this.pnRight.GotFocus += new System.EventHandler(this.pnRight_GotFocus);
             // 
             // FormInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(798, 407);
+            this.ClientSize = new System.Drawing.Size(798, 455);
             this.Controls.Add(this.pnRight);
             this.Controls.Add(this.pnLeft);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(0, 48);
             this.Name = "FormInput";
             this.pnLeft.ResumeLayout(false);
             this.ResumeLayout(false);

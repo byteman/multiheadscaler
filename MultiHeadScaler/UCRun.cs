@@ -15,12 +15,28 @@ namespace Monitor
         private FormFrame formFrame = null;
         private Bitmap bmBtnDown = null;
         private Bitmap bmBtnUp = null;
+        private List<TextBox> focusBox;
         private int index = 0;
         public UCRun(FormFrame f)
         {
             InitializeComponent();
             formFrame = f;
+            if (focusBox == null)
+            {
+                focusBox = new List<TextBox>();
+                focusBox.Add(textBox5);
+                focusBox.Add(textBox6);
+                focusBox.Add(textBox7);
+                focusBox.Add(textBox8);
+                focusBox.Add(textBox9);
+                focusBox.Add(textBox10);
+                focusBox.Add(textBox11);
+                focusBox.Add(textBox12);
+                focusBox.Add(textBox13);
+                focusBox.Add(textBox14);
 
+
+            }
             string path = formFrame.configManage.FileDir + @"\main_btn_down.png";
             if (File.Exists(path))
             {
@@ -109,6 +125,50 @@ namespace Monitor
         private void pbStart_Click(object sender, EventArgs e)
         {
             timer1.Enabled = true;
+        }
+
+        private void textBox5_GotFocus(object sender, EventArgs e)
+        {
+            if (sender == textBox1)
+            { 
+                
+            }
+            else if (sender == textBox2)
+            {
+
+            }
+        }
+        private TextBox getFocusTextBox()
+        {
+            foreach (TextBox b in focusBox)
+            {
+                if (b.Focused) return b;
+            }
+            return null;
+
+        }
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            TextBox box = getFocusTextBox();
+            if (box != null)
+            { 
+                Int32 v = Convert.ToInt32(box.Text);
+
+                box.Text = (v + 1).ToString();
+            }
+        }
+
+        private void btnSub_Click(object sender, EventArgs e)
+        {
+            TextBox box = getFocusTextBox();
+            if (box != null)
+            {
+                Int32 v = Convert.ToInt32(box.Text);
+
+                box.Text = (v - 1).ToString();
+            }
+            FormMsgBox.Show("我的老婆是李晓荣", "tip");
+
         }
     }
 }

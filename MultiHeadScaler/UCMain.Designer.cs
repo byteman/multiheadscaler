@@ -90,7 +90,6 @@
             // banOcxCtl1
             // 
             this.banOcxCtl1.BackColor = System.Drawing.Color.Black;
-            this.banOcxCtl1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular);
             this.banOcxCtl1.Location = new System.Drawing.Point(120, 37);
             this.banOcxCtl1.Name = "banOcxCtl1";
             this.banOcxCtl1.Size = new System.Drawing.Size(486, 417);
@@ -105,7 +104,11 @@
             this.banOcxCtl1.磅称的半径 = 200;
             this.banOcxCtl1.磅称的数量 = 10;
             this.banOcxCtl1.磅称的间隔弧度 = 10;
-            this.banOcxCtl1.编号字体大小 = 15F;
+            this.banOcxCtl1.称状态字体大小 = 15F;
+            this.banOcxCtl1.称状态字体颜色 = System.Drawing.Color.Black;
+            this.banOcxCtl1.称重量字体大小 = 10F;
+            this.banOcxCtl1.称重量字体颜色 = System.Drawing.Color.White;
+            this.banOcxCtl1.编号字体大小 = 10F;
             this.banOcxCtl1.编号字体颜色 = System.Drawing.Color.Black;
             this.banOcxCtl1.背景颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
             // 

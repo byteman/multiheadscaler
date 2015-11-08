@@ -17,6 +17,8 @@ namespace Monitor
         public UCStatus ucStatus = null;
         public UCMain ucMain = null;
         public UCRun ucRun = null;
+        public UCCalib ucCalib = null;
+        public UCDebug ucDebug = null;
         public UCQueryMenu ucQueryMenu = null;
         public UCSetMenu ucSetMenu = null;
         public UCList ucListControl = null;
@@ -73,7 +75,10 @@ namespace Monitor
             this.AddUC(ucMain);
             ucRun = new UCRun(this);
             this.AddUC(ucRun);
-
+            ucCalib = new UCCalib(this);
+            this.AddUC(ucCalib);
+            ucDebug = new UCDebug(this);
+            this.AddUC(ucDebug);
             ucQueryMenu = new UCQueryMenu(this);
             this.AddUC(ucQueryMenu);
             ucSetMenu = new UCSetMenu(this);
@@ -292,6 +297,10 @@ namespace Monitor
             else if (ucRadioOnline.Visible == true)
             {
                 ucRadioOnline.SetReturnValue(itemList);
+            }
+            else if (ucCalib.Visible == true)
+            {
+                ucCalib.SetReturnValue(itemList);
             }
         }
         #endregion

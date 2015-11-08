@@ -2,21 +2,20 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using System.Drawing.Drawing2D;
 using System.IO;
 namespace Monitor
 {
-    public partial class FormMyCalib : Form
+    public partial class UCCalib : UserControl
     {
-        private FormFrame  formFrame;
+        private FormFrame formFrame;
         private Bitmap bmBtnDown = null;
         private Bitmap bmBtnUp = null;
         
-        public FormMyCalib(FormFrame f)
+        public UCCalib(FormFrame f)
         {
             InitializeComponent();
             formFrame = f;
@@ -35,25 +34,8 @@ namespace Monitor
             pbZero.Image = bmBtnUp;
             pbCalib.Image = bmBtnUp;
             pbExit.Image = bmBtnUp;
-
-
         }
 
-        private void FormMyCalib_Load(object sender, EventArgs e)
-        {
-
-        }
-       
-       
-        private void FormMyCalib_Paint(object sender, PaintEventArgs e)
-        {
-            //
-            //FillRoundRectangle(e.Graphics, Brushes.Plum, new Rectangle(100, 100, 100, 100), 8);
-           // DrawRoundRectangle(e.Graphics, Pens.Yellow, new Rectangle(100, 100, 100, 100), 8);
-            //e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(85, 142, 213)), 580, 20, 750, 450);
-            //e.Graphics.DrawString(strTitle, new Font("宋体", 32, FontStyle.Bold), new SolidBrush(Color.Black), title_left, title_height / 2 - 16);
-
-        }
         private void pbBtn_MouseDown(object sender, MouseEventArgs e)
         {
             if (bmBtnDown != null)
@@ -81,11 +63,6 @@ namespace Monitor
             base.Dispose();
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void pbClear_Paint(object sender, PaintEventArgs e)
         {
             DrawLabel(sender, e, "清零");
@@ -101,7 +78,7 @@ namespace Monitor
             DrawLabel(sender, e, "标定");
         }
 
-   
+
         private void pbExit_Paint(object sender, PaintEventArgs e)
         {
             DrawLabel(sender, e, "返回");
@@ -109,13 +86,10 @@ namespace Monitor
 
         private void pbExit_Click(object sender, EventArgs e)
         {
-            Close();
+            
         }
 
-        private void banOcxCtl1_点击事件(object sender, BanOcx.MyEventArges e)
-        {
-            tb_number.Text = e.SelNum.ToString();
-        }
+     
         private void send()
         {
             Protocol protocol = formFrame.protocol;
@@ -187,9 +161,55 @@ namespace Monitor
             dlg.Dispose();
         }
 
-        private void tb_number_TextChanged(object sender, EventArgs e)
+        private void banOcxCtl1_点击事件(object sender, BanOcx.MyEventArges e)
         {
+            tb_number.Text = e.SelNum.ToString();
+        }
+        public void SetReturnValue(List<ParamItem> itemList)
+        {
+            /*
+            switch (uclType)
+            {
+             
+                case UCListType.UCLT_Param:
+                    
+                    bool bRet = false;
+
+                    for (int j = 0; j < itemList.Count; j++)
+                    {
+                        if ((formFrame.configManage.cfg.paramDeviceId.Ctrl == itemList[j].dev_id) && (123 == itemList[j].param_id))
+                        {
+                            bRet = true;
+                            itemList[j].name = itemListSend[i].name;
+                            itemListSend[i].param_value = itemList[j].param_value;
+                            itemList[j].permit_read = itemListSend[i].permit_read;
+                            itemList[j].permit_write = itemListSend[i].permit_write;
+
+                        }
+                    }
+                       
+                    BeginInvoke(new System.EventHandler(UpdateUI), null);
+                    break;
+                default:
+                    break;
+            }
+             * */
+        }
+        private void UpdateUI(object obj, System.EventArgs e)
+        {
+           //更新每个banocx上面的重量.
+            //banOcxCtl1.SetBanColor(
+        }
+        private void pbExit_Click_1(object sender, EventArgs e)
+        {
+            formFrame.ShowUC(formFrame.ucMain);
+        }
+
+        private void UCCalib_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawRectangle(new Pen(Color.Blue), 530, 20, 250, 440);
 
         }
+
     }
 }
