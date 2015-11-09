@@ -181,6 +181,25 @@ namespace Monitor
             }
             return count;
         }
+        public static DataTable listParam(int id)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(config.DataSource))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+                    string sql = String.Format("select * from formula where formula_id={0:d}", id);
+
+
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
+                    DataTable dt = sh.Select(sql);
+
+                    conn.Close();
+                    return dt;
+                }
+            }
+        }
         public static DataTable listData(int page, int page_size)
         {
             using (SQLiteConnection conn = new SQLiteConnection(config.DataSource))
@@ -220,10 +239,85 @@ namespace Monitor
             }
             return count;
         }
+        public static int ParamCount()
+        {
+            int count = 0;
+            using (SQLiteConnection conn = new SQLiteConnection(config.DataSource))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
 
+                    count = sh.ExecuteScalar<int>("select count(*) from formula;");
+
+                    conn.Close();
+
+                }
+            }
+            return count;
+        }
+        public static bool MofifyFormula(int id,FormulaData data)
+        {
+            int count = 0;
+            using (SQLiteConnection conn = new SQLiteConnection(config.DataSource))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
+
+                    var dic = new Dictionary<string, object>();
+
+                    dic["AFC"] = data.AFC;
+                }
+
+            }
+            return true;
+        }
         public static bool addFormula(FormulaData data)
         {
+            int count = 0;
+            using (SQLiteConnection conn = new SQLiteConnection(config.DataSource))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
 
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
+
+                    var dic = new Dictionary<string, object>();
+
+                    dic["AFC"] = data.AFC;
+                    dic["down_diff"] = data.down_diff;
+                    dic["feed_in_turn"] = data.feed_in_turn;
+                    dic["feed_mode"] = data.feed_mode;
+                    dic["force_comb"] = data.force_comb;
+                    dic["formula_id"] = data.formula_id;
+                    dic["formula_name"] = data.formula_name;
+                    dic["motor_mode"] = data.motor_mode;
+                    dic["multi_feed"] = data.multi_feed;
+                    dic["no_comb"] = data.no_comb;
+                    dic["packet_per_minitue"] = data.packet_per_minitue;
+                    dic["stable_time"] = data.stable_time;
+                    dic["tare_count"] = data.tare_count;
+                    dic["target_weight"] = data.target_weight;
+                    dic["up_diff"] = data.up_diff;
+                    for (int i = 0; i < 10; i++)
+                    {
+                        dic["xzp_strength" + i.ToString()] = data.xzp_strength[i];
+                        dic["xzp_time" + i.ToString()] = data.xzp_time[i];
+                    }
+                    sh.Insert("formula", dic);
+
+                    conn.Close();
+                }
+            }
+         
             return true;
         }
     }

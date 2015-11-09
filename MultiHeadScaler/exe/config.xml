@@ -79,77 +79,21 @@
     <StatusAlarmFault name="GPRS" bit="12" />
   </FaultList>
   <categoryList>
-    <Category name="无线参数" refresh="1">
-      <list>
-        <ParamDefineItem visible="1" read="1" write="1" name="源地址" unit="" dev_id="136" param_id="1" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="目地址" unit="" dev_id="136" param_id="2" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="频率(KHZ)" unit="" dev_id="136" param_id="3" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="发射功率" unit="" dev_id="136" param_id="4" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" />
-      </list>
-    </Category>
-    <Category name="单传感器" refresh="1">
-      <list>
-        <ParamDefineItem visible="1" read="1" write="1" name="ID号" unit="" dev_id="127" param_id="35" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="拟合点X0分量" unit="" dev_id="127" param_id="128" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="拟合点K0分量" unit="" dev_id="127" param_id="144" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="内码" unit="" dev_id="127" param_id="39" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-      </list>
-    </Category>
-    <Category name="标定" refresh="1">
-      <list />
-    </Category>
+    
     <Category name="系统参数" refresh="1">
       <list>
-        <ParamDefineItem visible="1" read="1" write="0" name="在线传感器" unit="" dev_id="128" param_id="6" param_len="0" param_type="String" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="0" read="1" write="0" name="状态" unit="" dev_id="128" param_id="7" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="0" read="1" write="0" name="报警" unit="" dev_id="128" param_id="8" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="0" read="1" write="0" name="故障" unit="" dev_id="128" param_id="9" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="控制器时间" unit="" dev_id="128" param_id="39" param_len="7" param_type="DateTime" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="牵引车轴数" unit="" dev_id="128" param_id="11" param_len="1" param_type="Byte" valid_min_max="true" min="1" max="4" />
-        <ParamDefineItem visible="1" read="1" write="1" name="后挂车轴数" unit="" dev_id="128" param_id="12" param_len="1" param_type="Byte" valid_min_max="true" min="0" max="6" />
-        <ParamDefineItem visible="1" read="1" write="1" name="打印调试等级" unit="" dev_id="128" param_id="51" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="0" write="1" name="恢复出厂设置" unit="" dev_id="128" param_id="41" param_len="0" param_type="Empty" valid_min_max="false" min="0" max="0" />
+      
         <ParamDefineItem visible="1" read="0" write="1" name="CAN总线电源" unit="" dev_id="128" param_id="50" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0">
           <listOption>
             <ParamOption display="关闭" value="0" />
             <ParamOption display="打开" value="1" />
           </listOption>
         </ParamDefineItem>
-        <ParamDefineItem visible="1" read="0" write="1" name="重启控制器" unit="" dev_id="128" param_id="53" param_len="0" param_type="Empty" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="ACC关机最短延时" unit="s" dev_id="128" param_id="54" param_len="2" param_type="UInt16" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="ACC关机最长延时" unit="s" dev_id="128" param_id="55" param_len="2" param_type="UInt16" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="安装地址" unit="" dev_id="128" param_id="14" param_len="16" param_type="String" valid_min_max="false" min="0" max="0" />
+       
       </list>
     </Category>
-    <Category name="GPS参数" refresh="1">
-      <list>
-        <ParamDefineItem visible="1" read="1" write="0" name="车辆速度(KM/H)" unit="" dev_id="128" param_id="15" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="经度(度)" unit="" dev_id="128" param_id="16" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="纬度(度)" unit="" dev_id="128" param_id="17" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="方向" unit="" dev_id="128" param_id="18" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="里程(KM)" unit="" dev_id="128" param_id="19" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="海拔高度(M)" unit="" dev_id="128" param_id="20" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="油耗(L/100KM)" unit="" dev_id="128" param_id="21" param_len="2" param_type="UInt16" valid_min_max="false" min="0" max="0" />
-      </list>
-    </Category>
-    <Category name="称重设置" refresh="1">
-      <list>
-        <ParamDefineItem visible="1" read="1" write="0" name="载货重量(kg)" unit="" dev_id="128" param_id="1" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="车辆总重(kg)" unit="" dev_id="128" param_id="2" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="额定重量(kg)" unit="" dev_id="128" param_id="3" param_len="4" param_type="Int32" valid_min_max="true" min="0" max="500000" />
-        <ParamDefineItem visible="1" read="1" write="1" name="限载重量(kg)" unit="" dev_id="128" param_id="4" param_len="4" param_type="Int32" valid_min_max="true" min="0" max="500000" />
-        <ParamDefineItem visible="1" read="1" write="1" name="车身重量(kg)" unit="" dev_id="128" param_id="5" param_len="4" param_type="Int32" valid_min_max="true" min="0" max="500000" />
-        <ParamDefineItem visible="1" read="1" write="1" name="分度值" unit="kg" dev_id="128" param_id="34" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
-      </list>
-    </Category>
-    <Category name="中心连接" refresh="1">
-      <list>
-        <ParamDefineItem visible="1" read="1" write="1" name="服务器IP地址" unit="" dev_id="128" param_id="22" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="服务器端口" unit="" dev_id="128" param_id="23" param_len="2" param_type="UInt16" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="车牌号" unit="" dev_id="128" param_id="24" param_len="16" param_type="String" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="虚号地址" unit="" dev_id="128" param_id="44" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
-      </list>
-    </Category>
+   
+   
     <Category name="控制器信息" refresh="1">
       <list>
         <ParamDefineItem visible="1" read="1" write="0" name="控制器软件版本" unit="" dev_id="128" param_id="26" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
@@ -157,101 +101,8 @@
         <ParamDefineItem visible="1" read="1" write="0" name="CPUID" unit="" dev_id="128" param_id="28" param_len="12" param_type="String" valid_min_max="false" min="0" max="0" />
       </list>
     </Category>
-    <Category name="零位跟踪" refresh="1">
-      <list>
-        <ParamDefineItem visible="1" read="1" write="1" name="零点跟踪时间" unit="s" dev_id="128" param_id="29" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="零点跟踪范围" unit="e" dev_id="128" param_id="30" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="手动调零范围" unit="e" dev_id="128" param_id="31" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="开机置零范围" unit="e" dev_id="128" param_id="32" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="开机置零时间" unit="s" dev_id="128" param_id="33" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="称重系数K" unit="" dev_id="128" param_id="35" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="0" write="1" name="手动清零" unit="" dev_id="128" param_id="36" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0">
-          <listOption>
-            <ParamOption display="取消清零" value="0" />
-            <ParamOption display="手动清零" value="1" />
-          </listOption>
-        </ParamDefineItem>
-      </list>
-    </Category>
-    <Category name="算法参数" refresh="1">
-      <list>
-        <ParamDefineItem visible="1" read="1" write="1" name="算法模式" unit="" dev_id="128" param_id="37" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0">
-          <listOption>
-            <ParamOption display="算法0" value="0" />
-            <ParamOption display="算法1" value="1" />
-            <ParamOption display="算法2" value="2" />
-          </listOption>
-        </ParamDefineItem>
-        <ParamDefineItem visible="1" read="1" write="0" name="算法前重量" unit="kg" dev_id="128" param_id="38" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="波动范围值" unit="" dev_id="128" param_id="180" param_len="2" param_type="UInt16" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="稳定判断时间" unit="" dev_id="128" param_id="181" param_len="2" param_type="UInt16" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="波动判断点数" unit="" dev_id="128" param_id="182" param_len="2" param_type="UInt16" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="运动判断时间" unit="" dev_id="128" param_id="183" param_len="2" param_type="UInt16" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="卸货次数总值" unit="" dev_id="128" param_id="184" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="重量阀值" unit="" dev_id="128" param_id="185" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="算法零点" unit="" dev_id="128" param_id="186" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="稳定段值" unit="" dev_id="128" param_id="187" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="掉电时卸货次数" unit="" dev_id="128" param_id="188" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="运动特征截取时间长度" unit="" dev_id="128" param_id="189" param_len="2" param_type="UInt16" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="连续加卸货判断时间长度" unit="" dev_id="128" param_id="190" param_len="2" param_type="UInt16" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="运动特征截取重量限值" unit="" dev_id="128" param_id="191" param_len="2" param_type="UInt16" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="运动特征截取比较段数" unit="" dev_id="128" param_id="192" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="零点跟踪比较限值" unit="" dev_id="128" param_id="193" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="加卸货阀值计算比例" unit="" dev_id="128" param_id="194" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="1" name="车辆模式" unit="" dev_id="128" param_id="195" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" />
-      </list>
-    </Category>
-    <Category name="传感器重量" refresh="2">
-      <list>
-        <ParamDefineItem visible="1" read="1" write="0" name="1#(kg)" unit="kg" dev_id="128" param_id="128" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="2#(kg)" unit="kg" dev_id="128" param_id="129" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="3#(kg)" unit="kg" dev_id="128" param_id="130" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="4#(kg)" unit="kg" dev_id="128" param_id="131" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="5#(kg)" unit="kg" dev_id="128" param_id="132" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="6#(kg)" unit="kg" dev_id="128" param_id="133" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="7#(kg)" unit="kg" dev_id="128" param_id="134" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="8#(kg)" unit="kg" dev_id="128" param_id="135" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="9#(kg)" unit="kg" dev_id="128" param_id="136" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="10#(kg)" unit="kg" dev_id="128" param_id="137" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="11#(kg)" unit="kg" dev_id="128" param_id="138" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="12#(kg)" unit="kg" dev_id="128" param_id="139" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="13#(kg)" unit="kg" dev_id="128" param_id="140" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="14#(kg)" unit="kg" dev_id="128" param_id="141" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="15#(kg)" unit="kg" dev_id="128" param_id="142" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="16#(kg)" unit="kg" dev_id="128" param_id="143" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="17#(kg)" unit="kg" dev_id="128" param_id="144" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="18#(kg)" unit="kg" dev_id="128" param_id="145" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="19#(kg)" unit="kg" dev_id="128" param_id="146" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="20#(kg)" unit="kg" dev_id="128" param_id="147" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="21#(kg)" unit="kg" dev_id="128" param_id="148" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="22#(kg)" unit="kg" dev_id="128" param_id="149" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="23#(kg)" unit="kg" dev_id="128" param_id="150" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="24#(kg)" unit="kg" dev_id="128" param_id="151" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="25#(kg)" unit="kg" dev_id="128" param_id="152" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="26#(kg)" unit="kg" dev_id="128" param_id="153" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="27#(kg)" unit="kg" dev_id="128" param_id="154" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="28#(kg)" unit="kg" dev_id="128" param_id="155" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="29#(kg)" unit="kg" dev_id="128" param_id="156" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="30#(kg)" unit="kg" dev_id="128" param_id="157" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="31#(kg)" unit="kg" dev_id="128" param_id="158" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="32#(kg)" unit="kg" dev_id="128" param_id="159" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="33#(kg)" unit="kg" dev_id="128" param_id="160" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-      </list>
-    </Category>
-    <Category name="轴重" refresh="2">
-      <list>
-        <ParamDefineItem visible="1" read="1" write="0" name="第1轴(kg)" unit="kg" dev_id="128" param_id="161" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="第2轴(kg)" unit="kg" dev_id="128" param_id="162" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="第3轴(kg)" unit="kg" dev_id="128" param_id="163" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="第4轴(kg)" unit="kg" dev_id="128" param_id="164" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="第5轴(kg)" unit="kg" dev_id="128" param_id="165" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="第6轴(kg)" unit="kg" dev_id="128" param_id="166" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="第7轴(kg)" unit="kg" dev_id="128" param_id="167" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="第8轴(kg)" unit="kg" dev_id="128" param_id="168" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="第9轴(kg)" unit="kg" dev_id="128" param_id="169" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="第10轴(kg)" unit="kg" dev_id="128" param_id="170" param_len="4" param_type="Int32" valid_min_max="false" min="0" max="0" />
-      </list>
-    </Category>
+  
+
   </categoryList>
   <plateCharList>
     <PlateChar name="北京" display="京" value="1100" />

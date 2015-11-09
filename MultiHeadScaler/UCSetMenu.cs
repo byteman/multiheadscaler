@@ -47,40 +47,15 @@ namespace Monitor
             {
                 pb.Visible = false;
             }
-            //switch ((int)pb.Tag)
-            //{
-            //    case 1:
-            //        //str = "系统参数";
-            //        break;
-            //    case 2:
-            //        str = "称重设置";
-            //        break;
-            //    case 3:
-            //        str = "服务器";
-            //        x = 70;
-            //        break;
-            //    case 4:
-            //        str = "传感器";
-            //        x = 70;
-            //        break;
-            //    case 5:
-            //        str = "零位跟踪";
-            //        break;
-            //    case 6:
-            //        str = "标定";
-            //        x = 80;
-            //        break;
-            //    default:
-            //        break;
-            //}
+           
         }
 
         public override void pictureBox1_Click(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
            int index = PageIndex*PageSize + (int)pb.Tag;
-           bool bInit = formFrame.ucListControl.InitData(index, UCList.UCListType.UCLT_Param, this, false, 0);
-           if(bInit)    formFrame.ShowUC(formFrame.ucListControl);
+           formFrame.ucDBListControl.InitData("wwww", this);
+           formFrame.ShowUC(formFrame.ucDBListControl);
        }
 
         #region 分页

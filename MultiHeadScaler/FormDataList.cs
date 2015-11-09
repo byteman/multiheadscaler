@@ -142,7 +142,7 @@ namespace Monitor
 
         private void FormDataList_Load(object sender, EventArgs e)
         {
-            SQLiteDBHelper.CreateDB("database.db3");
+            
 
             update_index(SQLiteDBHelper.DataCount());
             page_index = 0;

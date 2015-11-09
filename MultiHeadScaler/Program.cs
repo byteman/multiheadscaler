@@ -20,7 +20,8 @@ namespace Monitor
             if (PInvoke.PGetLastError() != ERROR_ALREADY_EXISTS)
             {
                 AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
-                Application.Run(new FormInit());
+                //Application.Run(new FormInit());
+                Application.Run(new FormFrame());
             }
             else
             {

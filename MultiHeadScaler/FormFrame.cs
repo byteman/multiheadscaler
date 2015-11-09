@@ -22,6 +22,7 @@ namespace Monitor
         public UCQueryMenu ucQueryMenu = null;
         public UCSetMenu ucSetMenu = null;
         public UCList ucListControl = null;
+        public UCDBList ucDBListControl = null;
         public UCRadioOnline ucRadioOnline = null;
         public UCCommon ucCommon = null;
         public FormLog formLog = null;
@@ -84,7 +85,12 @@ namespace Monitor
             ucSetMenu = new UCSetMenu(this);
             this.AddUC(ucSetMenu);
             ucListControl = new UCList(this);
+
             this.AddUC(ucListControl);
+            ucDBListControl = new UCDBList(this);
+
+            this.AddUC(ucDBListControl);
+
             ucRadioOnline = new UCRadioOnline(this);
             this.AddUC(ucRadioOnline);
             ucCommon = new UCCommon(this);
@@ -146,6 +152,7 @@ namespace Monitor
         {
             Rectangle rect = new Rectangle();
             PInvoke.SetFullScreen(true, ref rect);//œ‘ æ
+            SQLiteDBHelper.CreateDB("database.db3");
  
         }
 
