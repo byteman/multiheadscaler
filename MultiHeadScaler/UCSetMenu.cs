@@ -54,7 +54,7 @@ namespace Monitor
         {
             PictureBox pb = (PictureBox)sender;
            int index = PageIndex*PageSize + (int)pb.Tag;
-           formFrame.ucDBListControl.InitData("wwww", this);
+           formFrame.ucDBListControl.InitData(0,"wwww", this);
            formFrame.ShowUC(formFrame.ucDBListControl);
        }
 

@@ -18,6 +18,12 @@ namespace Monitor
             public string col;
             public string str;
         }
+        public struct SPageItem
+        {
+            public byte read;
+            public byte write;
+            public string str;
+        }
         private FormFrame formFrame = null;
         UCButtons ucButtons = null;
         UserControl ucRetControl = null;
@@ -25,15 +31,14 @@ namespace Monitor
         private int PageTotal, PageIndex;
         private const int PageSize = 5;
         int SelectIndex = -1;
-
+        private int CategoryIndex = -1;
      
 
         private string strTitle = "";
 
-        private List<SMyItem> CurPageList = new List<SMyItem>(PageSize);
-        private List<SMyItem> TotalPageList = new List<SMyItem>();
-
-        private DataTable curData = null; 
+        private List<SPageItem> CurPageList = new List<SPageItem>(PageSize);
+        private List<SPageItem> TotalPageList = new List<SPageItem>();
+        private List<ParamItem> TotalParamList = new List<ParamItem>();
      
         const int MaxItemStringlen = 30;
 
@@ -48,59 +53,111 @@ namespace Monitor
         }
 
         //状态、报警、故障列表初始化
-        public void InitData(string title,  UserControl _ucRetControl)
+        public void InitData(int _categoryIndex, string title, UserControl _ucRetControl)
         {
             ucButtons.SetAckText("刷新");
             ucButtons.SetAckVisible(true);
-          
-            strTitle = title;
+
+            if ((_categoryIndex >= 0) && (_categoryIndex < formFrame.visCateList.Count))
+            {
+                CategoryIndex = _categoryIndex;
+            }
+            else
+            {
+                CategoryIndex = 0;
+            }
+
+            strTitle = formFrame.visCateList[CategoryIndex].name; ;
           
             ucRetControl = _ucRetControl;
             InitPage();
-            RereshData(0);
+            Category cate = null;
+            cate = formFrame.visCateList[CategoryIndex];
+            foreach (ParamDefineItem param in cate.list)
+            {
+                SPageItem spItem;
+                spItem.read = param.read;
+                spItem.write = param.write;
+                spItem.str = param.name;
+                TotalPageList.Add(spItem);
+            }
             GetPageTotal();
+            
+
+            RereshData(1);
             ShowPage(0);
+            this.pnLeft.Invalidate();
         }
-        private void addTitle()
+        private string getDBColumName(string title)
         {
-            SMyItem item = new SMyItem();
-            item.col = "目标重量";
-            item.str = "目标重量";
+            if (title == "目标重量") return "target_weight";
+            else if (title == "速度") return "packet_per_minitue";
+            else if (title == "上偏差") return "up_diff";
+            else if (title == "下偏差") return "down_diff";
+            else if (title == "稳定时间") return "stable_time";
+            else if (title == "去皮次数") return "tare_count";
+            else if (title == "AFC") return "AFC";
+            else if (title == "无组合") return "no_comb";
+            else if (title == "放料模式") return "feed_mode";
+            else if (title == "依次放料") return "feed_in_turn";
+            else if (title == "配方名称") return "formula_name";
+            else if (title == "电机模式") return "motor_mode";
+            else if (title == "多次放料") return "multi_feed";
 
-            TotalPageList.Add(item);
+            return "xx";
+        }
+        private void RereshData2()
+        {
+            TotalPageList.Clear();
+            foreach (ParamItem param in TotalParamList)
+            {
+                SPageItem spItem;
+                ParamItem pitem = new ParamItem();
+                spItem.read = 1;
+                spItem.write = 1;
+                spItem.str = FormatDisplay(param.name, param.param_value.ToString());
 
-            item = new SMyItem();
-            item.col = "上偏差";
-            item.str = "上偏差";
-
-            TotalPageList.Add(item);
+                TotalPageList.Add(spItem);
+            }
         }
         private void RereshData(int id)
         {
             DataTable dt = SQLiteDBHelper.listParam(id);
             TotalPageList.Clear();
+            TotalParamList.Clear();
             if (dt.Rows.Count == 0)
             {
-                addTitle();
                 return;
             }
-            foreach (DataRow dr in dt.Rows)
+            DataRow dr = dt.Rows[0];
+
+            Category cate = null;
+            cate = formFrame.visCateList[CategoryIndex];
+            foreach (ParamDefineItem param in cate.list)
             {
-                SMyItem item = new SMyItem();
-                item.col = "目标重量";
-                item.str = dr["target_weight"].ToString();
+                SPageItem spItem;
+                ParamItem pitem = new ParamItem();
+                spItem.read = param.read;
+                spItem.write = param.write;
+                spItem.str = FormatDisplay(param.name, dr[getDBColumName(param.name)].ToString());
 
-                TotalPageList.Add(item);
+                pitem.dev_id = param.dev_id;
+                pitem.max = param.max;
+                pitem.min = param.min;
+                pitem.name = param.name;
+                pitem.op_write = param.write;
+                pitem.param_id = param.param_id;
+                pitem.param_len = param.param_len;
+                pitem.param_value = dr[getDBColumName(param.name)];
+                pitem.param_type = param.param_type;
+                pitem.unit = param.unit;
+                pitem.valid_min_max = param.valid_min_max;
 
-                item = new SMyItem();
-                item.col = "上偏差";
-                item.str = dr["up_diff"].ToString();
 
-                TotalPageList.Add(item);
-
-
+                TotalParamList.Add(pitem);
+                TotalPageList.Add(spItem);
             }
-            
+
         }
 
 
@@ -248,9 +305,9 @@ namespace Monitor
         private void pnLeft_MouseDown(object sender, MouseEventArgs e)
         {
             int title_height = 100;
-            if (Control.MousePosition.Y < (pnLeft.Top + title_height + 48)) return;     //状态栏高度为48pix
+            if (Control.MousePosition.Y < (pnLeft.Top + title_height )) return;     //状态栏高度为48pix
             int height = (pnLeft.Height - title_height) / PageSize;
-            SelectIndex = (Control.MousePosition.Y - pnLeft.Top - title_height - 48) / height;
+            SelectIndex = (Control.MousePosition.Y - pnLeft.Top - title_height) / height;
             int index = SelectIndex + PageIndex * PageSize;
             pnLeft.Invalidate();
         }
@@ -302,9 +359,9 @@ namespace Monitor
         {
             byte slaveAddr = formFrame.configManage.cfg.paramDeviceId.Ctrl;
             int title_height = 100;
-            if (Control.MousePosition.Y < (pnLeft.Top + title_height + 48)) return;     //状态栏高度为48pix
+            if (Control.MousePosition.Y < (pnLeft.Top + title_height)) return;     //状态栏高度为48pix
             int height = (pnLeft.Height - title_height) / PageSize;
-            int tempIndex = (Control.MousePosition.Y - pnLeft.Top - title_height - 48) / height;
+            int tempIndex = (Control.MousePosition.Y - pnLeft.Top - title_height) / height;
             if (tempIndex != SelectIndex)
             {
                 SelectIndex = -1;
@@ -313,20 +370,23 @@ namespace Monitor
             }
             int index = SelectIndex + PageIndex * PageSize;
 
+            ParamItem item;
 
-
+            item = TotalParamList[index];
             //输入框用于用户输入数据
             InputInterface dlg;
 
             dlg = new FormInput(this.formFrame);
-            ParamItem item = new ParamItem();
-            //dlg.SetValue(
+
+            dlg.SetValue(item, true);
+
             dlg.ShowDialog();
             pnLeft.Invalidate();                                  //处理弹出FormMsgBox对话框消失后，屏幕没刷新的情况
             if (dlg.GetAck())
             {
                 //如果是修改无线参数，不需要输入控制器密码
-
+                TotalParamList[index] = dlg.GetValue();
+                RereshData2();
                 ShowPage(PageIndex);
                 pnLeft.Invalidate();
 

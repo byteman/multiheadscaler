@@ -83,13 +83,20 @@
     <Category name="系统参数" refresh="1">
       <list>
       
-        <ParamDefineItem visible="1" read="0" write="1" name="CAN总线电源" unit="" dev_id="128" param_id="50" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0">
-          <listOption>
-            <ParamOption display="关闭" value="0" />
-            <ParamOption display="打开" value="1" />
-          </listOption>
-        </ParamDefineItem>
-       
+  
+        <ParamDefineItem visible="1" read="0" write="1" name="目标重量" unit="" dev_id="128" param_id="50" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="0" write="1" name="上偏差" unit="" dev_id="128" param_id="51" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="0" write="1" name="下偏差" unit="" dev_id="128" param_id="52" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="0" write="1" name="速度" unit="" dev_id="128" param_id="53" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
+        <ParamDefineItem visible="1" read="0" write="1" name="稳定时间" unit="" dev_id="128" param_id="50" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="0" write="1" name="去皮次数" unit="" dev_id="128" param_id="51" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="0" write="1" name="AFC" unit="" dev_id="128" param_id="52" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="0" write="1" name="无组合" unit="" dev_id="128" param_id="53" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
+        <ParamDefineItem visible="1" read="0" write="1" name="放料模式" unit="" dev_id="128" param_id="53" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
+        <ParamDefineItem visible="1" read="0" write="1" name="依次放料" unit="" dev_id="128" param_id="53" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
+        <ParamDefineItem visible="1" read="0" write="1" name="电机模式" unit="" dev_id="128" param_id="53" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
+        <ParamDefineItem visible="1" read="0" write="1" name="多次放料" unit="" dev_id="128" param_id="53" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
+      
       </list>
     </Category>
    
