@@ -84,12 +84,12 @@
       <list>
       
   
-        <ParamDefineItem visible="1" read="0" write="1" name="目标重量" unit="" dev_id="128" param_id="50" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="0" write="1" name="上偏差" unit="" dev_id="128" param_id="51" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="0" write="1" name="下偏差" unit="" dev_id="128" param_id="52" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="0" write="1" name="速度" unit="" dev_id="128" param_id="53" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
+        <ParamDefineItem visible="1" read="0" write="1" name="目标重量" unit="g" dev_id="128" param_id="50" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="0" write="1" name="上偏差" unit="g" dev_id="128" param_id="51" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="0" write="1" name="下偏差" unit="g" dev_id="128" param_id="52" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="0" write="1" name="速度" unit="包/分钟" dev_id="128" param_id="53" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
         <ParamDefineItem visible="1" read="0" write="1" name="稳定时间" unit="" dev_id="128" param_id="50" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="0" write="1" name="去皮次数" unit="" dev_id="128" param_id="51" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="0" write="1" name="去皮次数" unit="次" dev_id="128" param_id="51" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
         <ParamDefineItem visible="1" read="0" write="1" name="AFC" unit="" dev_id="128" param_id="52" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
         <ParamDefineItem visible="1" read="0" write="1" name="无组合" unit="" dev_id="128" param_id="53" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
         <ParamDefineItem visible="1" read="0" write="1" name="放料模式" unit="" dev_id="128" param_id="53" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
