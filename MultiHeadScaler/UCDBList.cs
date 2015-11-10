@@ -320,7 +320,7 @@ namespace Monitor
 
             dlg = new FormInput(this.formFrame);
             ParamItem item = new ParamItem();
-            dlg.SetValue(
+            //dlg.SetValue(
             dlg.ShowDialog();
             pnLeft.Invalidate();                                  //处理弹出FormMsgBox对话框消失后，屏幕没刷新的情况
             if (dlg.GetAck())
