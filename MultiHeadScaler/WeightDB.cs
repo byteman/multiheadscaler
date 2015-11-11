@@ -181,7 +181,7 @@ namespace Monitor
             }
             return count;
         }
-        public static DataTable listParam(int id)
+        public static DataTable listFormula(int id)
         {
             using (SQLiteConnection conn = new SQLiteConnection(config.DataSource))
             {

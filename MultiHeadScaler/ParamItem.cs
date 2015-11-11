@@ -22,5 +22,7 @@ namespace Monitor
         public bool valid_min_max;
         public int min;
         public int max;
+        public string str;
+
     }
 }

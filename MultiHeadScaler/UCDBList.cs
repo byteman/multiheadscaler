@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Monitor
 {
@@ -30,15 +31,23 @@ namespace Monitor
      
         private int PageTotal, PageIndex;
         private const int PageSize = 5;
-        int SelectIndex = -1;
+        private int formula_id = 1;
+        private int formula_num = 0;
+        private int SelectIndex = -1;
         private int CategoryIndex = -1;
-     
+        private int title_height = 92;
+        Bitmap bmLeftUp = null;
+        Bitmap bmLeftDown = null;
+
+        Bitmap bmRightUp = null;
+        Bitmap bmRightDown = null;
 
         private string strTitle = "";
 
-        private List<SPageItem> CurPageList = new List<SPageItem>(PageSize);
-        private List<SPageItem> TotalPageList = new List<SPageItem>();
-        private List<ParamItem> TotalParamList = new List<ParamItem>();
+        private List<ParamItem> CurPageList = new List<ParamItem>(PageSize);
+        private List<ParamItem> TotalPageList = new List<ParamItem>();
+
+       // private List<ParamItem> TotalParamList = new List<ParamItem>();
      
         const int MaxItemStringlen = 30;
 
@@ -50,8 +59,65 @@ namespace Monitor
             ucButtons.RegisterBtnEvent(ClickUp, ClickDown, ClickAck, ClickReturn);
             this.pnRight.Controls.Add(ucButtons);
 
+            bmRightUp  = GetBitmap(formFrame.configManage.FileDir + @"\east_btn_up.png");
+            bmRightDown = GetBitmap(formFrame.configManage.FileDir + @"\east_btn_down.png");
+
+            bmLeftUp= GetBitmap(formFrame.configManage.FileDir + @"\west_btn_up.png");
+            bmLeftDown= GetBitmap(formFrame.configManage.FileDir + @"\west_btn_down.png");
+
+            pbLeft.Image = bmLeftUp;
+            pbRight.Image = bmRightUp;
+
+        }
+        public new void Dispose()
+        {
+            if (bmLeftUp != null) bmLeftUp.Dispose();
+            if (bmLeftDown != null) bmLeftDown.Dispose();
+
+            if (bmRightUp != null) bmRightUp.Dispose();
+            if (bmRightDown != null) bmRightDown.Dispose();
+
+            ucButtons.Dispose();
+
+            base.Dispose();
         }
 
+        private Bitmap GetBitmap(string upPath)
+        {
+            Bitmap bm = null;
+            if (File.Exists(upPath))
+            {
+                bm = new Bitmap(upPath);
+            }
+            return bm;
+        }
+
+   
+
+        private void pbLeft_MouseDown(object sender, MouseEventArgs e)
+        {
+            pbLeft.Image = bmLeftDown;
+        }
+
+        private void pbLeft_MouseUp(object sender, MouseEventArgs e)
+        {
+            pbLeft.Image = bmLeftUp;
+        }
+
+        private void pbRight_MouseDown(object sender, MouseEventArgs e)
+        {
+            pbRight.Image = bmRightDown;
+        }
+
+        private void pbRight_MouseUp(object sender, MouseEventArgs e)
+        {
+            pbRight.Image = bmRightUp;
+        }
+
+        int getFormulaNum()
+        {
+            return SQLiteDBHelper.ParamCount();
+        }
         //状态、报警、故障列表初始化
         public void InitData(int _categoryIndex, string title, UserControl _ucRetControl)
         {
@@ -66,25 +132,15 @@ namespace Monitor
             {
                 CategoryIndex = 0;
             }
-
+            //获取参数标题名
             strTitle = formFrame.visCateList[CategoryIndex].name; ;
           
             ucRetControl = _ucRetControl;
             InitPage();
-            Category cate = null;
-            cate = formFrame.visCateList[CategoryIndex];
-            foreach (ParamDefineItem param in cate.list)
-            {
-                SPageItem spItem;
-                spItem.read = param.read;
-                spItem.write = param.write;
-                spItem.str = param.name;
-                TotalPageList.Add(spItem);
-            }
-            GetPageTotal();
-            
 
-            RereshData(1);
+            LoadFormulaFromDB(formula_id);//读取第一个配方参数
+            formula_num = getFormulaNum();
+            GetPageTotal();
             ShowPage(0);
             this.pnLeft.Invalidate();
         }
@@ -101,46 +157,35 @@ namespace Monitor
             else if (title == "放料模式") return "feed_mode";
             else if (title == "依次放料") return "feed_in_turn";
             else if (title == "配方名称") return "formula_name";
+            else if (title == "配方编号") return "id";
             else if (title == "电机模式") return "motor_mode";
             else if (title == "多次放料") return "multi_feed";
 
             return "xx";
         }
-        private void RereshData2()
+       
+        private void LoadFormulaFromDB(int id)
         {
-            TotalPageList.Clear();
-            foreach (ParamItem param in TotalParamList)
+            DataTable dt = SQLiteDBHelper.listFormula(id);
+            DataRow   dr = null;
+            formula_num = getFormulaNum();
+            if (dt.Rows.Count != 0)
             {
-                SPageItem spItem;
-                ParamItem pitem = new ParamItem();
-                spItem.read = 1;
-                spItem.write = 1;
-                spItem.str = FormatDisplay(param.name, param.param_value.ToString());
-
-                TotalPageList.Add(spItem);
+                //没有数据就返回.
+                //return;
+               dr = dt.Rows[0]; //取第一条记录
             }
-        }
-        private void RereshData(int id)
-        {
-            DataTable dt = SQLiteDBHelper.listParam(id);
             TotalPageList.Clear();
-            TotalParamList.Clear();
-            if (dt.Rows.Count == 0)
-            {
-                return;
-            }
-            DataRow dr = dt.Rows[0];
+            
+            
 
             Category cate = null;
             cate = formFrame.visCateList[CategoryIndex];
             foreach (ParamDefineItem param in cate.list)
             {
-                SPageItem spItem;
+            
                 ParamItem pitem = new ParamItem();
-                spItem.read = param.read;
-                spItem.write = param.write;
-                spItem.str = FormatDisplay(param.name, dr[getDBColumName(param.name)].ToString());
-
+    
                 pitem.dev_id = param.dev_id;
                 pitem.max = param.max;
                 pitem.min = param.min;
@@ -148,33 +193,43 @@ namespace Monitor
                 pitem.op_write = param.write;
                 pitem.param_id = param.param_id;
                 pitem.param_len = param.param_len;
-                pitem.param_value = dr[getDBColumName(param.name)];
+               
                 pitem.param_type = param.param_type;
                 pitem.unit = param.unit;
                 pitem.valid_min_max = param.valid_min_max;
+                pitem.permit_write = param.write;
+                pitem.permit_read = param.read;
+                //构建一项显示的数据字符串.
+                if (dr == null)
+                {
+                    pitem.param_value = 0;
+                    pitem.str = FormatDisplay(pitem.name,"");
+                }
+                else 
+                {
+                    pitem.param_value = dr[getDBColumName(param.name)];
+                    pitem.str = FormatDisplay(pitem.name, dr[getDBColumName(pitem.name)].ToString());
+                }
 
-
-                TotalParamList.Add(pitem);
-                TotalPageList.Add(spItem);
+                TotalPageList.Add(pitem);
             }
 
         }
 
-
-        public new void Dispose()
-        {
-            ucButtons.Dispose();
-            base.Dispose();
-        }
-
         private void pnLeft_Paint(object sender, PaintEventArgs e)
         {
-            int title_height = 100;
-            int title_left = (pnLeft.Width - (strTitle.Length) * 36) / 2;
+         
+            //int title_height = 90;
+          
             int height = (pnLeft.Height - title_height) / PageSize;
+            string sstrTitle = String.Format(strTitle + "{0}/{1}", formula_num > 0 ? formula_id : 0, formula_num);
+            //int x_pos = (pnLeft.Right - title.Length*32 - 148)/2;
+            int title_left = (pnLeft.Width - (sstrTitle.Length) * 32) / 2;
+            //e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(85, 142, 213)), 0, title_height - 2, pnLeft.Right - 1, 2);
+            e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(225, 249, 255)), 0, 1, pnLeft.Right - 1, 100);
+            e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(85, 142, 213)), 0, title_height, pnLeft.Right - 1, 2);
 
-            e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(85, 142, 213)), 0, title_height - 2, pnLeft.Right - 1, 2);
-            e.Graphics.DrawString(strTitle, new Font("宋体", 32, FontStyle.Bold), new SolidBrush(Color.Black), title_left, title_height / 2 - 16);
+            e.Graphics.DrawString(sstrTitle, new Font("宋体", 32, FontStyle.Bold), new SolidBrush(Color.Black), title_left, title_height / 2 - 16);
 
             for (int i = 1; i < PageSize; i++)
             {
@@ -192,8 +247,9 @@ namespace Monitor
                 {
                     strItem = strItem.Substring(0, MaxItemStringlen - 2) + "...";
                 }
-                if (CurPageList[i].write != 0)
+                if (CurPageList[i].permit_write != 0)
                 {
+                    //禁用状态.
                     e.Graphics.DrawString(strItem, new Font("宋体", 24, FontStyle.Bold), new SolidBrush(Color.Black), 30, title_height + height * i + 16);
                 }
                 else
@@ -235,6 +291,7 @@ namespace Monitor
 
         private void ClickAck()
         {
+            //保存到数据库
             ShowPage(PageIndex);     
         }
 
@@ -304,7 +361,7 @@ namespace Monitor
 
         private void pnLeft_MouseDown(object sender, MouseEventArgs e)
         {
-            int title_height = 100;
+            //int title_height = 90;
             if (Control.MousePosition.Y < (pnLeft.Top + title_height )) return;     //状态栏高度为48pix
             int height = (pnLeft.Height - title_height) / PageSize;
             SelectIndex = (Control.MousePosition.Y - pnLeft.Top - title_height) / height;
@@ -358,7 +415,7 @@ namespace Monitor
         private void pnLeft_Click(object sender, EventArgs e)
         {
             byte slaveAddr = formFrame.configManage.cfg.paramDeviceId.Ctrl;
-            int title_height = 100;
+            //int title_height = 90;
             if (Control.MousePosition.Y < (pnLeft.Top + title_height)) return;     //状态栏高度为48pix
             int height = (pnLeft.Height - title_height) / PageSize;
             int tempIndex = (Control.MousePosition.Y - pnLeft.Top - title_height) / height;
@@ -372,7 +429,7 @@ namespace Monitor
 
             ParamItem item;
 
-            item = TotalParamList[index];
+            item = TotalPageList[index];
             //输入框用于用户输入数据
             InputInterface dlg;
 
@@ -385,9 +442,10 @@ namespace Monitor
             if (dlg.GetAck())
             {
                 //如果是修改无线参数，不需要输入控制器密码
-                TotalParamList[index] = dlg.GetValue();
-                RereshData2();
-                ShowPage(PageIndex);
+                UpdateTotalList(index, dlg.GetValue());
+               
+ 
+                ShowPage(PageIndex); //刷新当前页的内容.
                 pnLeft.Invalidate();
 
             }
@@ -398,9 +456,55 @@ namespace Monitor
             SelectIndex = -1;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void UpdateTotalList(int index, ParamItem paramItem)
         {
-            MessageBox.Show("ww");
+
+            TotalPageList[index] = paramItem; //更新了内存中的参数.
+            TotalPageList[index].str = FormatDisplay(TotalPageList[index].name, TotalPageList[index].param_value.ToString());
         }
+
+        private void pbLeft_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawString("上一项", new Font("宋体", 24, FontStyle.Bold), new SolidBrush(Color.Black), 32, 28);
+        }
+
+        private void pbRight_Paint(object sender, PaintEventArgs e)
+        {
+      
+            e.Graphics.DrawString("下一项", new Font("宋体", 24, FontStyle.Bold), new SolidBrush(Color.Black), 32, 28);   
+        }
+
+        private void pbLeft_Click(object sender, EventArgs e)
+        {
+            formula_id--;
+            if (formula_id < 1)
+            {
+                formula_id = 1;
+                return;
+            }
+
+            LoadFormulaFromDB(formula_id);
+
+            ShowPage(0);
+            this.pnLeft.Invalidate();
+        }
+
+        private void pbRight_Click(object sender, EventArgs e)
+        {
+            formula_id++;
+            if (formula_id > formula_num)
+            {
+                formula_id--;
+                return;
+            }
+
+            LoadFormulaFromDB(formula_id);
+
+            ShowPage(0);
+            this.pnLeft.Invalidate();
+
+           
+        }
+
     }
 }
