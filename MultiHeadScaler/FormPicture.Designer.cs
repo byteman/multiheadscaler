@@ -28,35 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.pbNext = new System.Windows.Forms.PictureBox();
+            this.pbExit = new System.Windows.Forms.PictureBox();
+            this.pbAck = new System.Windows.Forms.PictureBox();
+            this.pbPrev = new System.Windows.Forms.PictureBox();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // pbNext
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(270, 369);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(106, 69);
+            this.pbNext.Location = new System.Drawing.Point(219, 364);
+            this.pbNext.Name = "pbNext";
+            this.pbNext.Size = new System.Drawing.Size(133, 88);
+            this.pbNext.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pbNext.Paint += new System.Windows.Forms.PaintEventHandler(this.pbNext_Paint);
+            this.pbNext.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
-            // pictureBox2
+            // pbExit
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(582, 369);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(106, 69);
+            this.pbExit.Location = new System.Drawing.Point(610, 364);
+            this.pbExit.Name = "pbExit";
+            this.pbExit.Size = new System.Drawing.Size(133, 88);
+            this.pbExit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pbExit.Paint += new System.Windows.Forms.PaintEventHandler(this.pbExit_Paint);
+            this.pbExit.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
-            // pictureBox9
+            // pbAck
             // 
-            this.pictureBox9.Location = new System.Drawing.Point(417, 369);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(106, 69);
+            this.pbAck.Location = new System.Drawing.Point(411, 364);
+            this.pbAck.Name = "pbAck";
+            this.pbAck.Size = new System.Drawing.Size(133, 88);
+            this.pbAck.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pbAck.Paint += new System.Windows.Forms.PaintEventHandler(this.pbAck_Paint);
+            this.pbAck.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
-            // pictureBox10
+            // pbPrev
             // 
-            this.pictureBox10.Location = new System.Drawing.Point(106, 369);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(106, 69);
+            this.pbPrev.Location = new System.Drawing.Point(29, 364);
+            this.pbPrev.Name = "pbPrev";
+            this.pbPrev.Size = new System.Drawing.Size(133, 88);
+            this.pbPrev.Click += new System.EventHandler(this.pbPrev_Click);
+            this.pbPrev.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pbPrev.Paint += new System.Windows.Forms.PaintEventHandler(this.pbPrev_Paint);
+            this.pbPrev.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // FormPicture
             // 
@@ -65,10 +78,10 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(798, 455);
-            this.Controls.Add(this.pictureBox10);
-            this.Controls.Add(this.pictureBox9);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pbPrev);
+            this.Controls.Add(this.pbAck);
+            this.Controls.Add(this.pbExit);
+            this.Controls.Add(this.pbNext);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -81,9 +94,9 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.PictureBox pbNext;
+        private System.Windows.Forms.PictureBox pbExit;
+        private System.Windows.Forms.PictureBox pbAck;
+        private System.Windows.Forms.PictureBox pbPrev;
     }
 }
