@@ -39,6 +39,7 @@
             this.pbNext.Location = new System.Drawing.Point(219, 364);
             this.pbNext.Name = "pbNext";
             this.pbNext.Size = new System.Drawing.Size(133, 88);
+            this.pbNext.Click += new System.EventHandler(this.pbNext_Click);
             this.pbNext.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pbNext.Paint += new System.Windows.Forms.PaintEventHandler(this.pbNext_Paint);
             this.pbNext.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
@@ -48,6 +49,7 @@
             this.pbExit.Location = new System.Drawing.Point(610, 364);
             this.pbExit.Name = "pbExit";
             this.pbExit.Size = new System.Drawing.Size(133, 88);
+            this.pbExit.Click += new System.EventHandler(this.pbExit_Click);
             this.pbExit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pbExit.Paint += new System.Windows.Forms.PaintEventHandler(this.pbExit_Paint);
             this.pbExit.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
@@ -57,6 +59,7 @@
             this.pbAck.Location = new System.Drawing.Point(411, 364);
             this.pbAck.Name = "pbAck";
             this.pbAck.Size = new System.Drawing.Size(133, 88);
+            this.pbAck.Click += new System.EventHandler(this.pbAck_Click);
             this.pbAck.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pbAck.Paint += new System.Windows.Forms.PaintEventHandler(this.pbAck_Paint);
             this.pbAck.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);

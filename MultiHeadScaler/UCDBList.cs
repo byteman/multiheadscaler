@@ -491,10 +491,7 @@ namespace Monitor
 
         private void pbRight_Click(object sender, EventArgs e)
         {
-            FormPicture dlg = new FormPicture(formFrame);
-            dlg.ShowDialog();
-            dlg.Dispose();
-            return;
+
             formula_id++;
             if (formula_id > formula_num)
             {
@@ -508,6 +505,25 @@ namespace Monitor
             this.pnLeft.Invalidate();
 
            
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+           
+            FormPicture dlg = new FormPicture(formFrame);
+            dlg.ShowDialog();
+            string path = dlg.GetSelectPicture();
+            if (path != null)
+            {
+                pbSelect.Image = GetBitmap(path);
+            }
+            dlg.Dispose();
+
+        }
+
+        private void UCDBList_Click(object sender, EventArgs e)
+        {
+
         }
 
     }
