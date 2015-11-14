@@ -83,7 +83,7 @@ namespace Monitor
             g.Dispose();
             select_pic = (int)pb2.Tag + pic_page * pbx_number;
 
-            MessageBox.Show(select_pic.ToString());
+            //MessageBox.Show(select_pic.ToString());
 
         }
         private void  load_pic(int page)
@@ -212,7 +212,10 @@ namespace Monitor
         {
             Close();
         }
-
+        public int GetSelectPicID()
+        {
+            return select_pic;
+        }
         private void pbExit_Click(object sender, EventArgs e)
         {
             select_pic = -1;

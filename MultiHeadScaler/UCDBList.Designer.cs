@@ -32,7 +32,6 @@
             this.pbRight = new System.Windows.Forms.PictureBox();
             this.pbLeft = new System.Windows.Forms.PictureBox();
             this.pnRight = new System.Windows.Forms.Panel();
-            this.pbSelect = new System.Windows.Forms.PictureBox();
             this.pnLeft.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,9 +40,9 @@
             this.pnLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.pnLeft.Controls.Add(this.pbRight);
             this.pnLeft.Controls.Add(this.pbLeft);
-            this.pnLeft.Location = new System.Drawing.Point(16, 113);
+            this.pnLeft.Location = new System.Drawing.Point(16, 17);
             this.pnLeft.Name = "pnLeft";
-            this.pnLeft.Size = new System.Drawing.Size(616, 348);
+            this.pnLeft.Size = new System.Drawing.Size(616, 449);
             this.pnLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.pnLeft_Paint);
             this.pnLeft.Click += new System.EventHandler(this.pnLeft_Click);
             this.pnLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnLeft_MouseDown);
@@ -75,20 +74,11 @@
             this.pnRight.Name = "pnRight";
             this.pnRight.Size = new System.Drawing.Size(150, 421);
             // 
-            // pbSelect
-            // 
-            this.pbSelect.Location = new System.Drawing.Point(17, 0);
-            this.pbSelect.Name = "pbSelect";
-            this.pbSelect.Size = new System.Drawing.Size(160, 107);
-            this.pbSelect.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbSelect.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
             // UCDBList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
-            this.Controls.Add(this.pbSelect);
             this.Controls.Add(this.pnRight);
             this.Controls.Add(this.pnLeft);
             this.Name = "UCDBList";
@@ -105,6 +95,5 @@
         private System.Windows.Forms.Panel pnRight;
         private System.Windows.Forms.PictureBox pbLeft;
         private System.Windows.Forms.PictureBox pbRight;
-        private System.Windows.Forms.PictureBox pbSelect;
     }
 }

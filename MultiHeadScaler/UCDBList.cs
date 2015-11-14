@@ -160,7 +160,7 @@ namespace Monitor
             else if (title == "配方编号") return "id";
             else if (title == "电机模式") return "motor_mode";
             else if (title == "多次放料") return "multi_feed";
-
+            else if (title == "配料图片") return "pic_id";
             return "xx";
         }
        
@@ -192,6 +192,7 @@ namespace Monitor
                 pitem.name = param.name;
                 pitem.op_write = param.write;
                 pitem.param_id = param.param_id;
+              
                 pitem.param_len = param.param_len;
                
                 pitem.param_type = param.param_type;
@@ -207,6 +208,10 @@ namespace Monitor
                 }
                 else 
                 {
+                    if (getDBColumName(param.name) == "pic_id")
+                    {
+                        pitem.param_value = dr[getDBColumName(param.name)];
+                    }
                     pitem.param_value = dr[getDBColumName(param.name)];
                     pitem.str = FormatDisplay(pitem.name, dr[getDBColumName(pitem.name)].ToString());
                 }
@@ -247,14 +252,25 @@ namespace Monitor
                 {
                     strItem = strItem.Substring(0, MaxItemStringlen - 2) + "...";
                 }
-                if (CurPageList[i].permit_write != 0)
+                if (CurPageList[i].param_id == 3)
                 {
-                    //禁用状态.
-                    e.Graphics.DrawString(strItem, new Font("宋体", 24, FontStyle.Bold), new SolidBrush(Color.Black), 30, title_height + height * i + 16);
+                    int id = int.Parse(CurPageList[i].param_value.ToString());
+                    Image bm = GetPicBitmap(id);
+                    e.Graphics.DrawString(CurPageList[i].name, new Font("宋体", 24, FontStyle.Bold), new SolidBrush(Color.Black), 30, title_height + height * i + 16);
+                    e.Graphics.DrawImage(bm, new Rectangle(390, title_height + height * i , height, height), new Rectangle(0, 0, bm.Width, bm.Height), GraphicsUnit.Pixel);
+                    //e.Graphics.DrawImage(, 0, 0);
                 }
                 else
                 {
-                    e.Graphics.DrawString(strItem, new Font("宋体", 24, FontStyle.Bold), new SolidBrush(Color.Gray), 30, title_height + height * i + 16);
+                    if (CurPageList[i].permit_write != 0)
+                    {
+                        //禁用状态.
+                        e.Graphics.DrawString(strItem, new Font("宋体", 24, FontStyle.Bold), new SolidBrush(Color.Black), 30, title_height + height * i + 16);
+                    }
+                    else
+                    {
+                        e.Graphics.DrawString(strItem, new Font("宋体", 24, FontStyle.Bold), new SolidBrush(Color.Gray), 30, title_height + height * i + 16);
+                    }
                 }
             }
             e.Graphics.DrawRectangle(new Pen(Color.Blue), 0, 0, pnLeft.Width - 1, pnLeft.Height - 1);
@@ -430,26 +446,44 @@ namespace Monitor
             ParamItem item;
 
             item = TotalPageList[index];
-            //输入框用于用户输入数据
-            InputInterface dlg;
-
-            dlg = new FormInput(this.formFrame);
-
-            dlg.SetValue(item, true);
-
-            dlg.ShowDialog();
-            pnLeft.Invalidate();                                  //处理弹出FormMsgBox对话框消失后，屏幕没刷新的情况
-            if (dlg.GetAck())
+            if (item.param_id == 3)
             {
-                //如果是修改无线参数，不需要输入控制器密码
-                UpdateTotalList(index, dlg.GetValue());
-               
- 
-                ShowPage(PageIndex); //刷新当前页的内容.
-                pnLeft.Invalidate();
-
+                FormPicture dlg = new FormPicture(formFrame);
+                dlg.ShowDialog();
+                dlg.Dispose();
+                int id = dlg.GetSelectPicID();
+                if (id != -1)
+                {
+                    MessageBox.Show(id.ToString());
+                    TotalPageList[index].param_value = id;
+                    ShowPage(PageIndex); //刷新当前页的内容.
+                    pnLeft.Invalidate();
+                }
             }
-            dlg.Dispose();
+            else
+            {
+                //输入框用于用户输入数据
+                InputInterface dlg;
+
+                dlg = new FormInput(this.formFrame);
+
+                dlg.SetValue(item, true);
+
+                dlg.ShowDialog();
+                pnLeft.Invalidate();                                  //处理弹出FormMsgBox对话框消失后，屏幕没刷新的情况
+                if (dlg.GetAck())
+                {
+                    //如果是修改无线参数，不需要输入控制器密码
+                    UpdateTotalList(index, dlg.GetValue());
+
+
+                    ShowPage(PageIndex); //刷新当前页的内容.
+                    pnLeft.Invalidate();
+
+                }
+                dlg.Dispose();
+            }
+           
 
 
 
@@ -506,18 +540,15 @@ namespace Monitor
 
            
         }
-
+        private Image GetPicBitmap(int id)
+        {
+            string path = String.Format(formFrame.configManage.FileDir + @"\formula\{0}.jpg", id);
+            return GetBitmap(path);
+        }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
            
-            FormPicture dlg = new FormPicture(formFrame);
-            dlg.ShowDialog();
-            string path = dlg.GetSelectPicture();
-            if (path != null)
-            {
-                pbSelect.Image = GetBitmap(path);
-            }
-            dlg.Dispose();
+          
 
         }
 

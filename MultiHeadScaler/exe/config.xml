@@ -98,7 +98,6 @@
         <ParamDefineItem visible="1" read="0" write="1" name="依次放料" unit="" dev_id="128" param_id="13" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
         <ParamDefineItem visible="1" read="0" write="1" name="电机模式" unit="" dev_id="128" param_id="14" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
         <ParamDefineItem visible="1" read="0" write="1" name="多次放料" unit="" dev_id="128" param_id="15" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
-        <ParamDefineItem visible="1" read="0" write="1" name="配料图片" unit="" dev_id="128" param_id="16" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
       </list>
     </Category>
    
