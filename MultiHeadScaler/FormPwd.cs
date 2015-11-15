@@ -45,7 +45,7 @@ namespace Monitor
                 ucButtons.SetPageCode(0, 2);
             }
             
-            ucButtons.RegisterBtnEvent(ClickUp, ClickDown, ClickAck, ClickReturn);
+            ucButtons.RegisterBtnEvent(ClickUp, ClickDown, ClickAck, ClickReturn,null);
             this.pnRight.Controls.Add(ucButtons);
 
             listScreen.Add(" 0 ");

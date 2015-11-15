@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using System.IO;
 
 namespace Monitor
 {
@@ -46,7 +47,7 @@ namespace Monitor
             ResendPack.ListCmd = ListCmd;
 
             ThreadReSend = new Thread(new ThreadStart(ThreadReSendProc));
-            ThreadReSend.Start();
+            //ThreadReSend.Start();
         }
 
         public void Dispose()
@@ -148,7 +149,7 @@ namespace Monitor
                 }
             }
         }
-
+      
         public int Produce(byte slaveAddr, out byte[] buffer, List<ParamItem> itemList)
         {
             byte param_count = (byte)itemList.Count;
@@ -196,7 +197,10 @@ namespace Monitor
 
                         case TypeCode.Byte:
                             bufValue = new byte[1];
-                            bufValue[0] = (byte)itemList[i].param_value;
+
+                            bufValue[0] = Convert.ToByte(itemList[i].param_value);// BitConverter.GetBytes();
+                            
+                            //bufValue[0] = (byte)itemList[i].param_value;
                             Array.Copy(bufValue, 0, buffer, count, 1);
                             count += 1;
                             break;
@@ -248,7 +252,9 @@ namespace Monitor
                             break;
 
                         case TypeCode.String:
-                            bufValue = (byte[])itemList[i].param_value;
+
+                            bufValue = System.Text.Encoding.Default.GetBytes(itemList[i].param_value.ToString());
+                             
                             Array.Copy(bufValue, 0, buffer, count, bufValue.Length);
                             count += bufValue.Length;
                             break;

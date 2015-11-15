@@ -28,8 +28,8 @@ namespace Monitor
         private FormFrame formFrame = null;
         UCButtons ucButtons = null;
         UserControl ucRetControl = null;
-     
-        private int PageTotal, PageIndex;
+
+        private int PageTotal = 0, PageIndex = 0;
         private const int PageSize = 5;
         private int formula_id = 1;
         private int formula_num = 0;
@@ -41,7 +41,8 @@ namespace Monitor
 
         Bitmap bmRightUp = null;
         Bitmap bmRightDown = null;
-
+        Bitmap bmDownloadUp = null;
+        Bitmap bmDownloadDown = null;
         private string strTitle = "";
 
         private List<ParamItem> CurPageList = new List<ParamItem>(PageSize);
@@ -56,7 +57,8 @@ namespace Monitor
             InitializeComponent();
             formFrame = f;
             ucButtons = new UCButtons(f, this.pnRight);
-            ucButtons.RegisterBtnEvent(ClickUp, ClickDown, ClickAck, ClickReturn);
+            ucButtons.RegisterBtnEvent(ClickUp, ClickDown, ClickAck, ClickReturn, ClickExt);
+            ucButtons.SetExtVisible(true);
             this.pnRight.Controls.Add(ucButtons);
 
             bmRightUp  = GetBitmap(formFrame.configManage.FileDir + @"\east_btn_up.png");
@@ -65,9 +67,12 @@ namespace Monitor
             bmLeftUp= GetBitmap(formFrame.configManage.FileDir + @"\west_btn_up.png");
             bmLeftDown= GetBitmap(formFrame.configManage.FileDir + @"\west_btn_down.png");
 
+            bmDownloadUp = GetBitmap(formFrame.configManage.FileDir + @"\main_btn_up.png");
+            bmDownloadDown = GetBitmap(formFrame.configManage.FileDir + @"\main_btn_down.png");
+
             pbLeft.Image = bmLeftUp;
             pbRight.Image = bmRightUp;
-
+           
         }
         public new void Dispose()
         {
@@ -76,6 +81,9 @@ namespace Monitor
 
             if (bmRightUp != null) bmRightUp.Dispose();
             if (bmRightDown != null) bmRightDown.Dispose();
+
+            if (bmDownloadUp != null) bmDownloadUp.Dispose();
+            if (bmDownloadDown != null) bmDownloadDown.Dispose();
 
             ucButtons.Dispose();
 
@@ -121,7 +129,7 @@ namespace Monitor
         //状态、报警、故障列表初始化
         public void InitData(int _categoryIndex, string title, UserControl _ucRetControl)
         {
-            ucButtons.SetAckText("刷新");
+            ucButtons.SetAckText("保存");
             ucButtons.SetAckVisible(true);
 
             if ((_categoryIndex >= 0) && (_categoryIndex < formFrame.visCateList.Count))
@@ -161,6 +169,8 @@ namespace Monitor
             else if (title == "电机模式") return "motor_mode";
             else if (title == "多次放料") return "multi_feed";
             else if (title == "配料图片") return "pic_id";
+            else if (title == "强制组合") return "force_comb";
+            else if (title == "开斗停顿") return "open_delay";
             return "xx";
         }
        
@@ -175,6 +185,8 @@ namespace Monitor
                 //return;
                dr = dt.Rows[0]; //取第一条记录
             }
+            SelectIndex = -1;
+            PageIndex = 0;
             TotalPageList.Clear();
             
             
@@ -252,7 +264,7 @@ namespace Monitor
                 {
                     strItem = strItem.Substring(0, MaxItemStringlen - 2) + "...";
                 }
-                if (CurPageList[i].param_id == 3)
+                if (CurPageList[i].param_id == 34)
                 {
                     int id = int.Parse(CurPageList[i].param_value.ToString());
                     Image bm = GetPicBitmap(id);
@@ -308,7 +320,15 @@ namespace Monitor
         private void ClickAck()
         {
             //保存到数据库
-            ShowPage(PageIndex);     
+
+            var dic = new Dictionary<string, object>();
+            foreach (ParamItem i in TotalPageList)
+            {
+                dic[getDBColumName(i.name)] = i.param_value;
+            }
+            var cond = new Dictionary<string, object>();
+            cond["formula_id"] = TotalPageList[0].param_value;
+            SQLiteDBHelper.updateFormula(dic,cond);
         }
 
         private void ClickReturn()
@@ -317,7 +337,29 @@ namespace Monitor
             if (ucRetControl != null) formFrame.ShowUC(ucRetControl);
             else formFrame.ShowUC(formFrame.ucMain);
         }
+        private void ClickExt()
+        {
+            //download to controller
 
+            Protocol protocol = formFrame.protocol;
+            SerialOperate Serial = SerialOperate.instance;
+            List<ParamItem> itemList = new List<ParamItem>();
+
+            foreach (ParamItem item in TotalPageList)
+            {
+                item.dev_id = formFrame.configManage.cfg.paramDeviceId.Ctrl;
+                item.op_write = 1;
+                if (item.param_type == TypeCode.String)
+                    item.param_len = (byte)item.param_value.ToString().Length;
+                itemList.Add(item);
+            }
+            byte[] buf;
+            int len = protocol.Produce(formFrame.configManage.cfg.paramDeviceId.Ctrl, out buf, itemList);
+            if (len > 0)
+            {
+                Serial.Send(buf, len);
+            }
+        }
        
 
         private void InitPage()
@@ -446,7 +488,7 @@ namespace Monitor
             ParamItem item;
 
             item = TotalPageList[index];
-            if (item.param_id == 3)
+            if (item.param_id == 34)
             {
                 FormPicture dlg = new FormPicture(formFrame);
                 dlg.ShowDialog();
@@ -454,7 +496,7 @@ namespace Monitor
                 int id = dlg.GetSelectPicID();
                 if (id != -1)
                 {
-                    MessageBox.Show(id.ToString());
+                    //MessageBox.Show(id.ToString());
                     TotalPageList[index].param_value = id;
                     ShowPage(PageIndex); //刷新当前页的内容.
                     pnLeft.Invalidate();
@@ -516,7 +558,7 @@ namespace Monitor
                 formula_id = 1;
                 return;
             }
-
+         
             LoadFormulaFromDB(formula_id);
 
             ShowPage(0);
@@ -557,5 +599,50 @@ namespace Monitor
 
         }
 
+        private void pbDownload_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pbDownload_MouseDown(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void pbDownload_MouseUp(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void pbDownload_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawString("下载", new Font("宋体", 24, FontStyle.Bold), new SolidBrush(Color.Black), 32, 28);
+        }
+
+
+        internal void SetReturnValue(List<ParamItem> itemList)
+        {
+            if (itemList.Count == TotalPageList.Count)
+            {
+                foreach (ParamItem i in itemList)
+                {
+                    if (i.param_valid != 1)
+                    {
+                        string msg = String.Format("配方参数:{0} 写入失败", i.name);
+                        FormMsgBox.Show(msg,"错误");
+                        
+                        break;
+
+                    }
+                }
+                FormMsgBox.Show("配方参数下载成功!!!", "提示");
+                
+            }
+            else {
+               
+                FormMsgBox.Show("配方参数个数不匹配!!!", "错误");
+            }
+    
+        }
     }
 }

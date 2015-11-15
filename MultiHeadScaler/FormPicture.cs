@@ -88,11 +88,11 @@ namespace Monitor
         }
         private void  load_pic(int page)
         {
-            int start = page*pbx_number;
+            int start = page*pbx_number+1;
          
             foreach (PictureBox pb in pbx)
             {
-                if (start < pic_total)
+                if (start <= pic_total)
                 {
                     string path = String.Format(formFrame.configManage.FileDir + @"\formula\{0}.jpg", start++);
                     pb.Image = GetBitmap(path);

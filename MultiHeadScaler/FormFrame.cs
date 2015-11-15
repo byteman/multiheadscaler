@@ -69,7 +69,7 @@ namespace Monitor
                 this.FormBorderStyle = FormBorderStyle.None;
             }
 
-            ucStatus = new UCStatus(this);
+            //ucStatus = new UCStatus(this);
             //this.Controls.Add(ucStatus);
 
             ucMain = new UCMain(this);
@@ -112,40 +112,7 @@ namespace Monitor
 
         void timer_Tick(object sender, EventArgs e)
         {
-            List<ParamItem> itemList = new List<ParamItem>();
-            ParamItem item;
-
-            item = new ParamItem();
-            item.dev_id = configManage.cfg.paramDeviceId.Ctrl;
-            item.param_id = configManage.cfg.paramFormWeight.CarryWeight;
-            itemList.Add(item);
-
-            item = new ParamItem();
-            item.dev_id = configManage.cfg.paramDeviceId.Ctrl;
-            item.param_id = configManage.cfg.paramFormWeight.TruckWeight;
-            itemList.Add(item);
-
-            item = new ParamItem();
-            item.dev_id = configManage.cfg.paramDeviceId.Ctrl;
-            item.param_id = configManage.cfg.paramFormWeight.TotalWeight;
-            itemList.Add(item);
-
-            item = new ParamItem();
-            item.dev_id = configManage.cfg.paramDeviceId.Ctrl;
-            item.param_id = configManage.cfg.paramFormWeight.RtWeight;
-            itemList.Add(item);
-
-            item = new ParamItem();
-            item.dev_id = configManage.cfg.paramDeviceId.Ctrl;
-            item.param_id = configManage.cfg.paramFormWeight.Status.Id;
-            itemList.Add(item);
-
-            byte[] buf;
-            int len = protocol.Produce(configManage.cfg.paramDeviceId.Ctrl, out buf, itemList);
-            if (len > 0)
-            {
-                Serial.Send(buf, len);
-            }
+           
         }
 
         private void FormFrame_Load(object sender, EventArgs e)
@@ -254,9 +221,10 @@ namespace Monitor
             byte[] bufRecv;
             int nRecv = Serial.Recv(out bufRecv);
             if (nRecv <= 0) return;
-            if (ucStatus != null) ucStatus.ReceiveOnePkg();
+            //if (ucStatus != null) ucStatus.ReceiveOnePkg();
             List<ParamItem> itemList;
             int nResolve = protocol.Resolve(bufRecv, nRecv, out itemList);
+            if (nResolve < 0) return;
             if (protocol.bToUserControl == true)
             {
                 BeginInvoke(new System.EventHandler(DispenseUsrControl), itemList);
@@ -282,7 +250,7 @@ namespace Monitor
                 if ((itemList[0].param_id == configManage.cfg.paramFormWeight.Status.Id) &&
                     (itemList[0].dev_id == configManage.cfg.paramDeviceId.Ctrl))
                 {
-                    ucStatus.SetReturnValue(itemList[0]);       //状态栏处理
+                    //ucStatus.SetReturnValue(itemList[0]);       //状态栏处理
 
                     if ((ucListControl.Visible) && (ucListControl.uclType == UCList.UCListType.UCLT_Status))
                     {
@@ -297,13 +265,17 @@ namespace Monitor
             {
                 ucMain.SetReturnValue(itemList);
             }
-            else if (ucListControl.Visible == true)
+            else if (ucDBListControl.Visible == true)
             {
-                ucListControl.SetReturnValue(itemList);
+                ucDBListControl.SetReturnValue(itemList);
             }
             else if (ucRadioOnline.Visible == true)
             {
                 ucRadioOnline.SetReturnValue(itemList);
+            }
+            else if (ucCalib.Visible == true)
+            {
+                ucCalib.SetReturnValue(itemList);
             }
             else if (ucCalib.Visible == true)
             {

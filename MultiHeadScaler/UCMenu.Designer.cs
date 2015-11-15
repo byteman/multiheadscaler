@@ -44,7 +44,7 @@
             this.pnRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
             this.pnRight.Location = new System.Drawing.Point(650, 0);
             this.pnRight.Name = "pnRight";
-            this.pnRight.Size = new System.Drawing.Size(150, 432);
+            this.pnRight.Size = new System.Drawing.Size(150, 468);
             // 
             // pictureBox1
             // 
@@ -115,7 +115,7 @@
             this.pnLeft.Controls.Add(this.pictureBox2);
             this.pnLeft.Controls.Add(this.pictureBox1);
             this.pnLeft.Controls.Add(this.pictureBox3);
-            this.pnLeft.Location = new System.Drawing.Point(28, 24);
+            this.pnLeft.Location = new System.Drawing.Point(28, 43);
             this.pnLeft.Name = "pnLeft";
             this.pnLeft.Size = new System.Drawing.Size(616, 380);
             this.pnLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.pnLeft_Paint);
@@ -129,7 +129,7 @@
             this.Controls.Add(this.pnRight);
             this.Location = new System.Drawing.Point(0, 48);
             this.Name = "UCMenu";
-            this.Size = new System.Drawing.Size(800, 432);
+            this.Size = new System.Drawing.Size(800, 480);
             this.pnLeft.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -18,7 +18,7 @@ namespace Monitor
         public UCSetMenu(FormFrame f)
             : base(f)
         {
-            ucButtons.RegisterBtnEvent(ClickUp, ClickDown, null, null);
+            ucButtons.RegisterBtnEvent(ClickUp, ClickDown, null, null,null);
             InitPage();
             GetPageTotal();
             ShowPage(0);

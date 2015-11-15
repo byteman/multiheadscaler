@@ -44,12 +44,14 @@ namespace Monitor
         public int      force_comb { set; get; } //强制组合 次数
         public int      no_comb { set; get; } //无组合
         public int      AFC { set; get; } //振幅自动跟踪模式选择
+        public int      formula_pic { set; get; }
         public int      feed_mode { set; get; } //放料模式
         public int      feed_in_turn { set; get; } //依次放料
         public int      motor_mode { set; get; } //电机模式
         public int      multi_feed { set; get; } //多次放料
         public string   formula_name { set; get; } //配方名称
         public int      formula_id { set; get; } //配方编号
+        public int      open_delay { set; get; } //开斗停顿
         public int[]    xzp_strength { set; get; }   //线振盘强度
         public int[]    xzp_time { set; get; }   //线振盘时间
     }

@@ -36,7 +36,7 @@ namespace Monitor
             formFrame = f;
             ucButtons = new UCButtons(f, this.pnRight);
             ucButtons.SetAckVisible(true);
-            ucButtons.RegisterBtnEvent(ClickUp, ClickDown, ClickAck, ClickReturn);
+            ucButtons.RegisterBtnEvent(ClickUp, ClickDown, ClickAck, ClickReturn,null);
             this.pnRight.Controls.Add(ucButtons);
 
             string path = formFrame.configManage.FileDir + @"\check.png";

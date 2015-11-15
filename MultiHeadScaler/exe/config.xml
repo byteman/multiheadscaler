@@ -80,24 +80,25 @@
   </FaultList>
   <categoryList>
     
-    <Category name="系统参数" refresh="1">
+    <Category name="配方参数" refresh="1">
       <list>
 
-        <ParamDefineItem visible="1" read="0" write="1" name="配方编号" unit="" dev_id="128" param_id="1" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
-		<ParamDefineItem visible="1" read="0" write="1" name="配方名称" unit="" dev_id="128" param_id="2" param_len="4" param_type="String" valid_min_max="false" min="0" max="0" /> 
-		<ParamDefineItem visible="1" read="0" write="1" name="配料图片" unit="" dev_id="128" param_id="3" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
-        <ParamDefineItem visible="1" read="0" write="1" name="目标重量" unit="g" dev_id="128" param_id="4" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="0" write="1" name="上偏差" unit="g" dev_id="128" param_id="5" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="0" write="1" name="下偏差" unit="g" dev_id="128" param_id="6" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="0" write="1" name="速度" unit="包/分钟" dev_id="128" param_id="7" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
-        <ParamDefineItem visible="1" read="0" write="1" name="稳定时间" unit="" dev_id="128" param_id="8" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="0" write="1" name="去皮次数" unit="次" dev_id="128" param_id="9" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="0" write="1" name="AFC" unit="" dev_id="128" param_id="10" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="0" write="1" name="无组合" unit="" dev_id="128" param_id="11" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
-        <ParamDefineItem visible="1" read="0" write="1" name="放料模式" unit="" dev_id="128" param_id="12" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
-        <ParamDefineItem visible="1" read="0" write="1" name="依次放料" unit="" dev_id="128" param_id="13" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
-        <ParamDefineItem visible="1" read="0" write="1" name="电机模式" unit="" dev_id="128" param_id="14" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
-        <ParamDefineItem visible="1" read="0" write="1" name="多次放料" unit="" dev_id="128" param_id="15" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" /> 
+        <ParamDefineItem visible="1" read="0" write="1" name="配方编号" unit="" dev_id="128" param_id="32" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" /> 
+				<ParamDefineItem visible="1" read="0" write="1" name="配方名称" unit="" dev_id="128" param_id="33" param_len="16" param_type="String" valid_min_max="false" min="0" max="0" /> 
+				<ParamDefineItem visible="1" read="0" write="1" name="配料图片" unit="" dev_id="128" param_id="34" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" /> 
+        <ParamDefineItem visible="1" read="0" write="1" name="目标重量" unit="g" dev_id="128" param_id="35" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="0" write="1" name="上偏差" unit="g" dev_id="128" param_id="36" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="0" write="1" name="下偏差" unit="g" dev_id="128" param_id="37" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="0" write="1" name="速度" unit="包/分钟" dev_id="128" param_id="38" param_len="2" param_type="UInt16" valid_min_max="false" min="0" max="0" /> 
+        <ParamDefineItem visible="1" read="0" write="1" name="稳定时间" unit="" dev_id="128" param_id="39" param_len="2" param_type="UInt16" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="0" write="1" name="去皮次数" unit="次" dev_id="128" param_id="40" param_len="2" param_type="UInt16" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="0" write="1" name="强制组合" unit="" dev_id="128" param_id="41" param_len="2" param_type="UInt16" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="0" write="1" name="AFC" unit="" dev_id="128" param_id="42" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="0" write="1" name="无组合" unit="" dev_id="128" param_id="43" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" /> 
+        <ParamDefineItem visible="1" read="0" write="1" name="依次放料" unit="" dev_id="128" param_id="44" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" /> 
+        <ParamDefineItem visible="1" read="0" write="1" name="开斗停顿" unit="" dev_id="128" param_id="45" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" /> 
+        <ParamDefineItem visible="1" read="0" write="1" name="电机模式" unit="" dev_id="128" param_id="46" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" /> 
+        <ParamDefineItem visible="1" read="0" write="1" name="多次放料" unit="" dev_id="128" param_id="47" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" /> 
       </list>
     </Category>
    

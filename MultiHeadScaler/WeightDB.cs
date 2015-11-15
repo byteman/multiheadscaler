@@ -134,7 +134,10 @@ namespace Monitor
                     tb.Columns.Add(new SQLiteColumn("formula_name", ColType.Text));
                     //配方编号
                     tb.Columns.Add(new SQLiteColumn("formula_id", ColType.Integer));
-
+                    //开斗停顿
+                    tb.Columns.Add(new SQLiteColumn("open_delay", ColType.Integer));
+                    
+                    
                     for (int i = 0; i < 10; i++)
                     {
                         tb.Columns.Add(new SQLiteColumn("xzp_strength"+i.ToString(), ColType.Integer));
@@ -278,6 +281,25 @@ namespace Monitor
             }
             return true;
         }
+        public static bool updateFormula(Dictionary<string, object> dict, Dictionary<string, object> cond)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(config.DataSource))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
+                    sh.Update("formula",dict,cond);
+                    conn.Close();
+                }
+            }
+         
+            return true;
+        }
+           
+   
         public static bool addFormula(FormulaData data)
         {
             int count = 0;
@@ -307,6 +329,7 @@ namespace Monitor
                     dic["tare_count"] = data.tare_count;
                     dic["target_weight"] = data.target_weight;
                     dic["up_diff"] = data.up_diff;
+                    dic["open_delay"] = data.open_delay;
                     for (int i = 0; i < 10; i++)
                     {
                         dic["xzp_strength" + i.ToString()] = data.xzp_strength[i];

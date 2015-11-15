@@ -59,6 +59,10 @@
             this.banOcxCtl1.磅称的半径 = 180;
             this.banOcxCtl1.磅称的数量 = 10;
             this.banOcxCtl1.磅称的间隔弧度 = 10;
+            this.banOcxCtl1.称状态字体大小 = 15F;
+            this.banOcxCtl1.称状态字体颜色 = System.Drawing.Color.White;
+            this.banOcxCtl1.称重量字体大小 = 10F;
+            this.banOcxCtl1.称重量字体颜色 = System.Drawing.Color.White;
             this.banOcxCtl1.编号字体大小 = 15F;
             this.banOcxCtl1.编号字体颜色 = System.Drawing.Color.Black;
             this.banOcxCtl1.背景颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
@@ -79,7 +83,7 @@
             this.pbZero.Location = new System.Drawing.Point(574, 231);
             this.pbZero.Name = "pbZero";
             this.pbZero.Size = new System.Drawing.Size(164, 70);
-            this.pbZero.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.pbZero.Click += new System.EventHandler(this.pbZero_Click);
             this.pbZero.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbZero.Paint += new System.Windows.Forms.PaintEventHandler(this.pbZero_Paint);
             this.pbZero.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);

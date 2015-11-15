@@ -35,7 +35,7 @@ namespace Monitor
 
             //ucButtons
             ucButtons.SetAckVisible(true);
-            ucButtons.RegisterBtnEvent(ClickUp, ClickDown, ClickAck, ClickReturn);
+            ucButtons.RegisterBtnEvent(ClickUp, ClickDown, ClickAck, ClickReturn,null);
             pnRight.Controls.Add(ucButtons);
 
             //form

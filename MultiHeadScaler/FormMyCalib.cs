@@ -116,10 +116,20 @@ namespace Monitor
         {
             tb_number.Text = e.SelNum.ToString();
         }
-        private void send()
+        private void send(List<ParamItem> itemList)
         {
             Protocol protocol = formFrame.protocol;
             SerialOperate Serial = SerialOperate.instance;
+           
+            byte[] buf;
+            int len = protocol.Produce(formFrame.configManage.cfg.paramDeviceId.Ctrl, out buf, itemList);
+            if (len > 0)
+            {
+                Serial.Send(buf, len);
+            }
+        }
+        private void pbClear_Click(object sender, EventArgs e)
+        {
             List<ParamItem> itemList = new List<ParamItem>();
             ParamItem item;
             item = new ParamItem();
@@ -130,16 +140,7 @@ namespace Monitor
             item.param_len = 1;
             item.param_value = (byte)1;
             itemList.Add(item);
-            byte[] buf;
-            int len = protocol.Produce(formFrame.configManage.cfg.paramDeviceId.Ctrl, out buf, itemList);
-            if (len > 0)
-            {
-                Serial.Send(buf, len);
-            }
-        }
-        private void pbClear_Click(object sender, EventArgs e)
-        {
-            send();
+            send(itemList);
         }
 
         private void tb_number_GotFocus(object sender, EventArgs e)
@@ -190,6 +191,23 @@ namespace Monitor
         private void tb_number_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void pbZero_Click(object sender, EventArgs e)
+        {
+            List<ParamItem> itemList = new List<ParamItem>();
+            ParamItem item;
+            item = new ParamItem();
+            int driver_id = int.Parse(tb_number.Text);
+
+            item.dev_id = (byte)driver_id;
+            item.param_id = 2; //标定零点
+            item.op_write = 1;
+            item.param_type = TypeCode.Byte;
+            item.param_len = 1;
+            item.param_value = (byte)1;
+            itemList.Add(item);
+            send(itemList);
         }
     }
 }

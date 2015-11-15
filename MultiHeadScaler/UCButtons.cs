@@ -29,12 +29,14 @@ namespace Monitor
 
         string strAckBtn = "确认";
         string strRetBtn = "返回";
+        string strExtBtn = "下载";
 
         public delegate void ButtonClickEvent();
         ButtonClickEvent clickUp = null;
         ButtonClickEvent clickDown = null;
         ButtonClickEvent clickAck = null;
         ButtonClickEvent clickReturn = null;
+        ButtonClickEvent clickExt = null;
 
         public UCButtons(FormFrame _formFrame, Panel _panel)
         {
@@ -58,14 +60,16 @@ namespace Monitor
             pbDown.Image = bmDownUp;
             pbAck.Image = bmAckUp;
             pbReturn.Image = bmReturnUp;
+            pbExt.Image = bmReturnUp;
         }
 
-        public void RegisterBtnEvent(ButtonClickEvent up, ButtonClickEvent down, ButtonClickEvent ack, ButtonClickEvent ret)
+        public void RegisterBtnEvent(ButtonClickEvent up, ButtonClickEvent down, ButtonClickEvent ack, ButtonClickEvent ret,ButtonClickEvent ext)
         {
             clickUp = up;
             clickDown = down;
             clickAck = ack;
             clickReturn = ret;
+            clickExt = ext;
         }
 
         public new void Dispose()
@@ -142,7 +146,7 @@ namespace Monitor
 
         private void pbAck_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawString(strAckBtn, new Font("宋体", 24, FontStyle.Bold), new SolidBrush(Color.Black), 32, 28);
+            e.Graphics.DrawString(strAckBtn, new Font("宋体", 24, FontStyle.Bold), new SolidBrush(Color.Black), 32, 20);
         }
 
         private void pbReturn_Click(object sender, EventArgs e)
@@ -163,37 +167,14 @@ namespace Monitor
 
         private void pbReturn_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawString(strRetBtn, new Font("宋体", 24, FontStyle.Bold), new SolidBrush(Color.Black), 32, 28);
+            e.Graphics.DrawString(strRetBtn, new Font("宋体", 24, FontStyle.Bold), new SolidBrush(Color.Black), 32, 20);
         }
 
         public void SetPageCode(int cur, int total)
         {
             cur++;      //起始页程序中为0开始，显示从1开始
             if (total < 1) total = 1;
-            //if (total <= 1)
-            //{
-            //    pbUp.Visible = false;
-            //    pbDown.Visible = false;
-            //    total = 1;
-            //}
-            //else
-            //{
-            //    if (cur <= 1)
-            //    {
-            //        pbUp.Visible = true;
-            //        pbDown.Visible = false;
-            //    }
-            //    else if (cur >= total)
-            //    {
-            //        pbUp.Visible = false;
-            //        pbDown.Visible = true;
-            //    }
-            //    else
-            //    {
-            //        pbUp.Visible = true;
-            //        pbDown.Visible = true;
-            //    }
-            //}
+           
             lbPage.Text = cur.ToString() + " / " + total.ToString();
         }
 
@@ -205,6 +186,29 @@ namespace Monitor
         public void SetAckText(string text)
         {
             strAckBtn = text;
+        }
+        public void SetExtVisible(bool bVisible)
+        {
+            pbExt.Visible = bVisible;
+        }
+        private void pbExt_Click(object sender, EventArgs e)
+        {
+            if (clickExt != null) clickExt();
+        }
+
+        private void pbExt_MouseDown(object sender, MouseEventArgs e)
+        {
+            pbExt.Image = bmReturnDown;
+        }
+
+        private void pbExt_MouseUp(object sender, MouseEventArgs e)
+        {
+            pbExt.Image = bmReturnUp;
+        }
+
+        private void pbExt_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawString(strExtBtn, new Font("宋体", 24, FontStyle.Bold), new SolidBrush(Color.Black), 32, 20);
         }
     }
 }

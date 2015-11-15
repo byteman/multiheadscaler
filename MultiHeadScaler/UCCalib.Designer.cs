@@ -114,6 +114,7 @@
             this.pbCalib.Location = new System.Drawing.Point(582, 314);
             this.pbCalib.Name = "pbCalib";
             this.pbCalib.Size = new System.Drawing.Size(164, 70);
+            this.pbCalib.Click += new System.EventHandler(this.pbCalib_Click);
             this.pbCalib.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbCalib.Paint += new System.Windows.Forms.PaintEventHandler(this.pbCalib_Paint);
             this.pbCalib.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
@@ -123,6 +124,7 @@
             this.pbZero.Location = new System.Drawing.Point(582, 241);
             this.pbZero.Name = "pbZero";
             this.pbZero.Size = new System.Drawing.Size(164, 70);
+            this.pbZero.Click += new System.EventHandler(this.pbZero_Click);
             this.pbZero.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbZero.Paint += new System.Windows.Forms.PaintEventHandler(this.pbZero_Paint);
             this.pbZero.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
@@ -132,6 +134,7 @@
             this.pbClear.Location = new System.Drawing.Point(582, 167);
             this.pbClear.Name = "pbClear";
             this.pbClear.Size = new System.Drawing.Size(164, 70);
+            this.pbClear.Click += new System.EventHandler(this.pbClear_Click_1);
             this.pbClear.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbClear.Paint += new System.Windows.Forms.PaintEventHandler(this.pbClear_Paint);
             this.pbClear.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);

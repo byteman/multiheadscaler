@@ -165,35 +165,44 @@ namespace Monitor
         {
             tb_number.Text = e.SelNum.ToString();
         }
+        private void DrawText(string msg,int x, int y)
+        {
+            Graphics g =  this.CreateGraphics();
+
+            g.DrawString("标定零点成功", new Font("宋体", 16, FontStyle.Bold), new SolidBrush(Color.Black), x, y);
+           
+            g.Dispose();
+        }
         public void SetReturnValue(List<ParamItem> itemList)
         {
-            /*
-            switch (uclType)
+            //
+            foreach (ParamItem item in itemList)
             {
-             
-                case UCListType.UCLT_Param:
-                    
-                    bool bRet = false;
-
-                    for (int j = 0; j < itemList.Count; j++)
+                if (item.param_id == 2)
+                {
+                    if (item.param_valid == 1)
                     {
-                        if ((formFrame.configManage.cfg.paramDeviceId.Ctrl == itemList[j].dev_id) && (123 == itemList[j].param_id))
-                        {
-                            bRet = true;
-                            itemList[j].name = itemListSend[i].name;
-                            itemListSend[i].param_value = itemList[j].param_value;
-                            itemList[j].permit_read = itemListSend[i].permit_read;
-                            itemList[j].permit_write = itemListSend[i].permit_write;
-
-                        }
+                        FormMsgBox.Show("标定零点成功", "标定提示");
                     }
-                       
-                    BeginInvoke(new System.EventHandler(UpdateUI), null);
-                    break;
-                default:
-                    break;
+                    else
+                    {
+                        FormMsgBox.Show("标定零点失败", "标定提示");
+                    }
+                    
+                }
+                else if (item.param_id == 3) //标定重量
+                {
+                    if (item.param_valid == 1)
+                    {
+                        FormMsgBox.Show("标定重量成功", "标定提示");
+                    }
+                    else
+                    {
+                        FormMsgBox.Show("标定重量失败", "标定提示");
+                    }
+
+                }
             }
-             * */
         }
         private void UpdateUI(object obj, System.EventArgs e)
         {
@@ -209,6 +218,68 @@ namespace Monitor
         {
             e.Graphics.DrawRectangle(new Pen(Color.Blue), 530, 20, 250, 440);
 
+        }
+        private void send(List<ParamItem> itemList)
+        {
+            Protocol protocol = formFrame.protocol;
+            SerialOperate Serial = SerialOperate.instance;
+
+            byte[] buf;
+            int len = protocol.Produce(formFrame.configManage.cfg.paramDeviceId.Ctrl, out buf, itemList);
+            if (len > 0)
+            {
+                Serial.Send(buf, len);
+            }
+        }
+        private void pbZero_Click(object sender, EventArgs e)
+        {
+            List<ParamItem> itemList = new List<ParamItem>();
+            ParamItem item;
+            item = new ParamItem();
+            int driver_id = int.Parse(tb_number.Text);
+
+            item.dev_id = (byte)driver_id;
+            item.param_id = 2; //标定零点
+            item.op_write = 1;
+            item.param_type = TypeCode.Byte;
+            item.param_len = 1;
+            item.param_value = (byte)1;
+            itemList.Add(item);
+            send(itemList);
+        }
+
+        private void pbCalib_Click(object sender, EventArgs e)
+        {
+            List<ParamItem> itemList = new List<ParamItem>();
+            ParamItem item;
+            item = new ParamItem();
+            int driver_id = int.Parse(tb_number.Text);
+
+            item.dev_id = (byte)driver_id;
+            item.param_id = 3; //标定重量.
+            item.op_write = 1;
+            item.param_type = TypeCode.Int32;
+            item.param_len = 4;
+            item.param_value = int.Parse(tb_fama.Text);
+            itemList.Add(item);
+            send(itemList);
+        }
+        //清零发到主控器
+        private void pbClear_Click_1(object sender, EventArgs e)
+        {
+            List<ParamItem> itemList = new List<ParamItem>();
+            ParamItem item;
+            item = new ParamItem();
+            int driver_id = int.Parse(tb_number.Text);
+
+            item.dev_id = formFrame.configManage.cfg.paramDeviceId.Ctrl;
+            item.param_id = 192; //清零驱动板
+            item.op_write = 1;
+            item.param_type = TypeCode.Byte;
+            item.param_len = 1;
+            item.param_value = int.Parse(tb_number.Text);
+            itemList.Add(item);
+            send(itemList);
         }
 
     }

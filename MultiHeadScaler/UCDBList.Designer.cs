@@ -70,9 +70,9 @@
             // pnRight
             // 
             this.pnRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
-            this.pnRight.Location = new System.Drawing.Point(638, 17);
+            this.pnRight.Location = new System.Drawing.Point(639, 0);
             this.pnRight.Name = "pnRight";
-            this.pnRight.Size = new System.Drawing.Size(150, 421);
+            this.pnRight.Size = new System.Drawing.Size(150, 480);
             // 
             // UCDBList
             // 

@@ -32,7 +32,7 @@ namespace Monitor
             formFrame = f;
             ucButtons = new UCButtons(f, this.pnRight);
             ucButtons.SetAckVisible(true);
-            ucButtons.RegisterBtnEvent(ClickUp, ClickDown, ClickAck, ClickReturn);
+            ucButtons.RegisterBtnEvent(ClickUp, ClickDown, ClickAck, ClickReturn,null);
             this.pnRight.Controls.Add(ucButtons);
 
             listScreen.Add(" 0 ");
@@ -100,36 +100,7 @@ namespace Monitor
                 bIpAddr = false;
                 if (item.param_value != null)
                 {
-                    switch (item.param_type)
-                    {
-                        case TypeCode.String:
-                            byte[] v = (byte[])item.param_value;
-                            switch (item.param_id)
-                            {
-                                case Protocol.ParamIdFixAddr:   //安装地址，去除0
-                                    List<byte> addrList = new List<byte>();
-                                    for (int i = 0; i < v.Length; i++)
-                                    {
-                                        if (v[i] != 0)
-                                        {
-                                            addrList.Add(v[i]);
-                                        }
-                                    }
-                                    SetInputText(Util.ByteToStringDec(addrList.ToArray(), addrList.Count, "-"));
-                                    break;
-
-                                case Protocol.ParamIdSIM:    //SIM
-                                    SetInputText(Util.EncodeToString(v));
-                                    break;
-                                default:
-                                    SetInputText(Util.ByteToStringDec(v, v.Length, "-"));
-                                    break;
-                            }
-                            break;
-                        default:
-                            SetInputText(item.param_value.ToString());
-                            break;
-                    }
+                     SetInputText(item.param_value.ToString()); 
                 }
                 else
                 {
