@@ -40,8 +40,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lbl_hege = new System.Windows.Forms.Label();
+            this.lbl_unhege = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pbSimu = new System.Windows.Forms.PictureBox();
@@ -70,13 +70,14 @@
             this.textBox14 = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnSub = new System.Windows.Forms.Button();
+            this.txb_wet = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // banOcxCtl1
             // 
             this.banOcxCtl1.BackColor = System.Drawing.Color.Black;
             this.banOcxCtl1.Font = new System.Drawing.Font("宋体", 8F, System.Drawing.FontStyle.Regular);
-            this.banOcxCtl1.Location = new System.Drawing.Point(196, 49);
+            this.banOcxCtl1.Location = new System.Drawing.Point(177, 3);
             this.banOcxCtl1.Name = "banOcxCtl1";
             this.banOcxCtl1.Size = new System.Drawing.Size(442, 409);
             this.banOcxCtl1.TabIndex = 8;
@@ -97,6 +98,8 @@
             this.banOcxCtl1.编号字体大小 = 10F;
             this.banOcxCtl1.编号字体颜色 = System.Drawing.Color.Black;
             this.banOcxCtl1.背景颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
+            this.banOcxCtl1.Validated += new System.EventHandler(this.banOcxCtl1_Validated);
+            this.banOcxCtl1.Resize += new System.EventHandler(this.banOcxCtl1_Resize);
             // 
             // pbStart
             // 
@@ -136,6 +139,7 @@
             this.pbName.Location = new System.Drawing.Point(3, 13);
             this.pbName.Name = "pbName";
             this.pbName.Size = new System.Drawing.Size(108, 60);
+            this.pbName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             // 
             // textBox1
             // 
@@ -200,23 +204,23 @@
             this.label4.Text = "状态";
             this.label4.ParentChanged += new System.EventHandler(this.label4_ParentChanged);
             // 
-            // label5
+            // lbl_hege
             // 
-            this.label5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(0, 260);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 20);
-            this.label5.Text = "合格";
-            this.label5.ParentChanged += new System.EventHandler(this.label4_ParentChanged);
+            this.lbl_hege.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
+            this.lbl_hege.Location = new System.Drawing.Point(0, 260);
+            this.lbl_hege.Name = "lbl_hege";
+            this.lbl_hege.Size = new System.Drawing.Size(77, 20);
+            this.lbl_hege.Text = "合格";
+            this.lbl_hege.ParentChanged += new System.EventHandler(this.label4_ParentChanged);
             // 
-            // label6
+            // lbl_unhege
             // 
-            this.label6.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(0, 293);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(77, 20);
-            this.label6.Text = "不合格";
-            this.label6.ParentChanged += new System.EventHandler(this.label4_ParentChanged);
+            this.lbl_unhege.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
+            this.lbl_unhege.Location = new System.Drawing.Point(0, 293);
+            this.lbl_unhege.Name = "lbl_unhege";
+            this.lbl_unhege.Size = new System.Drawing.Size(77, 20);
+            this.lbl_unhege.Text = "不合格";
+            this.lbl_unhege.ParentChanged += new System.EventHandler(this.label4_ParentChanged);
             // 
             // label7
             // 
@@ -479,11 +483,21 @@
             this.btnSub.Text = "--";
             this.btnSub.Click += new System.EventHandler(this.btnSub_Click);
             // 
+            // txb_wet
+            // 
+            this.txb_wet.Font = new System.Drawing.Font("宋体", 36F, System.Drawing.FontStyle.Bold);
+            this.txb_wet.ForeColor = System.Drawing.Color.Blue;
+            this.txb_wet.Location = new System.Drawing.Point(290, 415);
+            this.txb_wet.Name = "txb_wet";
+            this.txb_wet.Size = new System.Drawing.Size(219, 52);
+            this.txb_wet.Text = "0";
+            // 
             // UCRun
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
+            this.Controls.Add(this.txb_wet);
             this.Controls.Add(this.btnSub);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label16);
@@ -510,8 +524,8 @@
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lbl_unhege);
+            this.Controls.Add(this.lbl_hege);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -545,8 +559,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lbl_hege;
+        private System.Windows.Forms.Label lbl_unhege;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pbSimu;
@@ -575,5 +589,6 @@
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnSub;
+        private System.Windows.Forms.Label txb_wet;
     }
 }

@@ -86,6 +86,7 @@ namespace Monitor
         public byte RefreshStatus;  //状态刷新控制  0:不刷新; 1:手动刷新; 2:自动刷新
         public byte RefreshAlarm;   //报警刷新控制  0:不刷新; 1:手动刷新; 2:自动刷新
         public byte RefreshFault;   //故障刷新控制  0:不刷新; 1:手动刷新; 2:自动刷新
+        public byte FormulaID; //配方编号
     }
 
     //状态、报警、故障的各名称和对应的bit

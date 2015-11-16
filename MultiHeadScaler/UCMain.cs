@@ -113,7 +113,9 @@ namespace Monitor
 
         private void pbRun_Click(object sender, EventArgs e)
         {
-            formFrame.ClickRunBtn();
+            formFrame.ucRun.Init();
+            formFrame.ShowUC(formFrame.ucRun);
+           
         }
 
         private void pbSetzero_Click(object sender, EventArgs e)

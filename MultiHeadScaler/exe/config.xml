@@ -42,6 +42,7 @@
     <RefreshStatus>1</RefreshStatus>
     <RefreshAlarm>1</RefreshAlarm>
     <RefreshFault>1</RefreshFault>
+	<FormulaID>1</FormulaID>
   </paramFormWeight>
   <StatusList>
     <StatusAlarmFault name="车辆行驶" bit="0" />
@@ -84,8 +85,8 @@
       <list>
 
         <ParamDefineItem visible="1" read="0" write="1" name="配方编号" unit="" dev_id="128" param_id="32" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" /> 
-				<ParamDefineItem visible="1" read="0" write="1" name="配方名称" unit="" dev_id="128" param_id="33" param_len="16" param_type="String" valid_min_max="false" min="0" max="0" /> 
-				<ParamDefineItem visible="1" read="0" write="1" name="配料图片" unit="" dev_id="128" param_id="34" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" /> 
+		<ParamDefineItem visible="1" read="0" write="1" name="配方名称" unit="" dev_id="128" param_id="33" param_len="16" param_type="String" valid_min_max="false" min="0" max="0" /> 
+		<ParamDefineItem visible="1" read="0" write="1" name="配料图片" unit="" dev_id="128" param_id="34" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" /> 
         <ParamDefineItem visible="1" read="0" write="1" name="目标重量" unit="g" dev_id="128" param_id="35" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
         <ParamDefineItem visible="1" read="0" write="1" name="上偏差" unit="g" dev_id="128" param_id="36" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
         <ParamDefineItem visible="1" read="0" write="1" name="下偏差" unit="g" dev_id="128" param_id="37" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
@@ -102,15 +103,31 @@
       </list>
     </Category>
    
+    <Category name="通道板参数" refresh="1">
+      <list>
+
+        <ParamDefineItem visible="1" read="0" write="1" name="配方编号" unit="" dev_id="128" param_id="32" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" /> 
+		<ParamDefineItem visible="1" read="0" write="1" name="配方名称" unit="" dev_id="128" param_id="33" param_len="16" param_type="String" valid_min_max="false" min="0" max="0" /> 
+		
+      </list>
+    </Category>
+   
    
     <Category name="控制器信息" refresh="1">
       <list>
-        <ParamDefineItem visible="1" read="1" write="0" name="控制器软件版本" unit="" dev_id="128" param_id="26" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="控制器硬件版本" unit="" dev_id="128" param_id="27" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
-        <ParamDefineItem visible="1" read="1" write="0" name="CPUID" unit="" dev_id="128" param_id="28" param_len="12" param_type="String" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="1" write="0" name="控制器软件版本" unit="" dev_id="128" param_id="0" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="1" write="0" name="控制器硬件版本" unit="" dev_id="128" param_id="0" param_len="4" param_type="UInt32" valid_min_max="false" min="0" max="0" />
+        <ParamDefineItem visible="1" read="1" write="0" name="CPUID" unit="" dev_id="128" param_id="0" param_len="12" param_type="String" valid_min_max="false" min="0" max="0" />
+		
+		<ParamDefineItem visible="0" read="1" write="1" name="启动" unit="" dev_id="128" param_id="1" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" />
+		<ParamDefineItem visible="0" read="1" write="0" name="结果数据" unit="" dev_id="128" param_id="2" param_len="64" param_type="String" valid_min_max="false" min="0" max="0" />
+		<ParamDefineItem visible="0" read="1" write="0" name="状态列表" unit="" dev_id="128" param_id="3" param_len="10" param_type="String" valid_min_max="false" min="0" max="0" />
+		<ParamDefineItem visible="0" read="1" write="0" name="重量列表" unit="" dev_id="128" param_id="4" param_len="40" param_type="String" valid_min_max="false" min="0" max="0" />
+		
       </list>
     </Category>
   
+   
 
   </categoryList>
   <plateCharList>

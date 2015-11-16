@@ -315,6 +315,7 @@
     <Compile Include="ProtocolPackage.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ScalerInfo.cs" />
     <Compile Include="SerialOperate.cs">
       <SubType>Code</SubType>
     </Compile>

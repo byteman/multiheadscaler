@@ -26,7 +26,8 @@ namespace Monitor
         public UCRadioOnline ucRadioOnline = null;
         public UCCommon ucCommon = null;
         public FormLog formLog = null;
-
+        public FormulaData curFormula = new FormulaData();
+        public byte FormulaID = 0;
         public ConfigManage configManage = new ConfigManage();
         public List<Category> visCateList = new List<Category>();
         public Timer timer = new Timer();
@@ -45,7 +46,7 @@ namespace Monitor
             userManage.Init(this);
 
             if (!configManage.Deserialize()) Application.Exit();
-
+            SQLiteDBHelper.CreateDB("database.db3");
             for (int i = 0; i < configManage.cfg.categoryList.Count; i++)
             {
                 Category cate = new Category();
@@ -61,7 +62,7 @@ namespace Monitor
                 }
                 visCateList.Add(cate);
             }
-
+            load_formula_data();
             protocol.InitParam(configManage);
 
             if (Environment.OSVersion.Platform == PlatformID.WinCE)
@@ -114,12 +115,40 @@ namespace Monitor
         {
            
         }
+     
+        private void load_formula_data()
+        {
+            FormulaID = configManage.cfg.paramFormWeight.FormulaID;
+            DataTable dt = SQLiteDBHelper.listFormula(FormulaID);
+            DataRow dr = null;
+            
+            if (dt.Rows.Count != 0)
+            {
+                //没有数据就返回.
+                //return;
+                dr = dt.Rows[0]; //取第一条记录
+            }
+            string tmp = dr["pic_id"].ToString();
+            int id = int.Parse(tmp);
+            
+            curFormula.formula_pic = id;
+            tmp = dr["target_weight"].ToString();
+            curFormula.target_weight = double.Parse(tmp);
+            tmp = dr["up_diff"].ToString();
+            curFormula.up_diff = double.Parse(tmp);
+            tmp = dr["down_diff"].ToString();
+            curFormula.down_diff = double.Parse(tmp);
 
+        }
+        public void update_formula_data()
+        { 
+            
+        }
         private void FormFrame_Load(object sender, EventArgs e)
         {
             Rectangle rect = new Rectangle();
             PInvoke.SetFullScreen(true, ref rect);//显示
-            SQLiteDBHelper.CreateDB("database.db3");
+            
  
         }
 
@@ -280,6 +309,10 @@ namespace Monitor
             else if (ucCalib.Visible == true)
             {
                 ucCalib.SetReturnValue(itemList);
+            }
+            else if (ucRun.Visible == true)
+            {
+                ucRun.SetReturnValue(itemList);
             }
         }
         #endregion

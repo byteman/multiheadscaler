@@ -127,7 +127,7 @@ namespace Monitor
             return SQLiteDBHelper.ParamCount();
         }
         //状态、报警、故障列表初始化
-        public void InitData(int _categoryIndex, string title, UserControl _ucRetControl)
+        public void InitData(int _categoryIndex,  string title, UserControl _ucRetControl)
         {
             ucButtons.SetAckText("保存");
             ucButtons.SetAckVisible(true);
@@ -145,7 +145,7 @@ namespace Monitor
           
             ucRetControl = _ucRetControl;
             InitPage();
-
+            formula_id = formFrame.configManage.cfg.paramFormWeight.FormulaID;
             LoadFormulaFromDB(formula_id);//读取第一个配方参数
             formula_num = getFormulaNum();
             GetPageTotal();
@@ -359,6 +359,7 @@ namespace Monitor
             {
                 Serial.Send(buf, len);
             }
+
         }
        
 
@@ -582,7 +583,7 @@ namespace Monitor
 
            
         }
-        private Image GetPicBitmap(int id)
+        public Image GetPicBitmap(int id)
         {
             string path = String.Format(formFrame.configManage.FileDir + @"\formula\{0}.jpg", id);
             return GetBitmap(path);
@@ -635,6 +636,8 @@ namespace Monitor
 
                     }
                 }
+                formFrame.configManage.cfg.paramFormWeight.FormulaID = (byte)formula_id;
+                formFrame.configManage.Serialize(); //保存.
                 FormMsgBox.Show("配方参数下载成功!!!", "提示");
                 
             }

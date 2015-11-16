@@ -14,7 +14,8 @@ namespace Monitor
         private FormFrame formFrame;
         private Bitmap bmBtnDown = null;
         private Bitmap bmBtnUp = null;
-        
+        public Timer timer = new Timer();
+        ScalerInfo si = new ScalerInfo();
         public UCCalib(FormFrame f)
         {
             InitializeComponent();
@@ -34,6 +35,26 @@ namespace Monitor
             pbZero.Image = bmBtnUp;
             pbCalib.Image = bmBtnUp;
             pbExit.Image = bmBtnUp;
+
+            //timer.Interval = configManage.cfg.paramFormWeight.Interval;
+            timer.Interval = 500;
+            timer.Tick += new EventHandler(timer_Tick);
+        }
+
+        void timer_Tick(object sender, EventArgs e)
+        {
+            List<ParamItem> itemList = new List<ParamItem>();
+            ParamItem item;
+            item = new ParamItem();
+   
+            item.dev_id = formFrame.configManage.cfg.paramDeviceId.Ctrl;
+            item.param_id = 4; //读取全部驱动板重量
+            item.op_write = 0; //读取
+            item.param_type = TypeCode.Empty;
+            item.param_len = 0;
+            item.param_value = 0;
+            itemList.Add(item);
+            send(itemList);
         }
 
         private void pbBtn_MouseDown(object sender, MouseEventArgs e)
@@ -178,36 +199,58 @@ namespace Monitor
             //
             foreach (ParamItem item in itemList)
             {
-                if (item.param_id == 2)
-                {
-                    if (item.param_valid == 1)
+                if (item.dev_id <= 32)
+                { 
+                    //通道板的消息回应 
+                    if (item.param_id == 2)
                     {
-                        FormMsgBox.Show("标定零点成功", "标定提示");
+                        if (item.param_valid == 1)
+                        {
+                            FormMsgBox.Show("标定零点成功", "标定提示");
+                        }
+                        else
+                        {
+                            FormMsgBox.Show("标定零点失败", "标定提示");
+                        }
+                        
                     }
-                    else
+                    else if (item.param_id == 3) //标定重量
                     {
-                        FormMsgBox.Show("标定零点失败", "标定提示");
-                    }
-                    
-                }
-                else if (item.param_id == 3) //标定重量
-                {
-                    if (item.param_valid == 1)
-                    {
-                        FormMsgBox.Show("标定重量成功", "标定提示");
-                    }
-                    else
-                    {
-                        FormMsgBox.Show("标定重量失败", "标定提示");
-                    }
+                        if (item.param_valid == 1)
+                        {
+                            FormMsgBox.Show("标定重量成功", "标定提示");
+                        }
+                        else
+                        {
+                            FormMsgBox.Show("标定重量失败", "标定提示");
+                        }
 
+                    }
+                }
+                else if (item.dev_id == 128) //控制器的命令回应
+                {
+                    if (item.param_id == 3) //读取所有秤头状态
+                    {
+                        //item.param_value
+                        si.updateStatusObj(item.param_value);
+                    }
+                    else if (item.param_id == 4) //读取所有秤头重量
+                    { 
+                        //item.param_value
+                        si.updateWeightObj(item.param_value);
+                    }
+                    BeginInvoke(new System.EventHandler(UpdateUI), null);
                 }
             }
         }
         private void UpdateUI(object obj, System.EventArgs e)
         {
            //更新每个banocx上面的重量.
-            //banOcxCtl1.SetBanColor(
+            
+            for (int i = 0; i < 10; i++)
+            {
+                banOcxCtl1.SetBanWeight(i, si.getWeightString(i));
+            }
         }
         private void pbExit_Click_1(object sender, EventArgs e)
         {

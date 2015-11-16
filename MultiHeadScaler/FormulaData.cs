@@ -7,9 +7,9 @@ using System.Collections;
 
 namespace Monitor
 {
-    class FormulaData
+    public class FormulaData
     {
-        FormulaData()
+        public FormulaData()
         { 
             xzp_strength = new int[10];
             for (int i = 0; i < 10; i++)
