@@ -209,7 +209,7 @@
             this.lbl_hege.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
             this.lbl_hege.Location = new System.Drawing.Point(0, 260);
             this.lbl_hege.Name = "lbl_hege";
-            this.lbl_hege.Size = new System.Drawing.Size(77, 20);
+            this.lbl_hege.Size = new System.Drawing.Size(141, 20);
             this.lbl_hege.Text = "合格";
             this.lbl_hege.ParentChanged += new System.EventHandler(this.label4_ParentChanged);
             // 
@@ -218,7 +218,7 @@
             this.lbl_unhege.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
             this.lbl_unhege.Location = new System.Drawing.Point(0, 293);
             this.lbl_unhege.Name = "lbl_unhege";
-            this.lbl_unhege.Size = new System.Drawing.Size(77, 20);
+            this.lbl_unhege.Size = new System.Drawing.Size(141, 20);
             this.lbl_unhege.Text = "不合格";
             this.lbl_unhege.ParentChanged += new System.EventHandler(this.label4_ParentChanged);
             // 
@@ -227,7 +227,7 @@
             this.label7.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
             this.label7.Location = new System.Drawing.Point(0, 331);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(77, 20);
+            this.label7.Size = new System.Drawing.Size(141, 20);
             this.label7.Text = "平均组合";
             this.label7.ParentChanged += new System.EventHandler(this.label4_ParentChanged);
             // 
@@ -236,7 +236,7 @@
             this.label8.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
             this.label8.Location = new System.Drawing.Point(0, 371);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(77, 20);
+            this.label8.Size = new System.Drawing.Size(141, 20);
             this.label8.Text = "运行速度";
             this.label8.ParentChanged += new System.EventHandler(this.label4_ParentChanged);
             // 

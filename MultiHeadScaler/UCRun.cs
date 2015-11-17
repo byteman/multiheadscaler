@@ -7,11 +7,27 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace Monitor
 {
     public partial class UCRun : UserControl
     {
+        class HeadUIInfo
+        {
+            public HeadUIInfo(byte _i, Color _c, String _t)
+            {
+                state = _i;
+                color = _c;
+                title = _t;
+            }
+            public byte state;
+            public Color color;
+            public String title;
+
+        }
+        private List<HeadUIInfo> headInfos = new List<HeadUIInfo>();
+
         private FormFrame formFrame = null;
         private Bitmap bmBtnDown = null;
         private Bitmap bmBtnUp = null;
@@ -19,7 +35,7 @@ namespace Monitor
         private int index = 0;
 
    
-
+      
         public UCRun(FormFrame f)
         {
             InitializeComponent();
@@ -40,6 +56,18 @@ namespace Monitor
 
 
             }
+            headInfos.Add(new HeadUIInfo(1, Color.Green, "M")); //参与组合
+            headInfos.Add(new HeadUIInfo(2, Color.Red, "R")); //等待组合
+            headInfos.Add(new HeadUIInfo(3, Color.Black, "U")); //进料斗故障
+            headInfos.Add(new HeadUIInfo(4, Color.Black, "D")); //称重斗故障
+            headInfos.Add(new HeadUIInfo(5, Color.Black, "S")); //模块故障
+            headInfos.Add(new HeadUIInfo(6, Color.Black, "B")); //驱动卡故障
+            headInfos.Add(new HeadUIInfo(7, Color.Black, "I")); //斗禁用
+            headInfos.Add(new HeadUIInfo(8, Color.Blue, "Y")); //超重强排
+            headInfos.Add(new HeadUIInfo(9, Color.Blue, "L")); //多次不参与组合强排
+            headInfos.Add(new HeadUIInfo(10, Color.Blue, "P")); //开机自检通过
+
+
             string path = formFrame.configManage.FileDir + @"\main_btn_down.png";
             if (File.Exists(path))
             {
@@ -182,13 +210,46 @@ namespace Monitor
             u8		comb_heads[SCALE_NUM_MAX]; //组合斗编号，表示参与组合的斗数，没有参与组合的斗数，我自己来计算
             u8		state[SCALE_NUM_MAX];	// 秤头状态,具体主动发送时个数由设置的秤台数量决定
             float	wet[SCALE_NUM_MAX];		// 各个秤头的当前重量
-            u32		quali;					// 合格数
-            u32		unquali;				// 不合格数
+            u8		quali;					// 合格数
+            u8		unquali;				// 不合格数
             float	quali_wet;				// 本次合格的总重量,不管合格与否，都有一个重量
 
         }resultDef;
          * 
          */
+
+        
+
+//注意这个属性不能少
+        [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Auto,Size=68)]
+    struct TestStruct
+    {
+        //[FieldOffset(0)]
+        [MarshalAs(UnmanagedType.U1, SizeConst = 1)]
+        public byte		scale_num;	//总的秤个数
+        //[FieldOffset(1)]
+        [MarshalAs(UnmanagedType.U1, SizeConst = 1)]
+        public byte		qualified;	//本次组合结果 合格与否 1:合格 0: 不合格[可能是强排之类]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 10)]
+        //[FieldOffset(2)]
+        byte[]		comb_heads; //组合斗编号，表示参与组合的斗数，没有参与组合的斗数，我自己来计算
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 10)]
+        //[FieldOffset(12)]
+        byte[]		state;	// 秤头状态,具体主动发送时个数由设置的秤台数量决定
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 10)]
+       // [FieldOffset(22)]
+        float[]	wet;		// 各个秤头的当前重量
+        //[FieldOffset(62)]
+        [MarshalAs(UnmanagedType.U1, SizeConst = 1)]
+        byte		quali;					// 合格数
+        //[FieldOffset(66)]
+        [MarshalAs(UnmanagedType.U1, SizeConst = 1)]
+        byte unquali;				// 不合格数
+        //[FieldOffset(70)]
+        [MarshalAs(UnmanagedType.R4, SizeConst = 4)]
+        float	quali_wet;				// 本次合格的总重量,不管合格与否，都有一个重量
+    }
+
         class MultiScalerInfo
         {
             public MultiScalerInfo()
@@ -200,15 +261,59 @@ namespace Monitor
             public byte[] comb_heads = new byte[10];
             public byte[] state = new byte[10];
             public float[] wet = new float[10];
-            public UInt32 quali;
-            public UInt32 unquali;
+            public byte quali;
+            public byte unquali;
             public float  qual_wet; 
+        }
+        
+        public static object BytesToStuct(byte[] bytes, Type type)
+        {
+            //得到结构体的大小
+            int size = Marshal.SizeOf(type);
+            //byte数组长度小于结构体的大小
+            if (size > bytes.Length)
+            {
+                //返回空
+                //return null;
+            }
+            //分配结构体大小的内存空间
+            IntPtr structPtr = Marshal.AllocHGlobal(size);
+            //将byte数组拷到分配好的内存空间
+            Marshal.Copy(bytes, 0, structPtr, size);
+            //将内存空间转换为目标结构体
+            object obj = Marshal.PtrToStructure(structPtr, type);
+            //释放内存空间
+            Marshal.FreeHGlobal(structPtr);
+            //返回结构体
+            return obj;
+        }
+        private HeadUIInfo FindHeadByStatus(byte status)
+        {
+            if (status < 1) return null;
+            if (status > 10) return null;
+            return headInfos[status - 1];
         }
         private void parseInfo(object o)
         {
             MultiScalerInfo info = new MultiScalerInfo();
-
-            lbl_hege.Text = "合格数: " + info.quali.ToString();
+            byte[] arr = (byte[])o;
+            //TestStruct ss = (TestStruct)BytesToStuct(arr, System.Type.GetType("TestStruct", true));
+            info.scale_num = arr[0];
+            info.qualified = arr[1];
+            for (int i = 0; i < 10; i++)
+            {
+                info.comb_heads[i] = arr[2 + i];
+                info.state[i] = arr[12 + i];
+                info.wet[i] = BitConverter.ToSingle(arr, 22 + i * 4);
+                banOcxCtl1.SetBanWeight(i+1,info.wet[i].ToString());
+                banOcxCtl1.SetBanColor(i + 1, FindHeadByStatus(info.state[i]).color);
+                banOcxCtl1.SetBanStatus(i + 1, FindHeadByStatus(info.state[i]).title);
+            }
+            info.qualified = arr[62];
+            info.unquali = arr[63];
+            info.qual_wet = BitConverter.ToSingle(arr,64);
+            
+            lbl_hege.Text = "合格数: " + info.qualified.ToString();
             lbl_unhege.Text = "不合格数: " + info.unquali.ToString();
             txb_wet.Text = info.qual_wet.ToString("0.0");
 
