@@ -220,12 +220,16 @@ namespace Monitor
                 }
                 else 
                 {
-                    if (getDBColumName(param.name) == "pic_id")
+                    if (param.param_id == 48)
+                    {
+                        pitem.str = FormatDisplay(pitem.name, "点击配置...");
+                    }
+                    else
                     {
                         pitem.param_value = dr[getDBColumName(param.name)];
+                        pitem.str = FormatDisplay(pitem.name, dr[getDBColumName(pitem.name)].ToString());
                     }
-                    pitem.param_value = dr[getDBColumName(param.name)];
-                    pitem.str = FormatDisplay(pitem.name, dr[getDBColumName(pitem.name)].ToString());
+                    
                 }
 
                 TotalPageList.Add(pitem);
@@ -327,8 +331,18 @@ namespace Monitor
                 dic[getDBColumName(i.name)] = i.param_value;
             }
             var cond = new Dictionary<string, object>();
-            cond["formula_id"] = TotalPageList[0].param_value;
-            SQLiteDBHelper.updateFormula(dic,cond);
+            int id = ParseID(TotalPageList[0].param_value);
+            cond["formula_id"] = id;
+            DataTable dt = SQLiteDBHelper.listFormula(id);
+            if (dt.Rows.Count == 0)
+            {
+                SQLiteDBHelper.addFormula(dic);
+            }
+            else
+            {
+                SQLiteDBHelper.updateFormula(dic, cond);
+            }
+            
         }
 
         private void ClickReturn()
@@ -470,7 +484,10 @@ namespace Monitor
             strRet = string.Format("{0}{1}", strFirst, strSecond);
             return strRet;
         }
-
+        private int ParseID(object o)
+        {
+            return int.Parse(o.ToString());
+        }
         private void pnLeft_Click(object sender, EventArgs e)
         {
             byte slaveAddr = formFrame.configManage.cfg.paramDeviceId.Ctrl;
@@ -502,6 +519,18 @@ namespace Monitor
                     ShowPage(PageIndex); //刷新当前页的内容.
                     pnLeft.Invalidate();
                 }
+            }
+            else if (item.param_id == 48)
+            {
+                int id = ParseID(TotalPageList[0].param_value);
+                FormXZJ dlg = new FormXZJ(formFrame, id);
+                dlg.ShowDialog();
+                dlg.Dispose();
+                
+                //TotalPageList[index].param_value = "点击配置...";
+                //ShowPage(PageIndex); //刷新当前页的内容.
+               // pnLeft.Invalidate();
+               
             }
             else
             {

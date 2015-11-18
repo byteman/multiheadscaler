@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.listView1 = new System.Windows.Forms.ListView();
+            this.ch_index = new System.Windows.Forms.ColumnHeader();
+            this.ch_weight = new System.Windows.Forms.ColumnHeader();
+            this.ch_diff = new System.Windows.Forms.ColumnHeader();
+            this.ch_datetime = new System.Windows.Forms.ColumnHeader();
+            this.ch_zuhe = new System.Windows.Forms.ColumnHeader();
+            this.ch_result = new System.Windows.Forms.ColumnHeader();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -39,12 +45,6 @@
             this.pbNextPage = new System.Windows.Forms.PictureBox();
             this.pbClear = new System.Windows.Forms.PictureBox();
             this.pbExit = new System.Windows.Forms.PictureBox();
-            this.ch_index = new System.Windows.Forms.ColumnHeader();
-            this.ch_weight = new System.Windows.Forms.ColumnHeader();
-            this.ch_diff = new System.Windows.Forms.ColumnHeader();
-            this.ch_datetime = new System.Windows.Forms.ColumnHeader();
-            this.ch_zuhe = new System.Windows.Forms.ColumnHeader();
-            this.ch_result = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // listView1
@@ -61,6 +61,36 @@
             this.listView1.Size = new System.Drawing.Size(602, 360);
             this.listView1.TabIndex = 0;
             this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // ch_index
+            // 
+            this.ch_index.Text = "序号";
+            this.ch_index.Width = 60;
+            // 
+            // ch_weight
+            // 
+            this.ch_weight.Text = "重量";
+            this.ch_weight.Width = 60;
+            // 
+            // ch_diff
+            // 
+            this.ch_diff.Text = "偏差";
+            this.ch_diff.Width = 60;
+            // 
+            // ch_datetime
+            // 
+            this.ch_datetime.Text = "日期";
+            this.ch_datetime.Width = 150;
+            // 
+            // ch_zuhe
+            // 
+            this.ch_zuhe.Text = "组合斗";
+            this.ch_zuhe.Width = 150;
+            // 
+            // ch_result
+            // 
+            this.ch_result.Text = "结果";
+            this.ch_result.Width = 60;
             // 
             // label1
             // 
@@ -137,6 +167,7 @@
             this.pbClear.Name = "pbClear";
             this.pbClear.Size = new System.Drawing.Size(100, 50);
             this.pbClear.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbClear.Click += new System.EventHandler(this.pbClear_Click);
             this.pbClear.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbClear.Paint += new System.Windows.Forms.PaintEventHandler(this.pbClear_Paint);
             this.pbClear.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
@@ -151,36 +182,6 @@
             this.pbExit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbExit.Paint += new System.Windows.Forms.PaintEventHandler(this.pbExit_Paint);
             this.pbExit.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
-            // 
-            // ch_index
-            // 
-            this.ch_index.Text = "序号";
-            this.ch_index.Width = 60;
-            // 
-            // ch_weight
-            // 
-            this.ch_weight.Text = "重量";
-            this.ch_weight.Width = 60;
-            // 
-            // ch_diff
-            // 
-            this.ch_diff.Text = "偏差";
-            this.ch_diff.Width = 60;
-            // 
-            // ch_datetime
-            // 
-            this.ch_datetime.Text = "日期";
-            this.ch_datetime.Width = 150;
-            // 
-            // ch_zuhe
-            // 
-            this.ch_zuhe.Text = "组合斗";
-            this.ch_zuhe.Width = 150;
-            // 
-            // ch_result
-            // 
-            this.ch_result.Text = "结果";
-            this.ch_result.Width = 60;
             // 
             // UCDataList
             // 

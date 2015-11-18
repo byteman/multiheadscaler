@@ -298,11 +298,31 @@ namespace Monitor
          
             return true;
         }
-           
-   
+
+        public static bool addFormula(Dictionary<string, object> dic)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(config.DataSource))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
+
+                    sh.Insert("formula", dic);
+
+                    conn.Close();
+
+                }
+            }
+
+            return true;
+        
+        }
         public static bool addFormula(FormulaData data)
         {
-            int count = 0;
+        
             using (SQLiteConnection conn = new SQLiteConnection(config.DataSource))
             {
                 using (SQLiteCommand cmd = new SQLiteCommand())

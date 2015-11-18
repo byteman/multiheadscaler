@@ -100,6 +100,7 @@
         <ParamDefineItem visible="1" read="0" write="1" name="开斗停顿" unit="" dev_id="128" param_id="45" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" /> 
         <ParamDefineItem visible="1" read="0" write="1" name="电机模式" unit="" dev_id="128" param_id="46" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" /> 
         <ParamDefineItem visible="1" read="0" write="1" name="多次放料" unit="" dev_id="128" param_id="47" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" /> 
+		<ParamDefineItem visible="1" read="0" write="1" name="线振机" unit="" dev_id="128" param_id="48" param_len="16" param_type="String" valid_min_max="false" min="0" max="0" /> 
       </list>
     </Category>
    

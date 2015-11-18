@@ -125,6 +125,11 @@ namespace Monitor
             formFrame.ShowUC(formFrame.ucMain);
         }
 
+        private void pbClear_Click(object sender, EventArgs e)
+        {
+
+        }
+
        
        
 

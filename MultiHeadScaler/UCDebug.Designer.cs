@@ -72,6 +72,7 @@
             this.pbClear.Location = new System.Drawing.Point(483, 119);
             this.pbClear.Name = "pbClear";
             this.pbClear.Size = new System.Drawing.Size(150, 50);
+            this.pbClear.Click += new System.EventHandler(this.pbClear_Click);
             this.pbClear.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbClear.Paint += new System.Windows.Forms.PaintEventHandler(this.pbClear_Paint);
             this.pbClear.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
@@ -81,6 +82,7 @@
             this.pbBan.Location = new System.Drawing.Point(639, 119);
             this.pbBan.Name = "pbBan";
             this.pbBan.Size = new System.Drawing.Size(150, 50);
+            this.pbBan.Click += new System.EventHandler(this.pbBan_Click);
             this.pbBan.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbBan.Paint += new System.Windows.Forms.PaintEventHandler(this.pbBan_Paint);
             this.pbBan.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);

@@ -221,31 +221,31 @@ namespace Monitor
         
 
 //注意这个属性不能少
-        [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Auto,Size=68)]
+        [StructLayoutAttribute(LayoutKind.Explicit, CharSet = CharSet.Auto,Size=68)]
     struct TestStruct
     {
-        //[FieldOffset(0)]
+        [FieldOffset(0)]
         [MarshalAs(UnmanagedType.U1, SizeConst = 1)]
         public byte		scale_num;	//总的秤个数
-        //[FieldOffset(1)]
+        [FieldOffset(1)]
         [MarshalAs(UnmanagedType.U1, SizeConst = 1)]
         public byte		qualified;	//本次组合结果 合格与否 1:合格 0: 不合格[可能是强排之类]
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 10)]
-        //[FieldOffset(2)]
+        [FieldOffset(2)]
         byte[]		comb_heads; //组合斗编号，表示参与组合的斗数，没有参与组合的斗数，我自己来计算
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 10)]
-        //[FieldOffset(12)]
+        [FieldOffset(12)]
         byte[]		state;	// 秤头状态,具体主动发送时个数由设置的秤台数量决定
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 10)]
-       // [FieldOffset(22)]
+        [FieldOffset(22)]
         float[]	wet;		// 各个秤头的当前重量
-        //[FieldOffset(62)]
+        [FieldOffset(62)]
         [MarshalAs(UnmanagedType.U1, SizeConst = 1)]
         byte		quali;					// 合格数
-        //[FieldOffset(66)]
+        [FieldOffset(63)]
         [MarshalAs(UnmanagedType.U1, SizeConst = 1)]
         byte unquali;				// 不合格数
-        //[FieldOffset(70)]
+        [FieldOffset(64)]
         [MarshalAs(UnmanagedType.R4, SizeConst = 4)]
         float	quali_wet;				// 本次合格的总重量,不管合格与否，都有一个重量
     }
@@ -296,6 +296,7 @@ namespace Monitor
         private void parseInfo(object o)
         {
             MultiScalerInfo info = new MultiScalerInfo();
+            WeightData wd = new WeightData();
             byte[] arr = (byte[])o;
             //TestStruct ss = (TestStruct)BytesToStuct(arr, System.Type.GetType("TestStruct", true));
             info.scale_num = arr[0];
@@ -304,6 +305,11 @@ namespace Monitor
             {
                 info.comb_heads[i] = arr[2 + i];
                 info.state[i] = arr[12 + i];
+                if (info.state[i] == 1) //参与组合
+                {
+                    //添加参与组合的编号.
+                    wd.addZuhe(i + 1);
+                }
                 info.wet[i] = BitConverter.ToSingle(arr, 22 + i * 4);
                 banOcxCtl1.SetBanWeight(i+1,info.wet[i].ToString());
                 banOcxCtl1.SetBanColor(i + 1, FindHeadByStatus(info.state[i]).color);
@@ -317,6 +323,10 @@ namespace Monitor
             lbl_unhege.Text = "不合格数: " + info.unquali.ToString();
             txb_wet.Text = info.qual_wet.ToString("0.0");
 
+            wd.diff = info.qual_wet - formFrame.curFormula.target_weight;
+            wd.weight = info.qual_wet;
+            //添加一条组合记录.
+            SQLiteDBHelper.addData(wd);
         }
         private Bitmap GetBitmap(string upPath)
         {
