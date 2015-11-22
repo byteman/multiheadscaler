@@ -32,6 +32,7 @@
             this.pbRight = new System.Windows.Forms.PictureBox();
             this.pbLeft = new System.Windows.Forms.PictureBox();
             this.pnRight = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer();
             this.pnLeft.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,6 +75,11 @@
             this.pnRight.Name = "pnRight";
             this.pnRight.Size = new System.Drawing.Size(150, 480);
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 2000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // UCDBList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -82,7 +88,7 @@
             this.Controls.Add(this.pnRight);
             this.Controls.Add(this.pnLeft);
             this.Name = "UCDBList";
-            this.Size = new System.Drawing.Size(800, 480);
+            this.Size = new System.Drawing.Size(800, 600);
             this.Click += new System.EventHandler(this.UCDBList_Click);
             this.pnLeft.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -95,5 +101,6 @@
         private System.Windows.Forms.Panel pnRight;
         private System.Windows.Forms.PictureBox pbLeft;
         private System.Windows.Forms.PictureBox pbRight;
+        private System.Windows.Forms.Timer timer1;
     }
 }

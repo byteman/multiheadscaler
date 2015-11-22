@@ -34,7 +34,7 @@ namespace Monitor
         private List<TextBox> focusBox;
         private int index = 0;
 
-   
+        private byte start = 2;
       
         public UCRun(FormFrame f)
         {
@@ -83,8 +83,9 @@ namespace Monitor
             pbStop.Image  = bmBtnUp;
             pbExit.Image = bmBtnUp;
             pbSimu.Image = bmBtnUp;
-
-
+            timer1.Interval = 1000;
+            timer1.Tick += new EventHandler(timer1_Tick);
+            timer1.Enabled = true;
         }
         private void pbBtn_MouseDown(object sender, MouseEventArgs e)
         {
@@ -125,7 +126,7 @@ namespace Monitor
 
         private void pbStop_Click(object sender, EventArgs e)
         {
-            timer1.Enabled = false;
+            writeCmd(1, 2);
         }
 
         private void pbExit_Paint(object sender, PaintEventArgs e)
@@ -150,12 +151,22 @@ namespace Monitor
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            banOcxCtl1.SetBanColor(index++ % banOcxCtl1.磅称的数量, Color.Red);
+            if (this.Visible)
+            {
+                readStatus(1);
+            }
         }
-
+        private void UpdateUI(object obj, System.EventArgs e)
+        {
+            if (start == 1)
+                lblStatus.Text = "启动";
+            else
+                lblStatus.Text = "停止";
+        }
         private void pbStart_Click(object sender, EventArgs e)
         {
-            timer1.Enabled = true;
+            writeCmd(1, 1);
+            
         }
 
         private void textBox5_GotFocus(object sender, EventArgs e)
@@ -177,6 +188,50 @@ namespace Monitor
             }
             return null;
 
+        }
+        private void send(List<ParamItem> itemList)
+        {
+            Protocol protocol = formFrame.protocol;
+            SerialOperate Serial = SerialOperate.instance;
+
+            byte[] buf;
+            int len = protocol.Produce(formFrame.configManage.cfg.paramDeviceId.Ctrl, out buf, itemList);
+            if (len > 0)
+            {
+                Serial.Send(buf, len);
+            }
+        }
+        private void readStatus(byte cmd)
+        {
+            List<ParamItem> itemList = new List<ParamItem>();
+            ParamItem item;
+            item = new ParamItem();
+
+            
+            item.dev_id = (byte)formFrame.configManage.cfg.paramDeviceId.Ctrl;
+            item.param_id = cmd; //振动一次
+            item.op_write = 0;
+            item.param_type = TypeCode.Byte;
+            item.param_len = 1;
+            item.param_value = 0;
+            itemList.Add(item);
+            send(itemList);
+        }
+        private void writeCmd(byte cmd,byte v)
+        {
+            List<ParamItem> itemList = new List<ParamItem>();
+            ParamItem item;
+            item = new ParamItem();
+
+
+            item.dev_id = (byte)formFrame.configManage.cfg.paramDeviceId.Ctrl;
+            item.param_id = cmd; //振动一次
+            item.op_write = 1;
+            item.param_type = TypeCode.Byte;
+            item.param_len = 1;
+            item.param_value = v;
+            itemList.Add(item);
+            send(itemList);
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -351,15 +406,42 @@ namespace Monitor
                     if (item.param_id == 2) //组合结果
                     {
                         parseInfo(item.param_value);
-                        
+                        ackData();
                         //item.param_value;
                     }
-                    else if (item.param_id == 1) //启动停止反馈.
+                    else if ( (item.param_id == 1) && (item.op_write == 0)) //启动停止反馈.
                     {
+                        byte s = (byte)item.param_value;
+                        if (s == 1)
+                        {
+                            // 开始
 
+                        }
+                        else if(s == 2)
+                        { 
+                            // 停止
+
+                        }
+                        start = s;
+                        BeginInvoke(new System.EventHandler(UpdateUI), s);
                     }
                 }
             }
+        }
+
+        private void ackData()
+        {
+            Protocol protocol = formFrame.protocol;
+            SerialOperate Serial = SerialOperate.instance;
+            byte[] ack = new byte[]{0x69 ,0x80 ,0xc2 ,0x01 ,0x01   ,0x80 ,0x02 ,0x01 ,0x01 ,0x0,0x0};
+            ushort uCrc = Util.Crc16(ack, (ushort)9);
+            byte[] byCrc = BitConverter.GetBytes(uCrc);
+            Util.SwapBuf(byCrc);
+
+           
+            ack[9] = byCrc[0];
+            ack[10] = byCrc[1];
+            Serial.Send(ack, 11);
         }
 
         private void banOcxCtl1_Validated(object sender, EventArgs e)
@@ -390,6 +472,11 @@ namespace Monitor
             textBox1.Text = formFrame.curFormula.target_weight.ToString();
             textBox2.Text = formFrame.curFormula.up_diff.ToString();
             textBox3.Text = formFrame.curFormula.down_diff.ToString();
+        }
+
+        private void label5_ParentChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

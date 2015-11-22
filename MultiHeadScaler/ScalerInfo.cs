@@ -34,7 +34,11 @@ namespace Monitor
         }
         public bool updateWeightObj(object wl)
         {
-            
+            int[] arr = (int[])wl;
+            for (int i = 0; i < 10; i++)
+            {
+                weight[i] = arr[i];
+            }
             return true;
         }
         public bool updateStatusObj(object sl)

@@ -37,12 +37,17 @@ namespace Monitor
             pbExit.Image = bmBtnUp;
 
             //timer.Interval = configManage.cfg.paramFormWeight.Interval;
-            timer.Interval = 500;
+            timer.Interval = 1000;
             timer.Tick += new EventHandler(timer_Tick);
+            timer.Enabled = false;
         }
 
         void timer_Tick(object sender, EventArgs e)
         {
+            if (this.Visible == false)
+            {
+                return;
+            }
             List<ParamItem> itemList = new List<ParamItem>();
             ParamItem item;
             item = new ParamItem();
@@ -109,7 +114,10 @@ namespace Monitor
         {
             
         }
-
+        public void init()
+        {
+            timer.Enabled = true;
+        }
      
         private void send()
         {
@@ -249,11 +257,12 @@ namespace Monitor
             
             for (int i = 0; i < 10; i++)
             {
-                banOcxCtl1.SetBanWeight(i, si.getWeightString(i));
+                banOcxCtl1.SetBanWeight(i+1, si.getWeightString(i));
             }
         }
         private void pbExit_Click_1(object sender, EventArgs e)
         {
+            timer.Enabled = false;
             formFrame.ShowUC(formFrame.ucMain);
         }
 

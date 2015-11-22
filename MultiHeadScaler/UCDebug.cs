@@ -126,36 +126,58 @@ namespace Monitor
 
         private void pbClear_Click(object sender, EventArgs e)
         {
-            List<ParamItem> itemList = new List<ParamItem>();
-            ParamItem item;
-            item = new ParamItem();
-            int driver_id = int.Parse(tb_number.Text);
-
-            item.dev_id = (byte)driver_id;
-            item.param_id = 2; //标定零点
-            item.op_write = 1;
-            item.param_type = TypeCode.Byte;
-            item.param_len = 1;
-            item.param_value = (byte)1;
-            itemList.Add(item);
-            send(itemList);
+            sendDebugCmd(192);
         }
 
         private void pbBan_Click(object sender, EventArgs e)
         {
+            sendDebugCmd(194);
+        }
+
+        private void banOcxCtl1_点击事件(object sender, BanOcx.MyEventArges e)
+        {
+            tb_number.Text = e.SelNum.ToString();
+        }
+        private void sendDebugCmd(byte cmd)
+        {
             List<ParamItem> itemList = new List<ParamItem>();
             ParamItem item;
             item = new ParamItem();
-            int driver_id = int.Parse(tb_number.Text);
 
-            item.dev_id = (byte)driver_id;
-            item.param_id = 2; //标定零点
+            byte driver_id = byte.Parse(tb_number.Text); ;
+            item.dev_id = (byte)formFrame.configManage.cfg.paramDeviceId.Ctrl;
+            item.param_id = cmd; //振动一次
             item.op_write = 1;
             item.param_type = TypeCode.Byte;
             item.param_len = 1;
-            item.param_value = (byte)1;
+            item.param_value = driver_id;
             itemList.Add(item);
             send(itemList);
+        }
+        private void pbShake_Click(object sender, EventArgs e)
+        {
+            
+            sendDebugCmd(193);
+        }
+
+        private void pbStep_Click(object sender, EventArgs e)
+        {
+            sendDebugCmd(195);
+        }
+
+        private void pbContinuStep_Click(object sender, EventArgs e)
+        {
+            sendDebugCmd(196);
+        }
+
+        private void pbEmpty_Click(object sender, EventArgs e)
+        {
+            sendDebugCmd(197);
+        }
+
+        private void pbStop_Click(object sender, EventArgs e)
+        {
+            sendDebugCmd(198);
         }
 
        

@@ -35,6 +35,7 @@
             this.pbParam = new System.Windows.Forms.PictureBox();
             this.banOcxCtl1 = new BanOcx.BanOcxCtl();
             this.pbZero = new System.Windows.Forms.PictureBox();
+            this.pbExit = new System.Windows.Forms.PictureBox();
             this.SuspendLayout();
             // 
             // pbRun
@@ -90,7 +91,8 @@
             // banOcxCtl1
             // 
             this.banOcxCtl1.BackColor = System.Drawing.Color.Black;
-            this.banOcxCtl1.Location = new System.Drawing.Point(120, 37);
+            this.banOcxCtl1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular);
+            this.banOcxCtl1.Location = new System.Drawing.Point(98, 108);
             this.banOcxCtl1.Name = "banOcxCtl1";
             this.banOcxCtl1.Size = new System.Drawing.Size(486, 417);
             this.banOcxCtl1.TabIndex = 7;
@@ -114,7 +116,7 @@
             // 
             // pbZero
             // 
-            this.pbZero.Location = new System.Drawing.Point(624, 390);
+            this.pbZero.Location = new System.Drawing.Point(624, 400);
             this.pbZero.Name = "pbZero";
             this.pbZero.Size = new System.Drawing.Size(164, 60);
             this.pbZero.Click += new System.EventHandler(this.pbSetzero_Click);
@@ -122,11 +124,22 @@
             this.pbZero.Paint += new System.Windows.Forms.PaintEventHandler(this.pbSetzero_Paint);
             this.pbZero.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
             // 
+            // pbExit
+            // 
+            this.pbExit.Location = new System.Drawing.Point(624, 482);
+            this.pbExit.Name = "pbExit";
+            this.pbExit.Size = new System.Drawing.Size(164, 60);
+            this.pbExit.Click += new System.EventHandler(this.pbExit_Click);
+            this.pbExit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
+            this.pbExit.Paint += new System.Windows.Forms.PaintEventHandler(this.pbExit_Paint);
+            this.pbExit.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
+            // 
             // UCMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
+            this.Controls.Add(this.pbExit);
             this.Controls.Add(this.pbZero);
             this.Controls.Add(this.banOcxCtl1);
             this.Controls.Add(this.pbParam);
@@ -135,7 +148,7 @@
             this.Controls.Add(this.pbCalib);
             this.Controls.Add(this.pbRun);
             this.Name = "UCMain";
-            this.Size = new System.Drawing.Size(800, 480);
+            this.Size = new System.Drawing.Size(800, 600);
             this.Click += new System.EventHandler(this.UCMain_Click);
             this.ResumeLayout(false);
 
@@ -150,5 +163,6 @@
         private System.Windows.Forms.PictureBox pbParam;
         private BanOcx.BanOcxCtl banOcxCtl1;
         private System.Windows.Forms.PictureBox pbZero;
+        private System.Windows.Forms.PictureBox pbExit;
     }
 }

@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiHeadScaler", "MultiHeadScaler\MultiHeadScaler.csproj", "{62E3ED53-E42E-4218-8928-8654E63A4749}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BanOcx", "CSharp_meter_DLL\BanOcx.csproj", "{C89D6C84-43AD-4EC2-990F-024354A8990F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{62E3ED53-E42E-4218-8928-8654E63A4749}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62E3ED53-E42E-4218-8928-8654E63A4749}.Release|Any CPU.Build.0 = Release|Any CPU
 		{62E3ED53-E42E-4218-8928-8654E63A4749}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C89D6C84-43AD-4EC2-990F-024354A8990F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C89D6C84-43AD-4EC2-990F-024354A8990F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C89D6C84-43AD-4EC2-990F-024354A8990F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C89D6C84-43AD-4EC2-990F-024354A8990F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

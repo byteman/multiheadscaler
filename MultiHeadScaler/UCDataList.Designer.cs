@@ -70,7 +70,7 @@
             // ch_weight
             // 
             this.ch_weight.Text = "重量";
-            this.ch_weight.Width = 60;
+            this.ch_weight.Width = 100;
             // 
             // ch_diff
             // 

@@ -50,7 +50,7 @@
             // 
             // pbExit
             // 
-            this.pbExit.Location = new System.Drawing.Point(531, 377);
+            this.pbExit.Location = new System.Drawing.Point(531, 384);
             this.pbExit.Name = "pbExit";
             this.pbExit.Size = new System.Drawing.Size(100, 50);
             this.pbExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -62,7 +62,7 @@
             // ch_zuhe
             // 
             this.ch_zuhe.Text = "组合斗";
-            this.ch_zuhe.Width = 150;
+            this.ch_zuhe.Width = 120;
             // 
             // ch_index
             // 
@@ -71,7 +71,7 @@
             // 
             // pbClear
             // 
-            this.pbClear.Location = new System.Drawing.Point(368, 377);
+            this.pbClear.Location = new System.Drawing.Point(356, 384);
             this.pbClear.Name = "pbClear";
             this.pbClear.Size = new System.Drawing.Size(100, 50);
             this.pbClear.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -83,16 +83,16 @@
             // ch_datetime
             // 
             this.ch_datetime.Text = "日期";
-            this.ch_datetime.Width = 200;
+            this.ch_datetime.Width = 160;
             // 
             // ch_weight
             // 
             this.ch_weight.Text = "重量";
-            this.ch_weight.Width = 60;
+            this.ch_weight.Width = 100;
             // 
             // pbNextPage
             // 
-            this.pbNextPage.Location = new System.Drawing.Point(195, 377);
+            this.pbNextPage.Location = new System.Drawing.Point(183, 384);
             this.pbNextPage.Name = "pbNextPage";
             this.pbNextPage.Size = new System.Drawing.Size(100, 50);
             this.pbNextPage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -104,7 +104,7 @@
             // ch_diff
             // 
             this.ch_diff.Text = "偏差";
-            this.ch_diff.Width = 60;
+            this.ch_diff.Width = 80;
             // 
             // ch_result
             // 
@@ -113,7 +113,7 @@
             // 
             // pbPrevPage
             // 
-            this.pbPrevPage.Location = new System.Drawing.Point(29, 377);
+            this.pbPrevPage.Location = new System.Drawing.Point(9, 384);
             this.pbPrevPage.Name = "pbPrevPage";
             this.pbPrevPage.Size = new System.Drawing.Size(100, 50);
             this.pbPrevPage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -181,18 +181,19 @@
             this.listView1.Columns.Add(this.ch_result);
             this.listView1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular);
             this.listView1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.listView1.Location = new System.Drawing.Point(29, 21);
+            this.listView1.Location = new System.Drawing.Point(5, 21);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(602, 350);
+            this.listView1.Size = new System.Drawing.Size(626, 350);
             this.listView1.TabIndex = 8;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // pbAdd
             // 
-            this.pbAdd.Location = new System.Drawing.Point(669, 377);
+            this.pbAdd.Location = new System.Drawing.Point(669, 384);
             this.pbAdd.Name = "pbAdd";
             this.pbAdd.Size = new System.Drawing.Size(100, 50);
             this.pbAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbAdd.Visible = false;
             this.pbAdd.Click += new System.EventHandler(this.pbAdd_Click);
             this.pbAdd.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbAdd.Paint += new System.Windows.Forms.PaintEventHandler(this.pbAdd_Paint);
@@ -204,7 +205,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(798, 455);
+            this.ClientSize = new System.Drawing.Size(798, 575);
             this.Controls.Add(this.pbAdd);
             this.Controls.Add(this.pbExit);
             this.Controls.Add(this.pbClear);

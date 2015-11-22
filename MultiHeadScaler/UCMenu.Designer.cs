@@ -129,7 +129,7 @@
             this.Controls.Add(this.pnRight);
             this.Location = new System.Drawing.Point(0, 48);
             this.Name = "UCMenu";
-            this.Size = new System.Drawing.Size(800, 480);
+            this.Size = new System.Drawing.Size(800, 600);
             this.pnLeft.ResumeLayout(false);
             this.ResumeLayout(false);
 

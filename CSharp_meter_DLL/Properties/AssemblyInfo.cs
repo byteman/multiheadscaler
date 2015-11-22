@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过下列属性集
 // 控制。更改这些属性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("多头秤")]
+[assembly: AssemblyTitle("CSharp_meter_DLL")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("微软中国")]
-[assembly: AssemblyProduct("MultiHeadScaler")]
-[assembly: AssemblyCopyright("Copyright © 微软中国 2015")]
+[assembly: AssemblyCompany("China")]
+[assembly: AssemblyProduct("CSharp_meter_DLL")]
+[assembly: AssemblyCopyright("版权所有 (C) China 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("9dc854c3-91da-479f-bed7-a13cb262a194")]
+[assembly: Guid("4748ebc3-c1f5-4ac4-bdf2-d83272d3e403")]
 
 // 程序集的版本信息由下面四个值组成:
 //
@@ -29,8 +29,7 @@ using System.Runtime.InteropServices;
 //      内部版本号
 //      修订号
 //
-[assembly: AssemblyVersion("1.0.0.1")]
+// 可以指定所有这些值，也可以使用“修订号”和“内部版本号”的默认值，
+// 方法是按如下所示使用“*”:
+[assembly: AssemblyVersion("1.0.*")]
 
-// 以下属性会取消显示 FxCop 警告“CA2232 : Microsoft.Usage : 向程序集添加 STAThreadAttribute 属性”，
-// 因为设备应用程序不支持 STA 线程。
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2232:MarkWindowsFormsEntryPointsWithStaThread")]

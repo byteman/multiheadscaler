@@ -183,7 +183,7 @@
             this.Controls.Add(this.pbClear);
             this.Controls.Add(this.banOcxCtl1);
             this.Name = "UCCalib";
-            this.Size = new System.Drawing.Size(800, 480);
+            this.Size = new System.Drawing.Size(800, 600);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.UCCalib_Paint);
             this.ResumeLayout(false);
 

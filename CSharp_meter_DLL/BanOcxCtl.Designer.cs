@@ -1,6 +1,6 @@
-﻿namespace Monitor
+﻿namespace BanOcx
 {
-    partial class FormFrame
+    partial class BanOcxCtl
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -20,7 +20,7 @@
             base.Dispose(disposing);
         }
 
-        #region Windows 窗体设计器生成的代码
+        #region 组件设计器生成的代码
 
         /// <summary>
         /// 设计器支持所需的方法 - 不要
@@ -30,25 +30,21 @@
         {
             this.SuspendLayout();
             // 
-            // FormFrame
+            // BanOcxCtl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(798, 575);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "FormFrame";
-            this.Text = "FormFrame";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FormFrame_Load);
-            this.Closing += new System.ComponentModel.CancelEventHandler(this.FormFrame_Closing);
+            this.BackColor = System.Drawing.Color.Black;
+            this.Name = "BanOcxCtl";
+            this.Size = new System.Drawing.Size(260, 228);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.UC_Ctrl_Paint);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.BanOcxCtl_MouseMove);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BanOcxCtl_MouseDown);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BanOcxCtl_MouseUp);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
     }
 }

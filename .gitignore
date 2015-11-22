@@ -3,3 +3,6 @@
 *.pdb
 MultiHeadScaler.exe.config
 Debug
+Release
+CSharp_meter_DLL.csproj.FileList.txt
+Thumbs.db

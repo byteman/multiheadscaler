@@ -43,6 +43,7 @@ namespace Monitor
             pbTongji.Image = bmBtnUp;
             pbParam.Image = bmBtnUp;
             pbZero.Image = bmBtnUp;
+            pbExit.Image = bmBtnUp;
             //panelBody = new PanelBody();
             //panelBody.Init(formFrame, 12, 22, 606, 387);
             //panelBody.Init(formFrame, 12, 22, 604, 385);
@@ -166,6 +167,7 @@ namespace Monitor
 
         private void pbCalib_Click(object sender, EventArgs e)
         {
+            formFrame.ucCalib.init();
             formFrame.ShowUC(formFrame.ucCalib);
         }
 
@@ -185,6 +187,16 @@ namespace Monitor
             FormDataList dlg = new FormDataList(this.formFrame);        //日期时间输入框
             dlg.ShowDialog();
             dlg.Dispose();
+        }
+
+        private void pbExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void pbExit_Paint(object sender, PaintEventArgs e)
+        {
+            DrawLabel(sender, e, "退出");
         }
 
        

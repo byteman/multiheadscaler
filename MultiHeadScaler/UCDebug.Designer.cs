@@ -66,6 +66,7 @@
             this.banOcxCtl1.编号字体大小 = 10F;
             this.banOcxCtl1.编号字体颜色 = System.Drawing.Color.Black;
             this.banOcxCtl1.背景颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
+            this.banOcxCtl1.点击事件 += new BanOcx.BanOcxCtl.MyEventHandler(this.banOcxCtl1_点击事件);
             // 
             // pbClear
             // 
@@ -92,6 +93,7 @@
             this.pbStep.Location = new System.Drawing.Point(639, 196);
             this.pbStep.Name = "pbStep";
             this.pbStep.Size = new System.Drawing.Size(150, 50);
+            this.pbStep.Click += new System.EventHandler(this.pbStep_Click);
             this.pbStep.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbStep.Paint += new System.Windows.Forms.PaintEventHandler(this.pbStep_Paint);
             this.pbStep.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
@@ -101,6 +103,7 @@
             this.pbShake.Location = new System.Drawing.Point(483, 196);
             this.pbShake.Name = "pbShake";
             this.pbShake.Size = new System.Drawing.Size(150, 50);
+            this.pbShake.Click += new System.EventHandler(this.pbShake_Click);
             this.pbShake.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbShake.Paint += new System.Windows.Forms.PaintEventHandler(this.pbShake_Paint);
             this.pbShake.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
@@ -110,6 +113,7 @@
             this.pbEmpty.Location = new System.Drawing.Point(639, 268);
             this.pbEmpty.Name = "pbEmpty";
             this.pbEmpty.Size = new System.Drawing.Size(150, 50);
+            this.pbEmpty.Click += new System.EventHandler(this.pbEmpty_Click);
             this.pbEmpty.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbEmpty.Paint += new System.Windows.Forms.PaintEventHandler(this.pbEmpty_Paint);
             this.pbEmpty.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
@@ -119,6 +123,7 @@
             this.pbContinuStep.Location = new System.Drawing.Point(483, 268);
             this.pbContinuStep.Name = "pbContinuStep";
             this.pbContinuStep.Size = new System.Drawing.Size(150, 50);
+            this.pbContinuStep.Click += new System.EventHandler(this.pbContinuStep_Click);
             this.pbContinuStep.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbContinuStep.Paint += new System.Windows.Forms.PaintEventHandler(this.pbContinuStep_Paint);
             this.pbContinuStep.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
@@ -128,6 +133,7 @@
             this.pbStop.Location = new System.Drawing.Point(483, 339);
             this.pbStop.Name = "pbStop";
             this.pbStop.Size = new System.Drawing.Size(150, 50);
+            this.pbStop.Click += new System.EventHandler(this.pbStop_Click);
             this.pbStop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbStop.Paint += new System.Windows.Forms.PaintEventHandler(this.pbStop_Paint);
             this.pbStop.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
@@ -179,7 +185,7 @@
             this.Controls.Add(this.pbClear);
             this.Controls.Add(this.banOcxCtl1);
             this.Name = "UCDebug";
-            this.Size = new System.Drawing.Size(800, 480);
+            this.Size = new System.Drawing.Size(800, 600);
             this.ResumeLayout(false);
 
         }

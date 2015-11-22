@@ -66,9 +66,10 @@ namespace Monitor
             {
                 ListViewItem item = new ListViewItem();
                 item.SubItems[0].Text = (page_index * 10 + i++).ToString();
-
-                item.SubItems.Add(dr2["weight"].ToString());
-                item.SubItems.Add(dr2["diff"].ToString());
+                float v = float.Parse(dr2["weight"].ToString());
+                item.SubItems.Add(v.ToString("0.0"));
+                v = float.Parse(dr2["diff"].ToString());
+                item.SubItems.Add(v.ToString("0.0"));
                 item.SubItems.Add(dr2["s_date"].ToString());
                 item.SubItems.Add(dr2["heads"].ToString());
                 listView1.Items.Add(item);

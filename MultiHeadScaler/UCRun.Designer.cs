@@ -71,6 +71,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnSub = new System.Windows.Forms.Button();
             this.txb_wet = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // banOcxCtl1
@@ -93,8 +94,8 @@
             this.banOcxCtl1.磅称的间隔弧度 = 10;
             this.banOcxCtl1.称状态字体大小 = 15F;
             this.banOcxCtl1.称状态字体颜色 = System.Drawing.Color.Black;
-            this.banOcxCtl1.称重量字体大小 = 10F;
-            this.banOcxCtl1.称重量字体颜色 = System.Drawing.Color.White;
+            this.banOcxCtl1.称重量字体大小 = 12F;
+            this.banOcxCtl1.称重量字体颜色 = System.Drawing.Color.Magenta;
             this.banOcxCtl1.编号字体大小 = 10F;
             this.banOcxCtl1.编号字体颜色 = System.Drawing.Color.Black;
             this.banOcxCtl1.背景颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
@@ -492,11 +493,22 @@
             this.txb_wet.Size = new System.Drawing.Size(219, 52);
             this.txb_wet.Text = "0";
             // 
+            // lblStatus
+            // 
+            this.lblStatus.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Bold);
+            this.lblStatus.ForeColor = System.Drawing.Color.Red;
+            this.lblStatus.Location = new System.Drawing.Point(566, 22);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(72, 27);
+            this.lblStatus.Text = "停止";
+            this.lblStatus.ParentChanged += new System.EventHandler(this.label5_ParentChanged);
+            // 
             // UCRun
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.txb_wet);
             this.Controls.Add(this.btnSub);
             this.Controls.Add(this.btnAdd);
@@ -540,7 +552,7 @@
             this.Controls.Add(this.pbStart);
             this.Controls.Add(this.banOcxCtl1);
             this.Name = "UCRun";
-            this.Size = new System.Drawing.Size(800, 480);
+            this.Size = new System.Drawing.Size(800, 600);
             this.ResumeLayout(false);
 
         }
@@ -590,5 +602,6 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnSub;
         private System.Windows.Forms.Label txb_wet;
+        private System.Windows.Forms.Label lblStatus;
     }
 }
