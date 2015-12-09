@@ -26,6 +26,7 @@ namespace Monitor
         public UCRadioOnline ucRadioOnline = null;
         public UCCommon ucCommon = null;
         public FormLog formLog = null;
+        public UCXZJ ucXzj = null;
         public FormulaData curFormula = new FormulaData();
         public byte FormulaID = 0;
         public ConfigManage configManage = new ConfigManage();
@@ -96,7 +97,8 @@ namespace Monitor
             this.AddUC(ucRadioOnline);
             ucCommon = new UCCommon(this);
             this.AddUC(ucCommon);
-            
+            ucXzj = new UCXZJ(this);
+            this.AddUC(ucXzj);
             Serial.Init();
             Serial.RegisterEvent(sp_DataReceived, sp_Close, LogSend, LogRecv);
             int nOpen = Serial.Open(configManage.cfg.paramSerial.PortName, configManage.cfg.paramSerial.BaudRate, configManage.cfg.paramSerial.ReadWaitMs);
@@ -313,6 +315,10 @@ namespace Monitor
             else if (ucRun.Visible == true)
             {
                 ucRun.SetReturnValue(itemList);
+            }
+            else if(ucXzj.Visible == true)
+            {
+                ucXzj.SetReturnValue(itemList);
             }
         }
         #endregion

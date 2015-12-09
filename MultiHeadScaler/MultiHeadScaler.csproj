@@ -182,6 +182,12 @@
     <Compile Include="FormXZJ.Designer.cs">
       <DependentUpon>FormXZJ.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormXZJParam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormXZJParam.Designer.cs">
+      <DependentUpon>FormXZJParam.cs</DependentUpon>
+    </Compile>
     <Compile Include="InputInterface.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -266,6 +272,10 @@
       <DependentUpon>FormXZJ.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormXZJParam.resx">
+      <DependentUpon>FormXZJParam.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -317,6 +327,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCStatus.resx">
       <DependentUpon>UCStatus.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCXZJ.resx">
+      <DependentUpon>UCXZJ.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -415,6 +429,12 @@
     </Compile>
     <Compile Include="UCStatus.Designer.cs">
       <DependentUpon>UCStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCXZJ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCXZJ.Designer.cs">
+      <DependentUpon>UCXZJ.cs</DependentUpon>
     </Compile>
     <Compile Include="UserManage.cs">
       <SubType>Code</SubType>

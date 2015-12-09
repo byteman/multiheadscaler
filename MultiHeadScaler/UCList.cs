@@ -160,18 +160,7 @@ namespace Monitor
 
             strTitle = formFrame.visCateList[CategoryIndex].name;
             if(bValidSensor)    strTitle += " " + SensorAddr + "#";   
-            if ((_categoryIndex == formFrame.configManage.cfg.paramFormWeight.OneSensorCateIndex) && (!bValidSensor))
-            {
-                formFrame.ucRadioOnline.InitData();
-                formFrame.ShowUC(formFrame.ucRadioOnline);
-                return false;
-            }
-            else if (_categoryIndex == formFrame.configManage.cfg.paramFormWeight.CalibCateIndex)
-            {
-                //FormCalib formCalib = new FormCalib(formFrame);
-                //formCalib.ShowDialog();
-                return false;
-            }
+            
 
             uclType = _uclType;
             switch (uclType)

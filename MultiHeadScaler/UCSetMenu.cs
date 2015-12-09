@@ -54,8 +54,17 @@ namespace Monitor
         {
             PictureBox pb = (PictureBox)sender;
            int index = PageIndex*PageSize + (int)pb.Tag;
-           formFrame.ucDBListControl.InitData(0,"wwww", this);
-           formFrame.ShowUC(formFrame.ucDBListControl);
+           if (index == 0)
+           {
+               formFrame.ucDBListControl.InitData(0, "wwww", this);
+               formFrame.ShowUC(formFrame.ucDBListControl);
+           }
+           else
+           {
+               formFrame.ucListControl.InitData(index, UCList.UCListType.UCLT_Param,this,false,0);
+               formFrame.ShowUC(formFrame.ucListControl);
+           }
+           
        }
 
         #region ·ÖÒ³

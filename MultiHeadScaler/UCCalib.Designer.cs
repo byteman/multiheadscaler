@@ -143,9 +143,9 @@
             // 
             this.banOcxCtl1.BackColor = System.Drawing.Color.Black;
             this.banOcxCtl1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular);
-            this.banOcxCtl1.Location = new System.Drawing.Point(55, 24);
+            this.banOcxCtl1.Location = new System.Drawing.Point(27, 24);
             this.banOcxCtl1.Name = "banOcxCtl1";
-            this.banOcxCtl1.Size = new System.Drawing.Size(442, 409);
+            this.banOcxCtl1.Size = new System.Drawing.Size(526, 511);
             this.banOcxCtl1.TabIndex = 26;
             this.banOcxCtl1.中心点击区半径 = 40;
             this.banOcxCtl1.字母S的大小 = 40F;
@@ -153,16 +153,17 @@
             this.banOcxCtl1.斗区的颜色 = System.Drawing.Color.YellowGreen;
             this.banOcxCtl1.斗区线条的粗线 = 1F;
             this.banOcxCtl1.斗区线条的颜色 = System.Drawing.Color.White;
-            this.banOcxCtl1.磅称中心点坐标 = new System.Drawing.Point(220, 200);
-            this.banOcxCtl1.磅称的半径 = 180;
+            this.banOcxCtl1.磅称中心点坐标 = new System.Drawing.Point(250, 250);
+            this.banOcxCtl1.磅称的半径 = 210;
             this.banOcxCtl1.磅称的数量 = 10;
             this.banOcxCtl1.磅称的间隔弧度 = 5;
             this.banOcxCtl1.称状态字体大小 = 15F;
             this.banOcxCtl1.称状态字体颜色 = System.Drawing.Color.Red;
-            this.banOcxCtl1.称重量字体大小 = 10F;
-            this.banOcxCtl1.称重量字体颜色 = System.Drawing.Color.White;
+            this.banOcxCtl1.称重量字体大小 = 12F;
+            this.banOcxCtl1.称重量字体颜色 = System.Drawing.Color.Black;
             this.banOcxCtl1.编号字体大小 = 10F;
             this.banOcxCtl1.编号字体颜色 = System.Drawing.Color.Black;
+            this.banOcxCtl1.编号距中心的距离 = 30;
             this.banOcxCtl1.背景颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
             this.banOcxCtl1.点击事件 += new BanOcx.BanOcxCtl.MyEventHandler(this.banOcxCtl1_点击事件);
             // 

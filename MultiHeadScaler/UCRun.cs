@@ -13,7 +13,7 @@ namespace Monitor
 {
     public partial class UCRun : UserControl
     {
-        class HeadUIInfo
+        public class HeadUIInfo
         {
             public HeadUIInfo(byte _i, Color _c, String _t)
             {
@@ -32,8 +32,8 @@ namespace Monitor
         private Bitmap bmBtnDown = null;
         private Bitmap bmBtnUp = null;
         private List<TextBox> focusBox;
-        private int index = 0;
-
+        
+        private TextBox curTxtBox = null;
         private byte start = 2;
       
         public UCRun(FormFrame f)
@@ -171,14 +171,7 @@ namespace Monitor
 
         private void textBox5_GotFocus(object sender, EventArgs e)
         {
-            if (sender == textBox1)
-            { 
-                
-            }
-            else if (sender == textBox2)
-            {
-
-            }
+            SetFocusTextBox();
         }
         private TextBox getFocusTextBox()
         {
@@ -188,6 +181,18 @@ namespace Monitor
             }
             return null;
 
+        }
+        private void SetFocusTextBox()
+        {
+            foreach (TextBox b in focusBox)
+            {
+                if (b.Focused)
+                {
+                    b.BackColor = Color.Yellow;
+                    curTxtBox = b;
+                }
+                else b.BackColor = Color.White;
+            }
         }
         private void send(List<ParamItem> itemList)
         {
@@ -235,7 +240,7 @@ namespace Monitor
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            TextBox box = getFocusTextBox();
+            TextBox box = curTxtBox;
             if (box != null)
             { 
                 Int32 v = Convert.ToInt32(box.Text);
@@ -246,7 +251,7 @@ namespace Monitor
 
         private void btnSub_Click(object sender, EventArgs e)
         {
-            TextBox box = getFocusTextBox();
+            TextBox box = curTxtBox;
             if (box != null)
             {
                 Int32 v = Convert.ToInt32(box.Text);
@@ -342,7 +347,7 @@ namespace Monitor
             //返回结构体
             return obj;
         }
-        private HeadUIInfo FindHeadByStatus(byte status)
+        public HeadUIInfo FindHeadByStatus(byte status)
         {
             if (status < 1) return null;
             if (status > 10) return null;
@@ -477,6 +482,14 @@ namespace Monitor
         private void label5_ParentChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox5_LostFocus(object sender, EventArgs e)
+        {
+            if (getFocusTextBox() == null)
+            {
+               // curTxtBox = null;
+            }
         }
     }
 }

@@ -98,6 +98,7 @@
             this.banOcxCtl1.称重量字体颜色 = System.Drawing.Color.Magenta;
             this.banOcxCtl1.编号字体大小 = 10F;
             this.banOcxCtl1.编号字体颜色 = System.Drawing.Color.Black;
+            this.banOcxCtl1.编号距中心的距离 = 30;
             this.banOcxCtl1.背景颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
             this.banOcxCtl1.Validated += new System.EventHandler(this.banOcxCtl1_Validated);
             this.banOcxCtl1.Resize += new System.EventHandler(this.banOcxCtl1_Resize);
@@ -294,6 +295,7 @@
             this.textBox5.TabIndex = 22;
             this.textBox5.Text = "123";
             this.textBox5.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
+            this.textBox5.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
             // label12
             // 
@@ -313,6 +315,7 @@
             this.textBox6.TabIndex = 25;
             this.textBox6.Text = "123";
             this.textBox6.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
+            this.textBox6.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
             // label13
             // 
@@ -332,6 +335,7 @@
             this.textBox7.TabIndex = 28;
             this.textBox7.Text = "123";
             this.textBox7.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
+            this.textBox7.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
             // label14
             // 
@@ -351,6 +355,7 @@
             this.textBox8.TabIndex = 31;
             this.textBox8.Text = "123";
             this.textBox8.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
+            this.textBox8.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
             // label15
             // 
@@ -370,6 +375,7 @@
             this.textBox9.TabIndex = 34;
             this.textBox9.Text = "123";
             this.textBox9.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
+            this.textBox9.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
             // label16
             // 
@@ -389,6 +395,7 @@
             this.textBox10.TabIndex = 45;
             this.textBox10.Text = "123";
             this.textBox10.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
+            this.textBox10.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
             // label17
             // 
@@ -408,6 +415,7 @@
             this.textBox11.TabIndex = 44;
             this.textBox11.Text = "123";
             this.textBox11.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
+            this.textBox11.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
             // label18
             // 
@@ -427,6 +435,7 @@
             this.textBox12.TabIndex = 43;
             this.textBox12.Text = "123";
             this.textBox12.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
+            this.textBox12.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
             // label19
             // 
@@ -446,6 +455,7 @@
             this.textBox13.TabIndex = 42;
             this.textBox13.Text = "123";
             this.textBox13.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
+            this.textBox13.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
             // label20
             // 
@@ -465,6 +475,7 @@
             this.textBox14.TabIndex = 41;
             this.textBox14.Text = "123";
             this.textBox14.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
+            this.textBox14.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
             // btnAdd
             // 

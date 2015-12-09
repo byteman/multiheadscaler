@@ -107,8 +107,8 @@
     <Category name="通道板参数" refresh="1">
       <list>
 
-        <ParamDefineItem visible="1" read="0" write="1" name="配方编号" unit="" dev_id="128" param_id="32" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" /> 
-		<ParamDefineItem visible="1" read="0" write="1" name="配方名称" unit="" dev_id="128" param_id="33" param_len="16" param_type="String" valid_min_max="false" min="0" max="0" /> 
+        <ParamDefineItem visible="1" read="1" write="1" name="配方编号" unit="" dev_id="128" param_id="32" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" /> 
+		<ParamDefineItem visible="1" read="1" write="1" name="配方名称" unit="" dev_id="128" param_id="33" param_len="16" param_type="String" valid_min_max="false" min="0" max="0" /> 
 		
       </list>
     </Category>

@@ -9,8 +9,8 @@ namespace Monitor
 {
     public class Protocol
     {
-        private const byte MaxItem = 16;        //每包最多修改16个参数
-        private const byte MaxBuffer = 192;     //缓冲区大小
+        private const byte MaxItem = 32;        //每包最多修改16个参数
+        private const byte MaxBuffer = 254;     //缓冲区大小
 
         //这些参数ID需要特殊处理
         public const byte ParamIdFixAddr = 14;

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using System.Drawing;
 
 namespace Monitor
 {
@@ -11,13 +12,14 @@ namespace Monitor
     {
         public ScalerInfo()
         {
-            weight = new List<int>();
+            weight = new List<float>();
             status = new List<int>();
             for (int i = 0; i < 10; i++)
             {
                 weight.Add(0);
                 status.Add(0);
             }
+
            
         }
         bool updateWeight(int index, int w)
@@ -34,15 +36,26 @@ namespace Monitor
         }
         public bool updateWeightObj(object wl)
         {
-            int[] arr = (int[])wl;
+            byte[] arr = (byte[])wl;
+            byte[] tmp = new byte[4];
             for (int i = 0; i < 10; i++)
             {
-                weight[i] = arr[i];
+                tmp[0] = arr[i * 4 + 3];
+                tmp[1] = arr[i * 4 + 2];
+                tmp[2] = arr[i * 4 + 1];
+                tmp[3] = arr[i * 4 + 0];
+
+                weight[i] = BitConverter.ToSingle(tmp, 0);
             }
             return true;
         }
         public bool updateStatusObj(object sl)
         {
+            byte[] arr = (byte[])sl;
+            for (int i = 0; i < 10; i++)
+            {
+                status[i] = arr[i];
+            }
             return true;
         }
         bool updateStatus(int index, byte s)
@@ -58,13 +71,8 @@ namespace Monitor
 
         public string getWeightString(int index)
         {
-            string str = weight[index].ToString();
-            if (str.Length == 1)
-            {
-                str = "0." + str;
-            }
-            else
-                str.Insert(str.Length - 1, ".");
+            if ((index < 0) || index >= 10) return "";
+            string str = weight[index].ToString("0.0");
             return str;
         }
         public string getStatusString(int index)
@@ -73,7 +81,25 @@ namespace Monitor
 
             return "R";
         }
-        private List<int> weight;
+        public int getStatus(int index)
+        {
+
+            if ((index < 0) || index >= 10) return 0; 
+            return status[index];
+        }
+        public Color getStatusColor(int index)
+        {
+            index = getStatus(index);
+            if (index == 1) return Color.Green;
+            if (index == 2) return Color.Red;
+            if (index >= 3 && index <= 7) return Color.Black;
+            if (index >= 8 && index <= 10) return Color.Blue;
+
+            return Color.Gray;
+
+         
+        }
+        private List<float> weight;
         private List<int> status;
     }
 }

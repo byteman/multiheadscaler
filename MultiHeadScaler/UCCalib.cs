@@ -41,17 +41,12 @@ namespace Monitor
             timer.Tick += new EventHandler(timer_Tick);
             timer.Enabled = false;
         }
-
-        void timer_Tick(object sender, EventArgs e)
+        private void read_all_weight()
         {
-            if (this.Visible == false)
-            {
-                return;
-            }
             List<ParamItem> itemList = new List<ParamItem>();
             ParamItem item;
             item = new ParamItem();
-   
+
             item.dev_id = formFrame.configManage.cfg.paramDeviceId.Ctrl;
             item.param_id = 4; //读取全部驱动板重量
             item.op_write = 0; //读取
@@ -59,7 +54,20 @@ namespace Monitor
             item.param_len = 0;
             item.param_value = 0;
             itemList.Add(item);
+
+            item.param_id = 3; //读取全部驱动板重量
+            itemList.Add(item);
+
             send(itemList);
+        
+        }
+        void timer_Tick(object sender, EventArgs e)
+        {
+            if (this.Visible == false)
+            {
+                return;
+            }
+            read_all_weight();
         }
 
         private void pbBtn_MouseDown(object sender, MouseEventArgs e)
@@ -132,6 +140,7 @@ namespace Monitor
             item.param_type = TypeCode.Byte;
             item.param_len = 1;
             item.param_value = (byte)1;
+
             itemList.Add(item);
             byte[] buf;
             int len = protocol.Produce(formFrame.configManage.cfg.paramDeviceId.Ctrl, out buf, itemList);
@@ -258,17 +267,22 @@ namespace Monitor
             for (int i = 0; i < 10; i++)
             {
                 banOcxCtl1.SetBanWeight(i+1, si.getWeightString(i));
+               
+                banOcxCtl1.SetBanColor(i  + 1, si.getStatusColor(i));
+                banOcxCtl1.SetBanStatus(i + 1, si.getStatusString(i));        
+                
             }
         }
         private void pbExit_Click_1(object sender, EventArgs e)
         {
+            //read_all_weight();
             timer.Enabled = false;
             formFrame.ShowUC(formFrame.ucMain);
         }
 
         private void UCCalib_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawRectangle(new Pen(Color.Blue), 530, 20, 250, 440);
+           // e.Graphics.DrawRectangle(new Pen(Color.Blue), 530, 20, 250, 440);
 
         }
         private void send(List<ParamItem> itemList)

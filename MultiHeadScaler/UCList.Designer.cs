@@ -37,17 +37,17 @@
             this.pnLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.pnLeft.Location = new System.Drawing.Point(28, 24);
             this.pnLeft.Name = "pnLeft";
-            this.pnLeft.Size = new System.Drawing.Size(616, 380);
+            this.pnLeft.Size = new System.Drawing.Size(616, 510);
+            this.pnLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.pnLeft_Paint);
             this.pnLeft.Click += new System.EventHandler(this.pnLeft_Click);
             this.pnLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnLeft_MouseDown);
-            this.pnLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.pnLeft_Paint);
             // 
             // pnRight
             // 
             this.pnRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
             this.pnRight.Location = new System.Drawing.Point(650, 0);
             this.pnRight.Name = "pnRight";
-            this.pnRight.Size = new System.Drawing.Size(150, 432);
+            this.pnRight.Size = new System.Drawing.Size(150, 534);
             // 
             // UCList
             // 
@@ -57,7 +57,7 @@
             this.Controls.Add(this.pnRight);
             this.Controls.Add(this.pnLeft);
             this.Name = "UCList";
-            this.Size = new System.Drawing.Size(800, 432);
+            this.Size = new System.Drawing.Size(800, 600);
             this.ResumeLayout(false);
 
         }

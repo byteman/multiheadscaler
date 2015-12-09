@@ -359,62 +359,7 @@ namespace Monitor
             if (ucRetControl != null) formFrame.ShowUC(ucRetControl);
             else formFrame.ShowUC(formFrame.ucMain);
         }
-        private void start_download_driver_param(byte formula_id)
-        {
-            DataTable dt = SQLiteDBHelper.listFormula(formula_id);
-            DataRow dr = null;
-            formula_num = getFormulaNum();
-            if (dt.Rows.Count != 0)
-            {
-                //没有数据就返回.
-                //return;
-                dr = dt.Rows[0]; //取第一条记录
-            }
-            else
-            {
-                return;
-            }
-            for (byte i = 0; i < 10; i++)
-            {
-                XZJ_Param item;
-                item.drv_id = (byte)(i+i);
-                item.strength = byte.Parse(dr["xzp_strength"+ i.ToString()].ToString());
-                item.time = byte.Parse(dr["xzp_time" + i.ToString()].ToString());
-                xzjpars.Enqueue(item);
-            }
-            download_driver_param();
-
-        }
-        private void download_driver_param()
-        {
-            if (xzjpars.Count > 0)
-            {
-                XZJ_Param par = xzjpars.Peek();
-                Protocol protocol = formFrame.protocol;
-                SerialOperate Serial = SerialOperate.instance;
-                List<ParamItem> itemList = new List<ParamItem>();
-                ParamItem item = new ParamItem();
-                item.dev_id = par.drv_id;
-                item.op_write = 1;
-                item.param_id = 5;
-                int v = (par.strength << 16) + (par.time);
-                item.param_value = v;
-                item.param_len = 4;
-                itemList.Add(item);
-
-                byte[] buf;
-                int len = protocol.Produce(formFrame.configManage.cfg.paramDeviceId.Ctrl, out buf, itemList);
-                if (len > 0)
-                {
-                    Serial.Send(buf, len);
-                }
-                timer1.Enabled = false;
-
-                timer1.Enabled = true;
-
-            }
-
-        }
+        
         private void ClickExt()
         {
             //download to controller
@@ -588,9 +533,8 @@ namespace Monitor
             else if (item.param_id == 48)
             {
                 int id = ParseID(TotalPageList[0].param_value);
-                FormXZJ dlg = new FormXZJ(formFrame, id);
-                dlg.ShowDialog();
-                dlg.Dispose();
+                formFrame.ucXzj.XZJ_Load(id);
+                formFrame.ShowUC(formFrame.ucXzj);
                 
                 //TotalPageList[index].param_value = "点击配置...";
                 //ShowPage(PageIndex); //刷新当前页的内容.
@@ -733,27 +677,10 @@ namespace Monitor
                 //formFrame.configManage.cfg.paramFormWeight.FormulaID = (byte)formula_id;
                 //formFrame.configManage.Serialize(); //保存.
                 //downloadQX();
-                //FormMsgBox.Show("配方参数下载成功!!!", "提示");
+                FormMsgBox.Show("配方参数下载成功!!!", "提示");
                 
             }
-            else {
-                XZJ_Param p = xzjpars.Peek();
-                foreach (ParamItem i in itemList)
-                {
-                    if (i.dev_id == p.drv_id)
-                    {
-                        xzjpars.Dequeue();
-                        download_driver_param();
-                        break;
-                    }
-                }
-                if (xzjpars.Count == 0)
-                {
-                    timer1.Enabled = false;
-                    FormMsgBox.Show("配方参数下载成功!!!", "提示");
-                }
-                //FormMsgBox.Show("配方参数个数不匹配!!!", "错误");
-            }
+           
     
         }
 
@@ -764,7 +691,7 @@ namespace Monitor
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            download_driver_param();
+            
         }
     }
 }
