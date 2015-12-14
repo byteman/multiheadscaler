@@ -14,6 +14,7 @@ namespace Monitor
         private FormFrame formFrame;
         private Bitmap bmBtnDown = null;
         private Bitmap bmBtnUp = null;
+        ScalerInfo si = new ScalerInfo();
         public UCDebug(FormFrame f)
         {
             InitializeComponent();
@@ -31,11 +32,11 @@ namespace Monitor
 
             pbClear.Image = bmBtnUp;
             pbBan.Image = bmBtnUp;
-            pbStep.Image = bmBtnUp;
+            //pbStep.Image = bmBtnUp;
             pbShake.Image = bmBtnUp;
 
-            pbContinuStep.Image = bmBtnUp;
-            pbEmpty.Image = bmBtnUp;
+            //pbContinuStep.Image = bmBtnUp;
+            //pbEmpty.Image = bmBtnUp;
             pbStop.Image = bmBtnUp;
             pbExit.Image = bmBtnUp;
         }
@@ -66,7 +67,19 @@ namespace Monitor
             if (bmBtnUp != null) bmBtnUp.Dispose();
             base.Dispose();
         }
+        private void UpdateUI(object obj, System.EventArgs e)
+        {
+            //更新每个banocx上面的重量.
 
+            for (int i = 0; i < 10; i++)
+            {
+                banOcxCtl1.SetBanWeight(i + 1, si.getWeightString(i));
+
+                banOcxCtl1.SetBanColor(i + 1, si.getStatusColor(i));
+                banOcxCtl1.SetBanStatus(i + 1, si.getStatusString(i));
+
+            }
+        }
         private void pbClear_Paint(object sender, PaintEventArgs e)
         {
             DrawLabel(sender, e, "清零");
@@ -84,22 +97,22 @@ namespace Monitor
 
         private void pbStep_Paint(object sender, PaintEventArgs e)
         {
-            DrawLabel(sender, e, "单步");
+
         }
 
         private void pbContinuStep_Paint(object sender, PaintEventArgs e)
         {
-            DrawLabel(sender, e, "连续单步");
+            //DrawLabel(sender, e, "连续单步");
         }
 
         private void pbEmpty_Paint(object sender, PaintEventArgs e)
         {
-            DrawLabel(sender, e, "清空");
+
         }
 
         private void pbStop_Paint(object sender, PaintEventArgs e)
         {
-            DrawLabel(sender, e, "停止");
+            DrawLabel(sender, e, "全部停止");
         }
 
         private void pbExit_Paint(object sender, PaintEventArgs e)
@@ -136,7 +149,37 @@ namespace Monitor
 
         private void banOcxCtl1_点击事件(object sender, BanOcx.MyEventArges e)
         {
-            tb_number.Text = e.SelNum.ToString();
+            
+            if (e.SelNum == 0)
+                tb_number.Text = "11";
+            else tb_number.Text = e.SelNum.ToString();
+        }
+        private void read_all_weight()
+        {
+            List<ParamItem> itemList = new List<ParamItem>();
+            ParamItem item;
+            item = new ParamItem();
+
+            item.dev_id = formFrame.configManage.cfg.paramDeviceId.Ctrl;
+            item.param_id = 4; //读取全部驱动板重量
+            item.op_write = 0; //读取
+            item.param_type = TypeCode.Empty;
+            item.param_len = 0;
+            item.param_value = 0;
+            itemList.Add(item);
+
+            item = new ParamItem();
+
+            item.dev_id = formFrame.configManage.cfg.paramDeviceId.Ctrl;
+            item.param_id = 3; //读取全部驱动板重量
+            item.op_write = 0; //读取
+            item.param_type = TypeCode.Empty;
+            item.param_len = 0;
+            item.param_value = 0;
+            itemList.Add(item);
+
+            send(itemList);
+
         }
         private void sendDebugCmd(byte cmd)
         {
@@ -162,17 +205,17 @@ namespace Monitor
 
         private void pbStep_Click(object sender, EventArgs e)
         {
-            sendDebugCmd(195);
+            //sendDebugCmd(195);
         }
 
         private void pbContinuStep_Click(object sender, EventArgs e)
         {
-            sendDebugCmd(196);
+            //sendDebugCmd(196);
         }
 
         private void pbEmpty_Click(object sender, EventArgs e)
         {
-            sendDebugCmd(197);
+            //sendDebugCmd(197);
         }
 
         private void pbStop_Click(object sender, EventArgs e)
@@ -180,6 +223,35 @@ namespace Monitor
             sendDebugCmd(198);
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (this.Visible)
+            {
+                read_all_weight();
+            }
+        }
+        public void SetReturnValue(List<ParamItem> itemList)
+        {
+            //
+            foreach (ParamItem item in itemList)
+            {
+                if (item.dev_id == 128) //控制器的命令回应
+                {
+                    if (item.param_id == 3) //读取所有秤头状态
+                    {
+                        //item.param_value
+                        si.updateStatusObj(item.param_value);
+                    }
+                    else if (item.param_id == 4) //读取所有秤头重量
+                    {
+                        //item.param_value
+                        si.updateWeightObj(item.param_value);
+                    }
+                    BeginInvoke(new System.EventHandler(UpdateUI), null);
+                }
+            }
+
+        }
        
 
     }

@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Monitor
 {
@@ -26,6 +27,7 @@ namespace Monitor
             public String title;
 
         }
+        ScalerInfo si = new ScalerInfo();
         private List<HeadUIInfo> headInfos = new List<HeadUIInfo>();
 
         private FormFrame formFrame = null;
@@ -83,9 +85,9 @@ namespace Monitor
             pbStop.Image  = bmBtnUp;
             pbExit.Image = bmBtnUp;
             pbSimu.Image = bmBtnUp;
-            timer1.Interval = 1000;
-            timer1.Tick += new EventHandler(timer1_Tick);
-            timer1.Enabled = true;
+            //timer1.Interval = 1000;
+            //timer1.Tick += new EventHandler(timer1_Tick);
+            //timer1.Enabled = true;
         }
         private void pbBtn_MouseDown(object sender, MouseEventArgs e)
         {
@@ -136,6 +138,9 @@ namespace Monitor
 
         private void pbExit_Click(object sender, EventArgs e)
         {
+            writeCmd(1, 2);
+           
+            writeCmd(1, 2);
             formFrame.ShowUC(formFrame.ucMain);
         }
 
@@ -148,13 +153,37 @@ namespace Monitor
         {
             DrawLabel(sender, e, "模拟运行");
         }
+        private void read_all_weight()
+        {
+            List<ParamItem> itemList = new List<ParamItem>();
+            ParamItem item;
+            item = new ParamItem();
 
+            item.dev_id = formFrame.configManage.cfg.paramDeviceId.Ctrl;
+            item.param_id = 4; //读取全部驱动板重量
+            item.op_write = 0; //读取
+            item.param_type = TypeCode.Empty;
+            item.param_len = 0;
+            item.param_value = 0;
+            itemList.Add(item);
+
+            item = new ParamItem();
+
+            item.dev_id = formFrame.configManage.cfg.paramDeviceId.Ctrl;
+            item.param_id = 3; //读取全部驱动板重量
+            item.op_write = 0; //读取
+            item.param_type = TypeCode.Empty;
+            item.param_len = 0;
+            item.param_value = 0;
+            itemList.Add(item);
+
+            send(itemList);
+
+        }
+      
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (this.Visible)
-            {
-                readStatus(1);
-            }
+          
         }
         private void UpdateUI(object obj, System.EventArgs e)
         {
@@ -162,6 +191,16 @@ namespace Monitor
                 lblStatus.Text = "启动";
             else
                 lblStatus.Text = "停止";
+            //更新每个banocx上面的重量.
+
+            for (int i = 0; i < 10; i++)
+            {
+                banOcxCtl1.SetBanWeight(i + 1, si.getWeightString(i));
+
+                banOcxCtl1.SetBanColor(i + 1, si.getStatusColor(i));
+                banOcxCtl1.SetBanStatus(i + 1, si.getStatusString(i));
+
+            }
         }
         private void pbStart_Click(object sender, EventArgs e)
         {
@@ -349,8 +388,9 @@ namespace Monitor
         }
         public HeadUIInfo FindHeadByStatus(byte status)
         {
-            if (status < 1) return null;
-            if (status > 10) return null;
+            //异常的返回称重斗故障
+            if (status < 1) return headInfos[4];
+            if (status > 10) return headInfos[4];
             return headInfos[status - 1];
         }
         private void parseInfo(object o)
@@ -402,6 +442,7 @@ namespace Monitor
             string path = String.Format(formFrame.configManage.FileDir + @"\formula\{0}.jpg", id);
             return GetBitmap(path);
         }
+      
         internal void SetReturnValue(List<ParamItem> itemList)
         {
             foreach (ParamItem item in itemList)
@@ -412,6 +453,7 @@ namespace Monitor
                     {
                         parseInfo(item.param_value);
                         ackData();
+                        return;
                         //item.param_value;
                     }
                     else if ( (item.param_id == 1) && (item.op_write == 0)) //启动停止反馈.
@@ -428,8 +470,20 @@ namespace Monitor
 
                         }
                         start = s;
-                        BeginInvoke(new System.EventHandler(UpdateUI), s);
+                      
                     }
+                    else if (item.param_id == 3) //读取所有秤头状态
+                    {
+                        //item.param_value
+                        si.updateStatusObj(item.param_value);
+                    }
+                    else if (item.param_id == 4) //读取所有秤头重量
+                    {
+                        //item.param_value
+                        si.updateWeightObj(item.param_value);
+                    }
+                    BeginInvoke(new System.EventHandler(UpdateUI), null);
+                   
                 }
             }
         }
@@ -489,6 +543,15 @@ namespace Monitor
             if (getFocusTextBox() == null)
             {
                // curTxtBox = null;
+            }
+        }
+
+        private void timer1_Tick_1(object sender, EventArgs e)
+        {
+            if (this.Visible)
+            {
+                //readStatus(1);
+                read_all_weight();
             }
         }
     }

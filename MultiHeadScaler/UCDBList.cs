@@ -336,7 +336,9 @@ namespace Monitor
             var dic = new Dictionary<string, object>();
             foreach (ParamItem i in TotalPageList)
             {
-                dic[getDBColumName(i.name)] = i.param_value;
+                string name = getDBColumName(i.name);
+                if(name != "xx")
+                    dic[name] = i.param_value;
             }
             var cond = new Dictionary<string, object>();
             int id = ParseID(TotalPageList[0].param_value);

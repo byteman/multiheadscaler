@@ -39,6 +39,7 @@
             this.pbExit = new System.Windows.Forms.PictureBox();
             this.tb_number = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer();
             this.SuspendLayout();
             // 
             // banOcxCtl1
@@ -65,6 +66,7 @@
             this.banOcxCtl1.称重量字体颜色 = System.Drawing.Color.White;
             this.banOcxCtl1.编号字体大小 = 10F;
             this.banOcxCtl1.编号字体颜色 = System.Drawing.Color.Black;
+            this.banOcxCtl1.编号距中心的距离 = 30;
             this.banOcxCtl1.背景颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
             this.banOcxCtl1.点击事件 += new BanOcx.BanOcxCtl.MyEventHandler(this.banOcxCtl1_点击事件);
             // 
@@ -80,7 +82,7 @@
             // 
             // pbBan
             // 
-            this.pbBan.Location = new System.Drawing.Point(639, 119);
+            this.pbBan.Location = new System.Drawing.Point(483, 268);
             this.pbBan.Name = "pbBan";
             this.pbBan.Size = new System.Drawing.Size(150, 50);
             this.pbBan.Click += new System.EventHandler(this.pbBan_Click);
@@ -94,9 +96,6 @@
             this.pbStep.Name = "pbStep";
             this.pbStep.Size = new System.Drawing.Size(150, 50);
             this.pbStep.Click += new System.EventHandler(this.pbStep_Click);
-            this.pbStep.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
-            this.pbStep.Paint += new System.Windows.Forms.PaintEventHandler(this.pbStep_Paint);
-            this.pbStep.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
             // 
             // pbShake
             // 
@@ -114,19 +113,13 @@
             this.pbEmpty.Name = "pbEmpty";
             this.pbEmpty.Size = new System.Drawing.Size(150, 50);
             this.pbEmpty.Click += new System.EventHandler(this.pbEmpty_Click);
-            this.pbEmpty.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
-            this.pbEmpty.Paint += new System.Windows.Forms.PaintEventHandler(this.pbEmpty_Paint);
-            this.pbEmpty.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
             // 
             // pbContinuStep
             // 
-            this.pbContinuStep.Location = new System.Drawing.Point(483, 268);
+            this.pbContinuStep.Location = new System.Drawing.Point(639, 119);
             this.pbContinuStep.Name = "pbContinuStep";
             this.pbContinuStep.Size = new System.Drawing.Size(150, 50);
             this.pbContinuStep.Click += new System.EventHandler(this.pbContinuStep_Click);
-            this.pbContinuStep.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
-            this.pbContinuStep.Paint += new System.Windows.Forms.PaintEventHandler(this.pbContinuStep_Paint);
-            this.pbContinuStep.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
             // 
             // pbStop
             // 
@@ -168,6 +161,12 @@
             this.label3.Size = new System.Drawing.Size(75, 20);
             this.label3.Text = "号斗";
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // UCDebug
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -203,5 +202,6 @@
         private System.Windows.Forms.PictureBox pbExit;
         private System.Windows.Forms.TextBox tb_number;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Timer timer1;
     }
 }

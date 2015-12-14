@@ -320,6 +320,10 @@ namespace Monitor
             {
                 ucXzj.SetReturnValue(itemList);
             }
+            else if (ucDebug.Visible == true)
+            {
+                ucDebug.SetReturnValue(itemList);
+            }
         }
         #endregion
 

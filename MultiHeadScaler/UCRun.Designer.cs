@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.banOcxCtl1 = new BanOcx.BanOcxCtl();
             this.pbStart = new System.Windows.Forms.PictureBox();
             this.pbStop = new System.Windows.Forms.PictureBox();
             this.pbExit = new System.Windows.Forms.PictureBox();
@@ -45,7 +44,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pbSimu = new System.Windows.Forms.PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer();
             this.label10 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -72,36 +70,9 @@
             this.btnSub = new System.Windows.Forms.Button();
             this.txb_wet = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.banOcxCtl1 = new BanOcx.BanOcxCtl();
+            this.timer1 = new System.Windows.Forms.Timer();
             this.SuspendLayout();
-            // 
-            // banOcxCtl1
-            // 
-            this.banOcxCtl1.BackColor = System.Drawing.Color.Black;
-            this.banOcxCtl1.Font = new System.Drawing.Font("宋体", 8F, System.Drawing.FontStyle.Regular);
-            this.banOcxCtl1.Location = new System.Drawing.Point(177, 3);
-            this.banOcxCtl1.Name = "banOcxCtl1";
-            this.banOcxCtl1.Size = new System.Drawing.Size(442, 409);
-            this.banOcxCtl1.TabIndex = 8;
-            this.banOcxCtl1.中心点击区半径 = 40;
-            this.banOcxCtl1.字母S的大小 = 40F;
-            this.banOcxCtl1.字母S的颜色 = System.Drawing.Color.Green;
-            this.banOcxCtl1.斗区的颜色 = System.Drawing.Color.YellowGreen;
-            this.banOcxCtl1.斗区线条的粗线 = 1F;
-            this.banOcxCtl1.斗区线条的颜色 = System.Drawing.Color.Black;
-            this.banOcxCtl1.磅称中心点坐标 = new System.Drawing.Point(220, 200);
-            this.banOcxCtl1.磅称的半径 = 180;
-            this.banOcxCtl1.磅称的数量 = 10;
-            this.banOcxCtl1.磅称的间隔弧度 = 10;
-            this.banOcxCtl1.称状态字体大小 = 15F;
-            this.banOcxCtl1.称状态字体颜色 = System.Drawing.Color.Black;
-            this.banOcxCtl1.称重量字体大小 = 12F;
-            this.banOcxCtl1.称重量字体颜色 = System.Drawing.Color.Magenta;
-            this.banOcxCtl1.编号字体大小 = 10F;
-            this.banOcxCtl1.编号字体颜色 = System.Drawing.Color.Black;
-            this.banOcxCtl1.编号距中心的距离 = 30;
-            this.banOcxCtl1.背景颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
-            this.banOcxCtl1.Validated += new System.EventHandler(this.banOcxCtl1_Validated);
-            this.banOcxCtl1.Resize += new System.EventHandler(this.banOcxCtl1_Resize);
             // 
             // pbStart
             // 
@@ -251,11 +222,6 @@
             this.pbSimu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbSimu.Paint += new System.Windows.Forms.PaintEventHandler(this.pbSimu_Paint);
             this.pbSimu.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // label10
             // 
@@ -514,6 +480,41 @@
             this.lblStatus.Text = "停止";
             this.lblStatus.ParentChanged += new System.EventHandler(this.label5_ParentChanged);
             // 
+            // banOcxCtl1
+            // 
+            this.banOcxCtl1.BackColor = System.Drawing.Color.Black;
+            this.banOcxCtl1.Font = new System.Drawing.Font("宋体", 8F, System.Drawing.FontStyle.Regular);
+            this.banOcxCtl1.Location = new System.Drawing.Point(177, 3);
+            this.banOcxCtl1.Name = "banOcxCtl1";
+            this.banOcxCtl1.Size = new System.Drawing.Size(442, 409);
+            this.banOcxCtl1.TabIndex = 8;
+            this.banOcxCtl1.中心点击区半径 = 40;
+            this.banOcxCtl1.字母S的大小 = 40F;
+            this.banOcxCtl1.字母S的颜色 = System.Drawing.Color.Green;
+            this.banOcxCtl1.斗区的颜色 = System.Drawing.Color.YellowGreen;
+            this.banOcxCtl1.斗区线条的粗线 = 1F;
+            this.banOcxCtl1.斗区线条的颜色 = System.Drawing.Color.Black;
+            this.banOcxCtl1.磅称中心点坐标 = new System.Drawing.Point(220, 200);
+            this.banOcxCtl1.磅称的半径 = 180;
+            this.banOcxCtl1.磅称的数量 = 10;
+            this.banOcxCtl1.磅称的间隔弧度 = 10;
+            this.banOcxCtl1.称状态字体大小 = 15F;
+            this.banOcxCtl1.称状态字体颜色 = System.Drawing.Color.Black;
+            this.banOcxCtl1.称重量字体大小 = 12F;
+            this.banOcxCtl1.称重量字体颜色 = System.Drawing.Color.Magenta;
+            this.banOcxCtl1.编号字体大小 = 10F;
+            this.banOcxCtl1.编号字体颜色 = System.Drawing.Color.Black;
+            this.banOcxCtl1.编号距中心的距离 = 30;
+            this.banOcxCtl1.背景颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
+            this.banOcxCtl1.Validated += new System.EventHandler(this.banOcxCtl1_Validated);
+            this.banOcxCtl1.Resize += new System.EventHandler(this.banOcxCtl1_Resize);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
+            // 
             // UCRun
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -587,7 +588,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pbSimu;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label11;
@@ -614,5 +614,6 @@
         private System.Windows.Forms.Button btnSub;
         private System.Windows.Forms.Label txb_wet;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Timer timer1;
     }
 }

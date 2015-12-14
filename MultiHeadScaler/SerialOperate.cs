@@ -133,17 +133,18 @@ namespace Monitor
             {
                 lock (objLockSend)
                 {
-                    #if WINCE
-                    while ((PInvoke.PGetTickCount() - PreSendTick) < SendInterval)
-                    {
-                        Thread.Sleep(10);
-                    }
-                    PreSendTick = PInvoke.PGetTickCount();
-                    System.Diagnostics.Debug.WriteLine(PreSendTick);
-                    #endif
-
                     sp.Write(buffer, 0, length);
-                    if (LogEventSend != null) LogEventSend(buffer, length);
+                    //#if WINCE
+                    //while ((PInvoke.PGetTickCount() - PreSendTick) < SendInterval)
+                    //{
+                    //    Thread.Sleep(10);
+                    //}
+                    //PreSendTick = PInvoke.PGetTickCount();
+                    //System.Diagnostics.Debug.WriteLine(PreSendTick);
+                    //#endif
+
+                    //sp.Write(buffer, 0, length);
+                    //if (LogEventSend != null) LogEventSend(buffer, length);
                 }
                 return length;
             }

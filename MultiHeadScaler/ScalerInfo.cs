@@ -77,8 +77,19 @@ namespace Monitor
         }
         public string getStatusString(int index)
         {
-            int sta = status[index];
-
+         
+            int stat = getStatus(index);
+            if (stat == 1) return "M";
+            else if (stat == 1) return "M";
+            else if (stat == 2) return "R";
+            else if (stat == 3) return "U";
+            else if (stat == 4) return "D";
+            else if (stat == 5) return "S";
+            else if (stat == 6) return "B";
+            else if (stat == 7) return "I";
+            else if (stat == 8) return "Y";
+            else if (stat == 9) return "L";
+            else if (stat == 10) return "P";
             return "R";
         }
         public int getStatus(int index)

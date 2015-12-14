@@ -37,7 +37,7 @@ namespace Monitor
             pbExit.Image = bmBtnUp;
 
             //timer.Interval = configManage.cfg.paramFormWeight.Interval;
-            timer.Interval = 1000;
+            timer.Interval = 500;
             timer.Tick += new EventHandler(timer_Tick);
             timer.Enabled = false;
         }
@@ -55,7 +55,14 @@ namespace Monitor
             item.param_value = 0;
             itemList.Add(item);
 
+            item = new ParamItem();
+
+            item.dev_id = formFrame.configManage.cfg.paramDeviceId.Ctrl;
             item.param_id = 3; //读取全部驱动板重量
+            item.op_write = 0; //读取
+            item.param_type = TypeCode.Empty;
+            item.param_len = 0;
+            item.param_value = 0;
             itemList.Add(item);
 
             send(itemList);
@@ -338,8 +345,8 @@ namespace Monitor
             item = new ParamItem();
             int driver_id = int.Parse(tb_number.Text);
 
-            item.dev_id = formFrame.configManage.cfg.paramDeviceId.Ctrl;
-            item.param_id = 192; //清零驱动板
+            item.dev_id = (byte)driver_id;
+            item.param_id = 11; //清零驱动板
             item.op_write = 1;
             item.param_type = TypeCode.Byte;
             item.param_len = 1;
