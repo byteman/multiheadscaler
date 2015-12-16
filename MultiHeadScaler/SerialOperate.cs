@@ -15,7 +15,7 @@ namespace Monitor
         public static readonly SerialOperate instance = new SerialOperate();
         private SerialPort sp;
         private byte[] RecvBuf;
-        private int RecvBufMax = 128;
+        private int RecvBufMax = 256;
         private int RecvBufLen = 0;
         private int ReadWaitMs = 150;
 
@@ -57,10 +57,13 @@ namespace Monitor
             try
             {
                 Listening = true;       //设置标记，说明我已经开始处理数据，一会儿要使用系统UI的
+                ReadWaitMs = 50;
                 Thread.Sleep(ReadWaitMs);
                 if (sp.BytesToRead > 0)
                 {
-                    RecvBufLen = sp.Read(RecvBuf, 0, RecvBufMax);
+                    int size = (sp.BytesToRead > RecvBufMax) ? RecvBufMax : sp.BytesToRead;
+
+                    RecvBufLen =  sp.Read(RecvBuf, 0, size/* RecvBufMax */);
                     if (RecvBufLen > 0)
                     {
                         if (SEventRecv != null) SEventRecv(sender, e);
@@ -107,7 +110,7 @@ namespace Monitor
             sp.Parity = Parity.None;
             sp.StopBits = StopBits.One;
             sp.ReadTimeout = 200;
-            sp.ReadBufferSize = 128;
+            sp.ReadBufferSize = 256;
             try
             {
                 if (!sp.IsOpen)

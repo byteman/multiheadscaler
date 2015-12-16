@@ -79,6 +79,7 @@ namespace Monitor
                 banOcxCtl1.SetBanStatus(i + 1, si.getStatusString(i));
 
             }
+            banOcxCtl1.BanRefresh();
         }
         private void pbClear_Paint(object sender, PaintEventArgs e)
         {

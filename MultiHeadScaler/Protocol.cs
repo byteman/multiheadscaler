@@ -75,7 +75,7 @@ namespace Monitor
                 if (ResendPack.ResendCount > 0)
                 {
                     interval = (int)PInvoke.PGetTickCount() - (int)ResendPack.SendTick;
-                    if (interval > 200)  //重发
+                    if (interval > 1)  //重发
                     {
                         Serial.Send(ResendPack.Buffer, ResendPack.BufferLen);
                         ResendPack.ResendCount--;
@@ -98,7 +98,7 @@ namespace Monitor
                     return;     //查询控制器状态太频繁，不进入重发机制
                 }
 
-                ResendPack.ResendCount = configManage.cfg.paramSerial.ResendCount;
+                ResendPack.ResendCount = 1;// configManage.cfg.paramSerial.ResendCount;
                 ResendPack.SlaveAddr = SlaveAddr;
                 ResendPack.ParamCount = (byte)itemList.Count;
                 ResendPack.ListCmd.Clear();
@@ -272,7 +272,7 @@ namespace Monitor
             Array.Copy(byCrc, 0, buffer, count, byCrc.Length);
             count += byCrc.Length;
 
-            AddResendPack(slaveAddr, buffer, count, itemList);
+            //AddResendPack(slaveAddr, buffer, count, itemList);
             return count;
         }
 
@@ -375,7 +375,7 @@ namespace Monitor
                     bValidParam = false;       //有无效参数
                 }
             }
-            DelResendPack(buffer[1], bValidParam, itemList);
+            //DelResendPack(buffer[1], bValidParam, itemList);
             return len;
         }
 

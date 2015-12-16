@@ -196,11 +196,11 @@ namespace Monitor
             for (int i = 0; i < 10; i++)
             {
                 banOcxCtl1.SetBanWeight(i + 1, si.getWeightString(i));
-
                 banOcxCtl1.SetBanColor(i + 1, si.getStatusColor(i));
                 banOcxCtl1.SetBanStatus(i + 1, si.getStatusString(i));
 
             }
+            banOcxCtl1.BanRefresh();
         }
         private void pbStart_Click(object sender, EventArgs e)
         {
@@ -415,6 +415,7 @@ namespace Monitor
                 banOcxCtl1.SetBanColor(i + 1, FindHeadByStatus(info.state[i]).color);
                 banOcxCtl1.SetBanStatus(i + 1, FindHeadByStatus(info.state[i]).title);
             }
+            banOcxCtl1.BanRefresh();
             info.qualified = arr[62];
             info.unquali = arr[63];
             info.qual_wet = BitConverter.ToSingle(arr,64);
@@ -445,6 +446,7 @@ namespace Monitor
       
         internal void SetReturnValue(List<ParamItem> itemList)
         {
+           
             foreach (ParamItem item in itemList)
             {
                 if (item.dev_id == 128) //控制器的命令回应
@@ -481,6 +483,10 @@ namespace Monitor
                     {
                         //item.param_value
                         si.updateWeightObj(item.param_value);
+                    }
+                    else
+                    {
+                        return;
                     }
                     BeginInvoke(new System.EventHandler(UpdateUI), null);
                    

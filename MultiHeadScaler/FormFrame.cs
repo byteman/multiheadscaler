@@ -100,7 +100,7 @@ namespace Monitor
             ucXzj = new UCXZJ(this);
             this.AddUC(ucXzj);
             Serial.Init();
-            Serial.RegisterEvent(sp_DataReceived, sp_Close, LogSend, LogRecv);
+            Serial.RegisterEvent(sp_DataReceived, sp_Close, null, null);
             int nOpen = Serial.Open(configManage.cfg.paramSerial.PortName, configManage.cfg.paramSerial.BaudRate, configManage.cfg.paramSerial.ReadWaitMs);
             if (nOpen < 1)
             {
@@ -255,7 +255,8 @@ namespace Monitor
             //if (ucStatus != null) ucStatus.ReceiveOnePkg();
             List<ParamItem> itemList;
             int nResolve = protocol.Resolve(bufRecv, nRecv, out itemList);
-            if (nResolve < 0) return;
+            if (nResolve < 0) 
+                return;
             if (protocol.bToUserControl == true)
             {
                 BeginInvoke(new System.EventHandler(DispenseUsrControl), itemList);

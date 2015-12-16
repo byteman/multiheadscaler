@@ -48,9 +48,9 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BanOcx, Version=1.0.5804.21156, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="BanOcx, Version=1.0.5827.25671, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\CSharp_meter_DLL\bin\Debug\BanOcx.dll</HintPath>
+      <HintPath>C:\Documents and Settings\Administrator\桌面\BanOcx151215\BanOcx.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />

@@ -37,7 +37,7 @@ namespace Monitor
             pbExit.Image = bmBtnUp;
 
             //timer.Interval = configManage.cfg.paramFormWeight.Interval;
-            timer.Interval = 500;
+            timer.Interval = 200;
             timer.Tick += new EventHandler(timer_Tick);
             timer.Enabled = false;
         }
@@ -279,6 +279,7 @@ namespace Monitor
                 banOcxCtl1.SetBanStatus(i + 1, si.getStatusString(i));        
                 
             }
+            banOcxCtl1.BanRefresh();
         }
         private void pbExit_Click_1(object sender, EventArgs e)
         {
