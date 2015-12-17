@@ -253,8 +253,8 @@ namespace Monitor
             int nRecv = Serial.Recv(out bufRecv);
             if (nRecv <= 0) return;
             //if (ucStatus != null) ucStatus.ReceiveOnePkg();
-            List<ParamItem> itemList;
-            int nResolve = protocol.Resolve(bufRecv, nRecv, out itemList);
+            List<ParamItem> itemList = new List<ParamItem>();
+            int nResolve = protocol.SplitePacket(bufRecv, nRecv, ref itemList);
             if (nResolve < 0) 
                 return;
             if (protocol.bToUserControl == true)
@@ -305,10 +305,7 @@ namespace Monitor
             {
                 ucRadioOnline.SetReturnValue(itemList);
             }
-            else if (ucCalib.Visible == true)
-            {
-                ucCalib.SetReturnValue(itemList);
-            }
+            
             else if (ucCalib.Visible == true)
             {
                 ucCalib.SetReturnValue(itemList);

@@ -74,11 +74,13 @@ namespace Monitor
             for (int i = 0; i < 10; i++)
             {
                 banOcxCtl1.SetBanWeight(i + 1, si.getWeightString(i));
-
-                banOcxCtl1.SetBanColor(i + 1, si.getStatusColor(i));
+                Color color = si.getStatusColor(i);
+                //System.Console.WriteLine("color"+ i + color.ToString());
+                banOcxCtl1.SetBanColor(i + 1, color);
                 banOcxCtl1.SetBanStatus(i + 1, si.getStatusString(i));
-
+                System.Diagnostics.Debug.WriteLine(si.getStatusString(i));
             }
+            
             banOcxCtl1.BanRefresh();
         }
         private void pbClear_Paint(object sender, PaintEventArgs e)

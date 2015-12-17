@@ -275,18 +275,79 @@ namespace Monitor
             //AddResendPack(slaveAddr, buffer, count, itemList);
             return count;
         }
+        public int SplitePacket(byte[] buffer, int len, ref List<ParamItem> itemList)
+        {
+            Queue<byte> dataQue = new Queue<byte>();
+            bool find = false;
+            int count = 0;
+            for (int i = 0; i < len; i++)
+            {
+                if (i + 3 < len)
+                {
 
-        public int Resolve(byte[] buffer, int len, out List<ParamItem> itemList)
+                    if (buffer[i] == (byte)0x51 &&
+                        buffer[i + 2] == (byte)0xc2)
+                    {
+                        if (find)
+                        {
+                            if (dataQue.Count < 7)
+                            {
+                                //dataQue.Clear();
+                            }
+                            else
+                            {
+                                byte[] tmp = new byte[dataQue.Count];
+                                dataQue.CopyTo(tmp, 0);
+                                if (Resolve2(tmp, dataQue.Count, ref itemList) > 0)
+                                {
+                                    count++;
+                                }
+                                dataQue.Clear();
+                                find = false;
+                                continue;
+                            }
+                        }
+                        //dataQue.Enqueue(buffer[i]);
+                        find = true;
+                    }
+                }
+                if (find)
+                {
+                    dataQue.Enqueue(buffer[i]);
+                }
+            }
+            if (find)
+            {
+            
+                    if (dataQue.Count > 7)
+                    {
+                        byte[] tmp = new byte[dataQue.Count];
+                        dataQue.CopyTo(tmp, 0);
+                        if (Resolve2(tmp, dataQue.Count, ref itemList) > 0)
+                        {
+                            count++;
+                        }
+                        dataQue.Clear();
+                        find = false;
+                    }
+                
+            }
+            return count;
+ 
+        }
+        public int Resolve2(byte[] buffer, int len,  ref List<ParamItem> itemList)
         {
             itemList = new List<ParamItem>();
             if(len < 7) return -1;  //协议长度至少为7字节
             if (buffer[0] != configManage.cfg.paramProtocol.S2M) return -2; //只接收从->主的数据
             if ((buffer[1] != configManage.cfg.paramDeviceId.Ctrl) && (buffer[1] != configManage.cfg.paramDeviceId.MonitorWireless)) return -3;//只接收控制器、显示器无线模块传来的数据
-            if (buffer[2] != configManage.cfg.paramProtocol.ACK) return -4;//只接收应答数据
+            if (buffer[2] != configManage.cfg.paramProtocol.ACK) 
+                return -4;//只接收应答数据
 
             if (buffer[1] != configManage.cfg.paramDeviceId.MonitorWireless)//显示器无线模块不做CRC校验
             {
-                if (Util.Crc16(buffer, (ushort)len) != 0) return -5;//校验失败
+                if (Util.Crc16(buffer, (ushort)len) != 0) 
+                    return -5;//校验失败
             }
 
             byte write = buffer[3];//读命令、写命令判断
