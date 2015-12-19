@@ -357,8 +357,12 @@ namespace Monitor
 
         private void ClickReturn()
         {
-           
-            if (ucRetControl != null) formFrame.ShowUC(ucRetControl);
+
+            if (ucRetControl != null)
+            {
+                formFrame.ucRun.Init();
+                formFrame.ShowUC(ucRetControl);
+            }
             else formFrame.ShowUC(formFrame.ucMain);
         }
         

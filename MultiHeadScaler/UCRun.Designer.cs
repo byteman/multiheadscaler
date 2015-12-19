@@ -219,6 +219,7 @@
             this.pbSimu.Name = "pbSimu";
             this.pbSimu.Size = new System.Drawing.Size(148, 56);
             this.pbSimu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbSimu.Visible = false;
             this.pbSimu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbSimu.Paint += new System.Windows.Forms.PaintEventHandler(this.pbSimu_Paint);
             this.pbSimu.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
@@ -230,6 +231,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(77, 20);
             this.label10.Text = "设定速度";
+            this.label10.Visible = false;
             // 
             // textBox4
             // 
@@ -240,6 +242,7 @@
             this.textBox4.Size = new System.Drawing.Size(83, 31);
             this.textBox4.TabIndex = 19;
             this.textBox4.Text = "123";
+            this.textBox4.Visible = false;
             this.textBox4.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
             // 
             // label11
@@ -249,6 +252,7 @@
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(14, 20);
             this.label11.Text = "1";
+            this.label11.Visible = false;
             // 
             // textBox5
             // 
@@ -260,6 +264,7 @@
             this.textBox5.Size = new System.Drawing.Size(49, 25);
             this.textBox5.TabIndex = 22;
             this.textBox5.Text = "123";
+            this.textBox5.Visible = false;
             this.textBox5.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
             this.textBox5.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
@@ -270,6 +275,7 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(14, 20);
             this.label12.Text = "3";
+            this.label12.Visible = false;
             // 
             // textBox6
             // 
@@ -280,6 +286,7 @@
             this.textBox6.Size = new System.Drawing.Size(49, 25);
             this.textBox6.TabIndex = 25;
             this.textBox6.Text = "123";
+            this.textBox6.Visible = false;
             this.textBox6.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
             this.textBox6.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
@@ -290,6 +297,7 @@
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(14, 20);
             this.label13.Text = "5";
+            this.label13.Visible = false;
             // 
             // textBox7
             // 
@@ -300,6 +308,7 @@
             this.textBox7.Size = new System.Drawing.Size(49, 25);
             this.textBox7.TabIndex = 28;
             this.textBox7.Text = "123";
+            this.textBox7.Visible = false;
             this.textBox7.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
             this.textBox7.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
@@ -310,6 +319,7 @@
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(14, 20);
             this.label14.Text = "7";
+            this.label14.Visible = false;
             // 
             // textBox8
             // 
@@ -320,6 +330,7 @@
             this.textBox8.Size = new System.Drawing.Size(49, 22);
             this.textBox8.TabIndex = 31;
             this.textBox8.Text = "123";
+            this.textBox8.Visible = false;
             this.textBox8.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
             this.textBox8.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
@@ -330,6 +341,7 @@
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(14, 20);
             this.label15.Text = "9";
+            this.label15.Visible = false;
             // 
             // textBox9
             // 
@@ -340,6 +352,7 @@
             this.textBox9.Size = new System.Drawing.Size(49, 22);
             this.textBox9.TabIndex = 34;
             this.textBox9.Text = "123";
+            this.textBox9.Visible = false;
             this.textBox9.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
             this.textBox9.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
@@ -350,6 +363,7 @@
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(20, 20);
             this.label16.Text = "10";
+            this.label16.Visible = false;
             // 
             // textBox10
             // 
@@ -360,6 +374,7 @@
             this.textBox10.Size = new System.Drawing.Size(44, 25);
             this.textBox10.TabIndex = 45;
             this.textBox10.Text = "123";
+            this.textBox10.Visible = false;
             this.textBox10.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
             this.textBox10.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
@@ -370,6 +385,7 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(14, 20);
             this.label17.Text = "8";
+            this.label17.Visible = false;
             // 
             // textBox11
             // 
@@ -380,6 +396,7 @@
             this.textBox11.Size = new System.Drawing.Size(44, 25);
             this.textBox11.TabIndex = 44;
             this.textBox11.Text = "123";
+            this.textBox11.Visible = false;
             this.textBox11.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
             this.textBox11.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
@@ -390,6 +407,7 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(14, 20);
             this.label18.Text = "6";
+            this.label18.Visible = false;
             // 
             // textBox12
             // 
@@ -400,6 +418,7 @@
             this.textBox12.Size = new System.Drawing.Size(44, 25);
             this.textBox12.TabIndex = 43;
             this.textBox12.Text = "123";
+            this.textBox12.Visible = false;
             this.textBox12.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
             this.textBox12.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
@@ -410,6 +429,7 @@
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(14, 20);
             this.label19.Text = "4";
+            this.label19.Visible = false;
             // 
             // textBox13
             // 
@@ -420,6 +440,7 @@
             this.textBox13.Size = new System.Drawing.Size(44, 25);
             this.textBox13.TabIndex = 42;
             this.textBox13.Text = "123";
+            this.textBox13.Visible = false;
             this.textBox13.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
             this.textBox13.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
@@ -430,6 +451,7 @@
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(14, 20);
             this.label20.Text = "2";
+            this.label20.Visible = false;
             // 
             // textBox14
             // 
@@ -440,6 +462,7 @@
             this.textBox14.Size = new System.Drawing.Size(44, 25);
             this.textBox14.TabIndex = 41;
             this.textBox14.Text = "123";
+            this.textBox14.Visible = false;
             this.textBox14.GotFocus += new System.EventHandler(this.textBox5_GotFocus);
             this.textBox14.LostFocus += new System.EventHandler(this.textBox5_LostFocus);
             // 
@@ -450,6 +473,7 @@
             this.btnAdd.Size = new System.Drawing.Size(56, 37);
             this.btnAdd.TabIndex = 51;
             this.btnAdd.Text = "++";
+            this.btnAdd.Visible = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnSub
@@ -459,6 +483,7 @@
             this.btnSub.Size = new System.Drawing.Size(56, 37);
             this.btnSub.TabIndex = 52;
             this.btnSub.Text = "--";
+            this.btnSub.Visible = false;
             this.btnSub.Click += new System.EventHandler(this.btnSub_Click);
             // 
             // txb_wet

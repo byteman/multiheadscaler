@@ -63,7 +63,7 @@ namespace Monitor
                 }
                 visCateList.Add(cate);
             }
-            load_formula_data();
+           
             protocol.InitParam(configManage);
 
             if (Environment.OSVersion.Platform == PlatformID.WinCE)
@@ -118,7 +118,7 @@ namespace Monitor
            
         }
      
-        private void load_formula_data()
+        public void load_formula_data()
         {
             FormulaID = configManage.cfg.paramFormWeight.FormulaID;
             DataTable dt = SQLiteDBHelper.listFormula(FormulaID);

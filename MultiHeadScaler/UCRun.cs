@@ -539,12 +539,14 @@ namespace Monitor
           
         }
 
-        internal void Init()
+        public void Init()
         {
+            formFrame.load_formula_data();
             pbName.Image = GetPicBitmap(formFrame.FormulaID);
             textBox1.Text = formFrame.curFormula.target_weight.ToString();
             textBox2.Text = formFrame.curFormula.up_diff.ToString();
             textBox3.Text = formFrame.curFormula.down_diff.ToString();
+
         }
 
         private void label5_ParentChanged(object sender, EventArgs e)
