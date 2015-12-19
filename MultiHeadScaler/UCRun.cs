@@ -177,6 +177,16 @@ namespace Monitor
             item.param_value = 0;
             itemList.Add(item);
 
+            item = new ParamItem();
+
+            item.dev_id = (byte)formFrame.configManage.cfg.paramDeviceId.Ctrl;
+            item.param_id = 1; //获取状态.
+            item.op_write = 0;
+            item.param_type = TypeCode.Byte;
+            item.param_len = 1;
+            item.param_value = 0;
+            itemList.Add(item);
+
             send(itemList);
 
         }
@@ -187,10 +197,13 @@ namespace Monitor
         }
         private void UpdateUI(object obj, System.EventArgs e)
         {
-            if (start == 1)
-                lblStatus.Text = "启动";
-            else
+            if (start == 0)
                 lblStatus.Text = "停止";
+            else if (start == 1)
+                lblStatus.Text = "运行";
+            else if(start == 2)
+                lblStatus.Text = "停止中";
+
             //更新每个banocx上面的重量.
 
             for (int i = 0; i < 10; i++)
@@ -245,22 +258,7 @@ namespace Monitor
                 Serial.Send(buf, len);
             }
         }
-        private void readStatus(byte cmd)
-        {
-            List<ParamItem> itemList = new List<ParamItem>();
-            ParamItem item;
-            item = new ParamItem();
-
-            
-            item.dev_id = (byte)formFrame.configManage.cfg.paramDeviceId.Ctrl;
-            item.param_id = cmd; //振动一次
-            item.op_write = 0;
-            item.param_type = TypeCode.Byte;
-            item.param_len = 1;
-            item.param_value = 0;
-            itemList.Add(item);
-            send(itemList);
-        }
+       
         private void writeCmd(byte cmd,byte v)
         {
             List<ParamItem> itemList = new List<ParamItem>();
@@ -461,15 +459,18 @@ namespace Monitor
                     else if ( (item.param_id == 1) && (item.op_write == 0)) //启动停止反馈.
                     {
                         byte s = (byte)item.param_value;
-                        if (s == 1)
+                        if (s == 0)
                         {
-                            // 开始
+                            // 停止成功
 
                         }
-                        else if(s == 2)
+                        else if (s == 1)
                         { 
+                            //正在运行
+                        }
+                        else if (s == 2)
+                        {
                             // 停止
-
                         }
                         start = s;
                       
@@ -556,7 +557,6 @@ namespace Monitor
         {
             if (this.Visible)
             {
-                //readStatus(1);
                 read_all_weight();
             }
         }

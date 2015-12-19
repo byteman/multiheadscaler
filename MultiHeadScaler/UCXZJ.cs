@@ -29,6 +29,7 @@ namespace Monitor
             {
                 return;
             }
+            listView1.Items.Clear();
             DataRow dr = dt.Rows[0];
             for (int i = 0; i < 10; i++)
             {
@@ -148,7 +149,7 @@ namespace Monitor
 
         private void button8_Click(object sender, EventArgs e)
         {
-            formFrame.ShowUC(formFrame.ucRun);
+            formFrame.ShowUC(formFrame.ucDBListControl);
         }
 
         internal void SetReturnValue(List<ParamItem> itemList)

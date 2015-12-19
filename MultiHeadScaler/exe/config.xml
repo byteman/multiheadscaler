@@ -85,7 +85,6 @@
       <list>
 
         <ParamDefineItem visible="1" read="0" write="1" name="配方编号" unit="" dev_id="128" param_id="32" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" /> 
-		<ParamDefineItem visible="1" read="0" write="1" name="配方名称" unit="" dev_id="128" param_id="33" param_len="16" param_type="String" valid_min_max="false" min="0" max="0" /> 
 		<ParamDefineItem visible="1" read="0" write="1" name="配料图片" unit="" dev_id="128" param_id="34" param_len="1" param_type="Byte" valid_min_max="false" min="0" max="0" /> 
         <ParamDefineItem visible="1" read="0" write="1" name="目标重量" unit="g" dev_id="128" param_id="35" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />
         <ParamDefineItem visible="1" read="0" write="1" name="上偏差" unit="g" dev_id="128" param_id="36" param_len="4" param_type="Single" valid_min_max="false" min="0" max="0" />

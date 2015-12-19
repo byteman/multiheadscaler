@@ -483,7 +483,7 @@
             // banOcxCtl1
             // 
             this.banOcxCtl1.BackColor = System.Drawing.Color.Black;
-            this.banOcxCtl1.Font = new System.Drawing.Font("宋体", 8F, System.Drawing.FontStyle.Regular);
+            this.banOcxCtl1.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular);
             this.banOcxCtl1.Location = new System.Drawing.Point(177, 3);
             this.banOcxCtl1.Name = "banOcxCtl1";
             this.banOcxCtl1.Size = new System.Drawing.Size(442, 409);
@@ -501,8 +501,8 @@
             this.banOcxCtl1.称状态字体大小 = 15F;
             this.banOcxCtl1.称状态字体颜色 = System.Drawing.Color.Black;
             this.banOcxCtl1.称重量字体大小 = 12F;
-            this.banOcxCtl1.称重量字体颜色 = System.Drawing.Color.Magenta;
-            this.banOcxCtl1.编号字体大小 = 10F;
+            this.banOcxCtl1.称重量字体颜色 = System.Drawing.Color.Black;
+            this.banOcxCtl1.编号字体大小 = 12F;
             this.banOcxCtl1.编号字体颜色 = System.Drawing.Color.Black;
             this.banOcxCtl1.编号距中心的距离 = 30;
             this.banOcxCtl1.背景颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));

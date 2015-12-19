@@ -36,6 +36,7 @@
             this.banOcxCtl1 = new BanOcx.BanOcxCtl();
             this.pbZero = new System.Windows.Forms.PictureBox();
             this.pbExit = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer();
             this.SuspendLayout();
             // 
             // pbRun
@@ -92,9 +93,9 @@
             // 
             this.banOcxCtl1.BackColor = System.Drawing.Color.Black;
             this.banOcxCtl1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular);
-            this.banOcxCtl1.Location = new System.Drawing.Point(98, 108);
+            this.banOcxCtl1.Location = new System.Drawing.Point(98, 91);
             this.banOcxCtl1.Name = "banOcxCtl1";
-            this.banOcxCtl1.Size = new System.Drawing.Size(486, 417);
+            this.banOcxCtl1.Size = new System.Drawing.Size(486, 434);
             this.banOcxCtl1.TabIndex = 7;
             this.banOcxCtl1.中心点击区半径 = 40;
             this.banOcxCtl1.字母S的大小 = 40F;
@@ -103,15 +104,16 @@
             this.banOcxCtl1.斗区线条的粗线 = 1F;
             this.banOcxCtl1.斗区线条的颜色 = System.Drawing.Color.White;
             this.banOcxCtl1.磅称中心点坐标 = new System.Drawing.Point(220, 200);
-            this.banOcxCtl1.磅称的半径 = 200;
+            this.banOcxCtl1.磅称的半径 = 180;
             this.banOcxCtl1.磅称的数量 = 10;
             this.banOcxCtl1.磅称的间隔弧度 = 10;
             this.banOcxCtl1.称状态字体大小 = 15F;
             this.banOcxCtl1.称状态字体颜色 = System.Drawing.Color.Black;
-            this.banOcxCtl1.称重量字体大小 = 10F;
-            this.banOcxCtl1.称重量字体颜色 = System.Drawing.Color.White;
-            this.banOcxCtl1.编号字体大小 = 10F;
+            this.banOcxCtl1.称重量字体大小 = 12F;
+            this.banOcxCtl1.称重量字体颜色 = System.Drawing.Color.Black;
+            this.banOcxCtl1.编号字体大小 = 12F;
             this.banOcxCtl1.编号字体颜色 = System.Drawing.Color.Black;
+            this.banOcxCtl1.编号距中心的距离 = 30;
             this.banOcxCtl1.背景颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
             // 
             // pbZero
@@ -133,6 +135,12 @@
             this.pbExit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseDown);
             this.pbExit.Paint += new System.Windows.Forms.PaintEventHandler(this.pbExit_Paint);
             this.pbExit.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbBtn_MouseUp);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 200;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // UCMain
             // 
@@ -164,5 +172,6 @@
         private BanOcx.BanOcxCtl banOcxCtl1;
         private System.Windows.Forms.PictureBox pbZero;
         private System.Windows.Forms.PictureBox pbExit;
+        private System.Windows.Forms.Timer timer1;
     }
 }

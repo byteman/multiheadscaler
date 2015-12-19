@@ -16,10 +16,85 @@ namespace Monitor
         PanelBody panelBody = null;
         private Bitmap bmBtnDown = null;
         private Bitmap bmBtnUp = null;
-
+        ScalerInfo si = new ScalerInfo();
         uint Status;
         bool bLock = false;
         const byte ParamIdSetZero = 36;
+        private void read_all_weight()
+        {
+            List<ParamItem> itemList = new List<ParamItem>();
+            ParamItem item;
+            item = new ParamItem();
+
+            item.dev_id = formFrame.configManage.cfg.paramDeviceId.Ctrl;
+            item.param_id = 4; //读取全部驱动板重量
+            item.op_write = 0; //读取
+            item.param_type = TypeCode.Empty;
+            item.param_len = 0;
+            item.param_value = 0;
+            itemList.Add(item);
+
+            item = new ParamItem();
+
+            item.dev_id = formFrame.configManage.cfg.paramDeviceId.Ctrl;
+            item.param_id = 3; //读取全部驱动板重量
+            item.op_write = 0; //读取
+            item.param_type = TypeCode.Empty;
+            item.param_len = 0;
+            item.param_value = 0;
+            itemList.Add(item);
+
+            send(itemList);
+
+        }
+        private void UpdateUI(object obj, System.EventArgs e)
+        {
+          
+            for (int i = 0; i < 10; i++)
+            {
+                banOcxCtl1.SetBanWeight(i + 1, si.getWeightString(i));
+                banOcxCtl1.SetBanColor(i + 1, si.getStatusColor(i));
+                banOcxCtl1.SetBanStatus(i + 1, si.getStatusString(i));
+
+            }
+            banOcxCtl1.BanRefresh();
+        }
+        private void send(List<ParamItem> itemList)
+        {
+            Protocol protocol = formFrame.protocol;
+            SerialOperate Serial = SerialOperate.instance;
+
+            byte[] buf;
+            int len = protocol.Produce(formFrame.configManage.cfg.paramDeviceId.Ctrl, out buf, itemList);
+            if (len > 0)
+            {
+                Serial.Send(buf, len);
+            }
+        }
+        internal void SetReturnValue(List<ParamItem> itemList)
+        {
+
+            foreach (ParamItem item in itemList)
+            {
+                if (item.dev_id == 128) //控制器的命令回应
+                {
+                    if (item.param_id == 3) //读取所有秤头状态
+                    {
+                        si.updateStatusObj(item.param_value);
+                    }
+                    else if (item.param_id == 4) //读取所有秤头重量
+                    {
+                        si.updateWeightObj(item.param_value);
+                    }
+                    else
+                    {
+                        return;
+                    }
+                    BeginInvoke(new System.EventHandler(UpdateUI), null);
+
+                }
+            }
+        }
 
         public UCMain(FormFrame f)
         {
@@ -145,16 +220,6 @@ namespace Monitor
         }
 
 
-        public void SetReturnValue(List<ParamItem> itemList)
-        {
-            
-        }
-
-        private void UpdateUI(object obj, System.EventArgs e)
-        {
-         
-        }
-
         private void banOcxCtl1_点击事件(object sender, BanOcx.MyEventArges e)
         {
 
@@ -197,6 +262,14 @@ namespace Monitor
         private void pbExit_Paint(object sender, PaintEventArgs e)
         {
             DrawLabel(sender, e, "退出");
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (this.Visible)
+            {
+                read_all_weight();
+            }
         }
 
        

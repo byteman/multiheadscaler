@@ -28,11 +28,11 @@ namespace Monitor
             {
                 return;
             }
+            listView1.Clear();
             DataRow dr = dt.Rows[0];
+
             for (int i = 0; i < 10; i++)
             {
-                
-
                 ListViewItem item = new ListViewItem();
                 item.SubItems[0].Text = (i+1).ToString();
                 String tmp = dr["xzp_strength" + i.ToString()].ToString();
