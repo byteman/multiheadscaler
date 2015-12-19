@@ -4,7 +4,7 @@
   <Desc>参数表2014-5-7</Desc>
   <paramSerial>
     <PortName>COM1</PortName>
-    <BaudRate>57600</BaudRate>
+    <BaudRate>115200</BaudRate>
     <ReadWaitMs>80</ReadWaitMs>
     <ResendCount>1</ResendCount>
   </paramSerial>
