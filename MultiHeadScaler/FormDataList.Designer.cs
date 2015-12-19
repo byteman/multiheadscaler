@@ -83,7 +83,7 @@
             // ch_datetime
             // 
             this.ch_datetime.Text = "日期";
-            this.ch_datetime.Width = 160;
+            this.ch_datetime.Width = 200;
             // 
             // ch_weight
             // 

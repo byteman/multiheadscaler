@@ -547,6 +547,10 @@ namespace Monitor
             {
                 //输入框用于用户输入数据
                 InputInterface dlg;
+                if (item.permit_write == 0)
+                {
+                    return;
+                }
 
                 dlg = new FormInput(this.formFrame);
 

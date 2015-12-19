@@ -211,7 +211,7 @@ namespace Monitor
                 {
                     cmd.Connection = conn;
                     conn.Open();
-                    string sql = String.Format("select * from weight limit {0:d} offset {1:d}", page_size, page * page_size);
+                    string sql = String.Format("select * from weight ORDER BY s_date desc limit {0:d} offset {1:d}  ", page_size, page * page_size);
                   
 
                     SQLiteHelper sh = new SQLiteHelper(cmd);

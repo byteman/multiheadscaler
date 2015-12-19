@@ -29,7 +29,7 @@ namespace Monitor
         }
         ScalerInfo si = new ScalerInfo();
         private List<HeadUIInfo> headInfos = new List<HeadUIInfo>();
-
+        private byte session_id = 0;
         private FormFrame formFrame = null;
         private Bitmap bmBtnDown = null;
         private Bitmap bmBtnUp = null;
@@ -37,7 +37,7 @@ namespace Monitor
         
         private TextBox curTxtBox = null;
         private byte start = 2;
-      
+        private byte session_timeout = 0;
         public UCRun(FormFrame f)
         {
             InitializeComponent();
@@ -396,27 +396,33 @@ namespace Monitor
             MultiScalerInfo info = new MultiScalerInfo();
             WeightData wd = new WeightData();
             byte[] arr = (byte[])o;
+            if (session_id == arr[0])
+            {
+                return ;
+            }
             //TestStruct ss = (TestStruct)BytesToStuct(arr, System.Type.GetType("TestStruct", true));
-            info.scale_num = arr[0];
-            info.qualified = arr[1];
+            info.scale_num = arr[1];
+            info.qualified = arr[2];
             for (int i = 0; i < 10; i++)
             {
-                info.comb_heads[i] = arr[2 + i];
-                info.state[i] = arr[12 + i];
+                byte addr = arr[3 + i];
+                info.comb_heads[i] = addr;
+
+                info.state[i] = arr[13 + i];
                 if (info.state[i] == 1) //参与组合
                 {
                     //添加参与组合的编号.
-                    wd.addZuhe(i + 1);
+                    wd.addZuhe(addr);
                 }
-                info.wet[i] = BitConverter.ToSingle(arr, 22 + i * 4);
-                banOcxCtl1.SetBanWeight(i+1,info.wet[i].ToString());
-                banOcxCtl1.SetBanColor(i + 1, FindHeadByStatus(info.state[i]).color);
-                banOcxCtl1.SetBanStatus(i + 1, FindHeadByStatus(info.state[i]).title);
+                info.wet[i] = BitConverter.ToSingle(arr, 23 + i * 4);
+                banOcxCtl1.SetBanWeight(addr, info.wet[i].ToString());
+                banOcxCtl1.SetBanColor(addr,  FindHeadByStatus(info.state[i]).color);
+                banOcxCtl1.SetBanStatus(addr, FindHeadByStatus(info.state[i]).title);
             }
             banOcxCtl1.BanRefresh();
-            info.qualified = arr[62];
-            info.unquali = arr[63];
-            info.qual_wet = BitConverter.ToSingle(arr,64);
+            info.qualified = arr[63];
+            info.unquali = arr[64];
+            info.qual_wet = BitConverter.ToSingle(arr,65);
             
             lbl_hege.Text = "合格数: " + info.qualified.ToString();
             lbl_unhege.Text = "不合格数: " + info.unquali.ToString();
@@ -426,6 +432,7 @@ namespace Monitor
             wd.weight = info.qual_wet;
             //添加一条组合记录.
             SQLiteDBHelper.addData(wd);
+            session_id = arr[0];
         }
         private Bitmap GetBitmap(string upPath)
         {
@@ -452,7 +459,7 @@ namespace Monitor
                     if (item.param_id == 2) //组合结果
                     {
                         parseInfo(item.param_value);
-                        ackData();
+                        ackData(session_id);
                         return;
                         //item.param_value;
                     }
@@ -495,11 +502,11 @@ namespace Monitor
             }
         }
 
-        private void ackData()
+        private void ackData(byte session_id)
         {
             Protocol protocol = formFrame.protocol;
             SerialOperate Serial = SerialOperate.instance;
-            byte[] ack = new byte[]{0x69 ,0x80 ,0xc2 ,0x01 ,0x01   ,0x80 ,0x02 ,0x01 ,0x01 ,0x0,0x0};
+            byte[] ack = new byte[] { 0x69, 0x80, 0xc2, 0x01, 0x01, 0x80, 0x02, 0x01, session_id, 0x0, 0x0 };
             ushort uCrc = Util.Crc16(ack, (ushort)9);
             byte[] byCrc = BitConverter.GetBytes(uCrc);
             Util.SwapBuf(byCrc);
@@ -555,6 +562,12 @@ namespace Monitor
 
         private void timer1_Tick_1(object sender, EventArgs e)
         {
+            if (session_timeout++ > 25)
+            {
+                session_id = 0;
+                session_timeout = 0;
+            }
+            
             if (this.Visible)
             {
                 read_all_weight();
