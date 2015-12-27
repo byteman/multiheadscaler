@@ -46,7 +46,7 @@
             // 
             this.banOcxCtl1.BackColor = System.Drawing.Color.Black;
             this.banOcxCtl1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular);
-            this.banOcxCtl1.Location = new System.Drawing.Point(35, 38);
+            this.banOcxCtl1.Location = new System.Drawing.Point(31, 113);
             this.banOcxCtl1.Name = "banOcxCtl1";
             this.banOcxCtl1.Size = new System.Drawing.Size(442, 409);
             this.banOcxCtl1.TabIndex = 27;
@@ -72,7 +72,7 @@
             // 
             // pbClear
             // 
-            this.pbClear.Location = new System.Drawing.Point(483, 119);
+            this.pbClear.Location = new System.Drawing.Point(479, 194);
             this.pbClear.Name = "pbClear";
             this.pbClear.Size = new System.Drawing.Size(150, 50);
             this.pbClear.Click += new System.EventHandler(this.pbClear_Click);
@@ -82,7 +82,7 @@
             // 
             // pbBan
             // 
-            this.pbBan.Location = new System.Drawing.Point(483, 268);
+            this.pbBan.Location = new System.Drawing.Point(479, 343);
             this.pbBan.Name = "pbBan";
             this.pbBan.Size = new System.Drawing.Size(150, 50);
             this.pbBan.Click += new System.EventHandler(this.pbBan_Click);
@@ -92,14 +92,14 @@
             // 
             // pbStep
             // 
-            this.pbStep.Location = new System.Drawing.Point(639, 196);
+            this.pbStep.Location = new System.Drawing.Point(635, 271);
             this.pbStep.Name = "pbStep";
             this.pbStep.Size = new System.Drawing.Size(150, 50);
             this.pbStep.Click += new System.EventHandler(this.pbStep_Click);
             // 
             // pbShake
             // 
-            this.pbShake.Location = new System.Drawing.Point(483, 196);
+            this.pbShake.Location = new System.Drawing.Point(479, 271);
             this.pbShake.Name = "pbShake";
             this.pbShake.Size = new System.Drawing.Size(150, 50);
             this.pbShake.Click += new System.EventHandler(this.pbShake_Click);
@@ -109,21 +109,21 @@
             // 
             // pbEmpty
             // 
-            this.pbEmpty.Location = new System.Drawing.Point(639, 268);
+            this.pbEmpty.Location = new System.Drawing.Point(635, 343);
             this.pbEmpty.Name = "pbEmpty";
             this.pbEmpty.Size = new System.Drawing.Size(150, 50);
             this.pbEmpty.Click += new System.EventHandler(this.pbEmpty_Click);
             // 
             // pbContinuStep
             // 
-            this.pbContinuStep.Location = new System.Drawing.Point(639, 119);
+            this.pbContinuStep.Location = new System.Drawing.Point(635, 194);
             this.pbContinuStep.Name = "pbContinuStep";
             this.pbContinuStep.Size = new System.Drawing.Size(150, 50);
             this.pbContinuStep.Click += new System.EventHandler(this.pbContinuStep_Click);
             // 
             // pbStop
             // 
-            this.pbStop.Location = new System.Drawing.Point(483, 339);
+            this.pbStop.Location = new System.Drawing.Point(479, 414);
             this.pbStop.Name = "pbStop";
             this.pbStop.Size = new System.Drawing.Size(150, 50);
             this.pbStop.Click += new System.EventHandler(this.pbStop_Click);
@@ -133,7 +133,7 @@
             // 
             // pbExit
             // 
-            this.pbExit.Location = new System.Drawing.Point(639, 339);
+            this.pbExit.Location = new System.Drawing.Point(635, 414);
             this.pbExit.Name = "pbExit";
             this.pbExit.Size = new System.Drawing.Size(150, 50);
             this.pbExit.Click += new System.EventHandler(this.pbExit_Click);
@@ -147,7 +147,7 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_number.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Bold);
-            this.tb_number.Location = new System.Drawing.Point(525, 58);
+            this.tb_number.Location = new System.Drawing.Point(521, 133);
             this.tb_number.Name = "tb_number";
             this.tb_number.Size = new System.Drawing.Size(100, 31);
             this.tb_number.TabIndex = 46;
@@ -156,7 +156,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(661, 62);
+            this.label3.Location = new System.Drawing.Point(657, 137);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 20);
             this.label3.Text = "号斗";

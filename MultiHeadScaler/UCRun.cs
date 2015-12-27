@@ -395,6 +395,7 @@ namespace Monitor
         {
             MultiScalerInfo info = new MultiScalerInfo();
             WeightData wd = new WeightData();
+            int offset = 0;
             byte[] arr = (byte[])o;
             if (session_id == arr[0])
             {
@@ -403,26 +404,30 @@ namespace Monitor
             //TestStruct ss = (TestStruct)BytesToStuct(arr, System.Type.GetType("TestStruct", true));
             info.scale_num = arr[1];
             info.qualified = arr[2];
-            for (int i = 0; i < 10; i++)
+            offset = 3;
+            //for (int i = 0; i < 10; i++)
+            for (int i = 0; i < info.scale_num; i++) //TODO
             {
-                byte addr = arr[3 + i];
+                byte addr = arr[offset + i];
                 info.comb_heads[i] = addr;
 
-                info.state[i] = arr[13 + i];
+                info.state[i] = arr[offset + info.scale_num + i];
                 if (info.state[i] == 1) //参与组合
                 {
                     //添加参与组合的编号.
                     wd.addZuhe(addr);
                 }
-                info.wet[i] = BitConverter.ToSingle(arr, 23 + i * 4);
+                info.wet[i] = BitConverter.ToSingle(arr, offset + 2*info.scale_num + i * 4);
+                
                 banOcxCtl1.SetBanWeight(addr, info.wet[i].ToString());
                 banOcxCtl1.SetBanColor(addr,  FindHeadByStatus(info.state[i]).color);
                 banOcxCtl1.SetBanStatus(addr, FindHeadByStatus(info.state[i]).title);
             }
+            offset += (info.scale_num * 6) ;
             banOcxCtl1.BanRefresh();
-            info.qualified = arr[63];
-            info.unquali = arr[64];
-            info.qual_wet = BitConverter.ToSingle(arr,65);
+            info.qualified = arr[offset++];
+            info.unquali = arr[offset++];
+            info.qual_wet = BitConverter.ToSingle(arr, offset++);
             
             lbl_hege.Text = "合格数: " + info.qualified.ToString();
             lbl_unhege.Text = "不合格数: " + info.unquali.ToString();

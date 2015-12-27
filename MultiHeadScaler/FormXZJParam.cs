@@ -61,7 +61,7 @@ namespace Monitor
             item.param_value = byte.Parse(textBox2.Text);
             item.unit = "";
             item.param_type = TypeCode.Byte;
-            item.name = "线振机强度";
+            item.name = "线振机时间";
             input.SetValue(item, true);
             input.ShowDialog();
             textBox2.Text = input.GetValue().param_value.ToString();

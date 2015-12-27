@@ -12,6 +12,7 @@ namespace Monitor
     public partial class UCXZJ : UserControl
     {
         private FormFrame formFrame = null;
+        private const int head_num = 11;
         int formula_id = 0;
         public UCXZJ(FormFrame f)
         {
@@ -31,7 +32,7 @@ namespace Monitor
             }
             listView1.Items.Clear();
             DataRow dr = dt.Rows[0];
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < head_num; i++)
             {
 
 
@@ -136,7 +137,7 @@ namespace Monitor
             Dictionary<string, object> dic = new Dictionary<string, object>();
 
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < head_num; i++)
             {
                 dic["xzp_strength" + i.ToString()] = listView1.Items[i].SubItems[1].Text;
                 dic["xzp_time" + i.ToString()] = listView1.Items[i].SubItems[2].Text;
@@ -157,6 +158,33 @@ namespace Monitor
             foreach (ParamItem item in itemList)
             { 
                 
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView1.Items)
+            {
+                int s = int.Parse(item.SubItems[1].Text);
+                if (s < 255)
+                {
+                    s++;
+                    item.SubItems[1].Text = s.ToString();
+                }
+            }
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView1.Items)
+            {
+                int s = int.Parse(item.SubItems[1].Text);
+                if (s > 0)
+                {
+                    s--;
+                    item.SubItems[1].Text = s.ToString();
+                }
             }
         }
     }

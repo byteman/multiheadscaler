@@ -37,6 +37,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // columnHeader2
@@ -117,11 +119,33 @@
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.ItemActivate += new System.EventHandler(this.listView1_ItemActivate_1);
             // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Bold);
+            this.button4.Location = new System.Drawing.Point(671, 218);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(103, 46);
+            this.button4.TabIndex = 29;
+            this.button4.Text = "强度-";
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Bold);
+            this.button5.Location = new System.Drawing.Point(671, 147);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(103, 46);
+            this.button5.TabIndex = 28;
+            this.button5.Text = "强度+";
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // UCXZJ
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button3);
@@ -145,5 +169,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }

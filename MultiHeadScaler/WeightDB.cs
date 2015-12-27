@@ -138,7 +138,7 @@ namespace Monitor
                     tb.Columns.Add(new SQLiteColumn("open_delay", ColType.Integer));
                     
                     
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < 11; i++)
                     {
                         tb.Columns.Add(new SQLiteColumn("xzp_strength"+i.ToString(), ColType.Integer));
                         tb.Columns.Add(new SQLiteColumn("xzp_time" + i.ToString(), ColType.Integer));
@@ -350,7 +350,7 @@ namespace Monitor
                     dic["target_weight"] = data.target_weight;
                     dic["up_diff"] = data.up_diff;
                     dic["open_delay"] = data.open_delay;
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < 11; i++)
                     {
                         dic["xzp_strength" + i.ToString()] = data.xzp_strength[i];
                         dic["xzp_time" + i.ToString()] = data.xzp_time[i];
